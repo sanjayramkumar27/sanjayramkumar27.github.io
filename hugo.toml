@@ -1,6 +1,6 @@
 baseURL = "https://<yourusername>.github.io/"
 theme = "PaperMod"
-title = "San <Lastname> — Portfolio"
+title = "Sanjay Ramkumar"
 
 [params]
   description = "Aerospace/robotics engineering portfolio"
