@@ -7,7 +7,19 @@ description = "Aerospace & Robotics Engineering Portfolio"
 ShowReadingTime = true
 ShowShareButtons = false
 
-[[menu.main]]
-name = "Projects"
-url = "/projects/"
-weight = 10
+[menu]
+  [[menu.main]]
+    identifier = "research"
+    name = "Research"
+    url = "/research/"
+    weight = 10
+  [[menu.main]]
+    identifier = "competitions"
+    name = "Competitions"
+    url = "/competitions/"
+    weight = 20
+  [[menu.main]]
+    identifier = "personal-projects"
+    name = "Personal Projects"
+    url = "/personal-projects/"
+    weight = 30
