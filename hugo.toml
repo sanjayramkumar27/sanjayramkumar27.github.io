@@ -19,7 +19,7 @@ ShowShareButtons = false
     url = "/competitions/"
     weight = 20
   [[menu.main]]
-    identifier = "personal-projects"
+    identifier = "projects"
     name = "Personal Projects"
     url = "/personal-projects/"
     weight = 30
