@@ -1,0 +1,27 @@
+{{ define "main" }}
+<div class="portfolio">
+
+<section class="page-hero">
+  <span class="section-label">Competitions</span>
+  <h1>{{ .Title }}</h1>
+  <div>{{ .Content }}</div>
+</section>
+
+<section>
+  <div class="timeline">
+    {{ range (.Pages.ByParam "year").Reverse }}
+    <a class="timeline-item" href="{{ .RelPermalink }}">
+      <div class="timeline-year">{{ .Params.year }}</div>
+      <div class="timeline-body">
+        <h3>{{ .Title }}</h3>
+        <p class="timeline-role">{{ .Params.role }}</p>
+        <p>{{ .Params.summary | default .Summary }}</p>
+        {{ with .Params.outcome }}<span class="badge">{{ . }}</span>{{ end }}
+      </div>
+    </a>
+    {{ end }}
+  </div>
+</section>
+
+</div>
+{{ end }}

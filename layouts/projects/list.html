@@ -1,0 +1,23 @@
+{{ define "main" }}
+<div class="portfolio">
+
+<section class="page-hero">
+  <span class="section-label">{{ .Title }}</span>
+  <h1>{{ .Title }}</h1>
+  <div>{{ .Content }}</div>
+</section>
+
+<section>
+  <div class="project-grid">
+    {{ range .Pages }}
+    <a class="project-card" href="{{ .RelPermalink }}">
+      {{ with .Params.cover }}<div class="thumb"><img src="{{ .image }}" alt="{{ $.Title }}"></div>{{ end }}
+      <h3>{{ .Title }}</h3>
+      <p>{{ .Params.summary | default .Summary }}</p>
+    </a>
+    {{ end }}
+  </div>
+</section>
+
+</div>
+{{ end }}
