@@ -1,216 +1,97 @@
 {{ define "main" }}
-
 <div class="portfolio">
 
 <section class="hero">
-
-<div class="hero-text">
-
-<h1>Sanjay Ramkumar</h1>
-
-<h3>
-Aerospace Engineering Student<br>
-Indian Institute of Space Science and Technology (IIST)
-</h3>
-
-<p class="tagline">
-Robotics • Mechatronics • Space Systems
-</p>
-
-<p>
-Building autonomous robotic systems for space exploration,
-trajectory optimization, embedded control, and intelligent
-mechanical design.
-</p>
-
-<div class="buttons">
-
-<a class="button" href="/projects/">
-View Projects
-</a>
-
-<a class="button" href="/resume.pdf">
-Resume
-</a>
-
-<a class="button"
-href="https://github.com/sanjayramkumar27">
-
-GitHub
-
-</a>
-
-<a class="button"
-href="https://linkedin.com/in/YOUR-LINK">
-
-LinkedIn
-
-</a>
-
-</div>
-
-</div>
-
-<div class="hero-image">
-
-<img src="/images/profile.jpg" alt="Profile">
-
-</div>
-
+  <div class="hero-text">
+    <h1>Sanjay Ramkumar</h1>
+    <h3>Aerospace Engineering Student<br>Indian Institute of Space Science and Technology (IIST)</h3>
+    <p class="tagline">Robotics • Mechatronics • Space Systems</p>
+    <p>Building autonomous robotic systems for space exploration, trajectory optimization, embedded control, and intelligent mechanical design.</p>
+    <div class="buttons">
+      <a class="button" href="/projects/">View Projects</a>
+      <a class="button" href="/resume.pdf">Resume</a>
+      <a class="button ghost" href="https://github.com/sanjayramkumar27">GitHub</a>
+      <a class="button ghost" href="https://www.linkedin.com/in/sanjay-ramkumar-83243a31b/">LinkedIn</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="/images/profile.jpg" alt="Sanjay Ramkumar">
+  </div>
 </section>
 
 <hr>
 
 <section>
-
-<h2>About Me</h2>
-
-<p>
-
-I'm a final-year Aerospace Engineering student at the
-Indian Institute of Space Science and Technology (IIST).
-
-My interests lie in robotics, mechatronics,
-optimization, autonomous systems, embedded electronics,
-and space engineering.
-
-I enjoy designing complete robotic systems—
-from CAD and mechanical design to control algorithms,
-trajectory optimization, and embedded implementation.
-
-</p>
-
+  <span class="section-label">About</span>
+  <h2>About Me</h2>
+  <p>I'm a final-year Aerospace Engineering student at the Indian Institute of Space Science and Technology (IIST). My interests lie in robotics, mechatronics, optimization, autonomous systems, embedded electronics, and space engineering. I enjoy designing complete robotic systems — from CAD and mechanical design to control algorithms, trajectory optimization, and embedded implementation.</p>
 </section>
 
 <hr>
 
 <section>
-
-<h2>Current Research</h2>
-
-<div class="research-card">
-
-<h3>Bi-Level Co-Design of a Lunar Monoped Jumper</h3>
-
-<p>
-Developing an optimization framework that simultaneously
-optimizes robot morphology and jumping trajectories for
-lunar locomotion using CasADi, IPOPT, PyGMO, and MuJoCo.
-</p>
-
-</div>
-
+  <span class="section-label">Research</span>
+  <h2>Current Research</h2>
+  <div class="research-card">
+    <h3>Bi-Level Co-Design of a Lunar Monoped Jumper</h3>
+    <p>Developing an optimization framework that simultaneously optimizes robot morphology and jumping trajectories for lunar locomotion using CasADi, IPOPT, PyGMO, and MuJoCo.</p>
+  </div>
 </section>
 
 <hr>
 
 <section>
-
-<h2>Technical Skills</h2>
-
-<div class="skills">
-
-<div>
-
-<h3>Programming</h3>
-
-<div class="badge">Python</div>
-
-<div class="badge">MATLAB</div>
-
-<div class="badge">C++</div>
-
-
-</div>
-
-<div>
-
-<h3>Simulation</h3>
-<div class="badge">MuJoCo</div>
-
-<div class="badge">SolidWorks</div>
-
-<div class="badge">ANSYS</div>
-
-<div class="badge">Simulink</div>
-
-</div>
-
-<div>
-
+  <span class="section-label">Skills</span>
+  <h2>Technical Skills</h2>
+  <div class="skills">
+    <div>
+      <h3>Programming</h3>
+      <div class="badge">Python</div>
+      <div class="badge">MATLAB</div>
+      <div class="badge">C++</div>
+    </div>
+    <div>
+      <h3>Simulation</h3>
+      <div class="badge">MuJoCo</div>
+      <div class="badge">SolidWorks</div>
+      <div class="badge">ANSYS</div>
+      <div class="badge">Simulink</div>
+    </div>
+  </div>
 </section>
 
 <hr>
+
 <section>
+  <span class="section-label">Work</span>
+  <h2>Featured Projects</h2>
+  <div class="project-grid">
+    <a class="project-card" href="/projects/monoped-codesign/">
+      <div class="thumb"><img src="/images/projects/monoped.png" alt="Monoped jumper render"></div>
+      <h3>Bi-Level Co-Design of a Lunar Monoped Jumper</h3>
+      <p>Trajectory optimization and morphology optimization for lunar jumping robots.</p>
+    </a>
+    <a class="project-card" href="/projects/cansat/">
+      <div class="thumb"><img src="/images/projects/cansat.png" alt="CanSat render"></div>
+      <h3>Autonomous CanSat</h3>
+      <p>Rotor-assisted CanSat capable of autonomous descent and telemetry.</p>
+    </a>
+    <a class="project-card" href="/projects/robot-arm/">
+      <div class="thumb"><img src="/images/projects/robotarm.png" alt="Robotic arm render"></div>
+      <h3>Robotic Manipulator</h3>
+      <p>Servo-based robotic arm with embedded control and inverse kinematics.</p>
+    </a>
+  </div>
+</section>
 
-<h2>Featured Projects</h2>
+<hr>
 
-<div class="project-grid">
-
-<a class="project-card" href="/projects/monoped-codesign/">
-
-<img src="/images/projects/monoped.png">
-
-<h3>Bi-Level Co-Design of a Lunar Monoped Jumper</h3>
-
-<p>
-Trajectory optimization and morphology optimization for
-lunar jumping robots.
-</p>
-
-</a>
-
-<a class="project-card" href="#">
-
-<img src="/images/projects/cansat.png">
-
-<h3>Autonomous CanSat</h3>
-
-<p>
-Rotor-assisted CanSat capable of autonomous descent and
-telemetry.
-</p>
-
-</a>
-
-<a class="project-card" href="#">
-
-<img src="/images/projects/robotarm.png">
-
-<h3>Robotic Manipulator</h3>
-
-<p>
-Servo-based robotic arm with embedded control and inverse
-kinematics.
-</p>
-
-</a>
+<section>
+  <span class="section-label">Background</span>
+  <h2>Education</h2>
+  <h3>Indian Institute of Space Science and Technology</h3>
+  <p>Bachelor of Technology<br>Aerospace Engineering<br>Expected Graduation: 2027</p>
+</section>
 
 </div>
-
-</section>
-<section>
-
-<h2>Education</h2>
-
-<h3>
-Indian Institute of Space Science and Technology
-</h3>
-
-<p>
-
-Bachelor of Technology
-
-<br>
-
-Aerospace Engineering
-
-<br>
-
-Expected Graduation: 2027
-
-</p>
-
-</section>
-
 {{ end }}
