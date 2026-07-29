@@ -9,7 +9,7 @@
 
 <section>
   <div class="timeline">
-    {{ range (.Pages.ByParam "year").Reverse }}
+    {{ range .Pages }}
     <a class="timeline-item" href="{{ .RelPermalink }}">
       <div class="timeline-year">{{ .Params.year }}</div>
       <div class="timeline-body">
