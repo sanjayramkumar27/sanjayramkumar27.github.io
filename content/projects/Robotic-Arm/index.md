@@ -1,7 +1,7 @@
 ---
 title: "A 4DoF Robotic Arm"
 date: 2026-06-01
-summary: "Custome designed 4 DoF Robotic arm with manually derived Inverse Kinematics and simulated in MuJoCo"
+summary: "Custom designed 4 DoF Robotic arm with manually derived Inverse Kinematics and simulated in MuJoCo"
 tags: ["robotics", "Control Sysytems", "mechatronics"]
 cover:
   image: "cover.png"
