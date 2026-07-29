@@ -1,28 +1,11 @@
 baseURL = "https://sanjayramkumar27.github.io/"
-theme = "PaperMod"
 title = "Sanjay Ramkumar"
+theme = "PaperMod"
 
 [params]
 description = "Aerospace & Robotics Engineering Portfolio"
 ShowReadingTime = true
 ShowShareButtons = false
-
-[params.homeInfoParams]
-Title = "Sanjay Ramkumar"
-
-Content = """
-Final-year Aerospace Engineering student at the Indian Institute of Space Science and Technology (IIST).
-
-### Areas of Interest
-
-- Robotics
-- Mechatronics
-- Autonomous Systems
-- Space Systems
-- Control & Optimization
-
-Use **Projects** above to explore my work.
-"""
 
 [[menu.main]]
 name = "Projects"
