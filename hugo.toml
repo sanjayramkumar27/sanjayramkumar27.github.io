@@ -7,6 +7,9 @@ description = "Aerospace & Robotics Engineering Portfolio"
 ShowReadingTime = true
 ShowShareButtons = false
 
+[markup.goldmark.renderer]
+  unsafe = true
+
 [menu]
   [[menu.main]]
     identifier = "research"
