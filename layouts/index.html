@@ -1,66 +1,193 @@
 {{ define "main" }}
 
-<div style="max-width:900px;margin:auto;padding:40px 20px;">
+<div class="portfolio">
 
-<h1>Hi, I'm Sanjay Ramkumar</h1>
+<section class="hero">
 
-<p>
-Final-year Aerospace Engineering student at the
-<strong>Indian Institute of Space Science and Technology (IIST)</strong>.
+<div class="hero-text">
+
+<h1>Sanjay Ramkumar</h1>
+
+<h3>
+Aerospace Engineering Student<br>
+Indian Institute of Space Science and Technology (IIST)
+</h3>
+
+<p class="tagline">
+Robotics • Mechatronics • Space Systems
 </p>
 
 <p>
-I work at the intersection of
-<strong>Robotics</strong>,
-<strong>Mechatronics</strong>,
-<strong>Control Systems</strong>,
-<strong>Optimization</strong>, and
-<strong>Space Engineering</strong>.
+Building autonomous robotic systems for space exploration,
+trajectory optimization, embedded control, and intelligent
+mechanical design.
 </p>
 
-<p>
+<div class="buttons">
 
-<a class="button" href="/projects/">View Projects</a>
+<a class="button" href="/projects/">
+View Projects
+</a>
 
-<a class="button" href="https://github.com/sanjayramkumar27">
+<a class="button" href="/resume.pdf">
+Resume
+</a>
+
+<a class="button"
+href="https://github.com/sanjayramkumar27">
+
 GitHub
+
 </a>
 
-<a class="button" href="https://www.linkedin.com/">
+<a class="button"
+href="https://linkedin.com/in/YOUR-LINK">
+
 LinkedIn
+
 </a>
 
-</p>
+</div>
+
+</div>
+
+<div class="hero-image">
+
+<img src="/images/profile.jpg" alt="Profile">
+
+</div>
+
+</section>
 
 <hr>
+
+<section>
 
 <h2>About Me</h2>
 
 <p>
-I'm interested in robotics for space applications, trajectory optimization,
-embedded systems, autonomous control, and mechanical design.
+
+I'm a final-year Aerospace Engineering student at the
+Indian Institute of Space Science and Technology (IIST).
+
+My interests lie in robotics, mechatronics,
+optimization, autonomous systems, embedded electronics,
+and space engineering.
+
+I enjoy designing complete robotic systems—
+from CAD and mechanical design to control algorithms,
+trajectory optimization, and embedded implementation.
+
 </p>
 
-<h2>Skills</h2>
+</section>
 
-<ul>
-<li>Python</li>
-<li>MATLAB / Simulink</li>
-<li>ROS2</li>
-<li>SolidWorks</li>
-<li>ANSYS</li>
-<li>Arduino / Embedded Systems</li>
-<li>C++</li>
-<li>Control Systems</li>
-</ul>
+<hr>
+
+<section>
 
 <h2>Current Research</h2>
 
+<div class="research-card">
+
+<h3>Bi-Level Co-Design of a Lunar Monoped Jumper</h3>
+
 <p>
-Bi-Level Co-Design of a Lunar Monoped Jumper using
-CasADi, IPOPT, PyGMO and MuJoCo.
+Developing an optimization framework that simultaneously
+optimizes robot morphology and jumping trajectories for
+lunar locomotion using CasADi, IPOPT, PyGMO, and MuJoCo.
 </p>
 
 </div>
+
+</section>
+
+<hr>
+
+<section>
+
+<h2>Technical Skills</h2>
+
+<div class="skills">
+
+<div>
+
+<h3>Programming</h3>
+
+<p>
+Python<br>
+C++<br>
+MATLAB
+</p>
+
+</div>
+
+<div>
+
+<h3>Simulation</h3>
+
+<p>
+MuJoCo<br>
+SolidWorks<br>
+ANSYS<br>
+Simulink
+</p>
+
+</div>
+
+<div>
+
+<h3>Robotics</h3>
+
+<p>
+ROS2<br>
+Trajectory Optimization<br>
+Control Systems
+</p>
+
+</div>
+
+<div>
+
+<h3>Embedded</h3>
+
+<p>
+Arduino<br>
+STM32<br>
+Sensors<br>
+Motor Control
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<hr>
+
+<section>
+
+<h2>Education</h2>
+
+<h3>
+Indian Institute of Space Science and Technology
+</h3>
+
+<p>
+
+Bachelor of Technology
+
+<br>
+
+Aerospace Engineering
+
+<br>
+
+Expected Graduation: 2027
+
+</p>
+
+</section>
 
 {{ end }}
