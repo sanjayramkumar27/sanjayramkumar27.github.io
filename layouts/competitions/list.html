@@ -9,7 +9,8 @@
 
 <section>
   <div class="timeline">
-    {{ range (sort .Pages "Params.year" "desc") }}
+    {{ range .Pages.ByParam "year" }}
+{{/* ascending, oldest first — reverse for newest first */}}
     <a class="timeline-item" href="{{ .RelPermalink }}">
       <div class="timeline-year">{{ .Params.year }}</div>
       <div class="timeline-body">
