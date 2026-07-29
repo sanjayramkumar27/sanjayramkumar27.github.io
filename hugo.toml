@@ -1,0 +1,13 @@
+baseURL = "https://<yourusername>.github.io/"
+theme = "PaperMod"
+title = "San <Lastname> — Portfolio"
+
+[params]
+  description = "Aerospace/robotics engineering portfolio"
+  ShowReadingTime = true
+  ShowShareButtons = false
+
+[[menu.main]]
+  name = "Projects"
+  url = "/projects/"
+  weight = 10
