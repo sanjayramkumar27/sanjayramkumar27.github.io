@@ -1,5 +1,5 @@
 ---
-title: "ADCS Team in Small Spacecraft and Satellite Centre"
+title: "ADCS Team in Small Spacecraft Systems and Payload Centre"
 date: 2026-06-01
 summary: "Part of the ADCS team for inspireSat-3. Responsible for Simulink Simulation of Satellite dynamics with reaction wheel and Magnetorquers"
 tags: ["Control Systems", "ADCS", "Satellite Dynamics", "Simulink"]
@@ -9,7 +9,7 @@ cover:
 
 # Attitude Determination and Control System (ADCS) — SSPACE
 
-**Role:** ADCS Team Member | Small Spacecraft and Satellite Centre, IIST
+**Role:** ADCS Team Member | Small Spacecraft Systems and Payload Centre, IIST
 **Tools:** MATLAB, Simulink, Simulink Satellite Viewer
 
 ## Overview
