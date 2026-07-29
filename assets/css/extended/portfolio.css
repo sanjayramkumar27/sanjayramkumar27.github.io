@@ -279,3 +279,41 @@ hr { margin: 0; border: none; border-top: 1px solid var(--border); }
 .meta-pill { padding: 6px 14px; border-radius: 30px; background: var(--entry); border: 1px solid var(--border); font-size: .85rem; font-weight: 600; }
 .meta-pill-accent { background: var(--accent-soft); color: var(--accent); border-color: transparent; }
 .detail-content { line-height: 1.8; max-width: 70ch; }
+
+/* --------------------------
+   Content Figures
+---------------------------*/
+
+.detail-content img,
+.timeline-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+}
+
+.detail-content figure {
+    margin: 30px 0;
+}
+
+.detail-content figure img {
+    box-shadow: 0 10px 25px rgba(0,0,0,.2);
+}
+
+.detail-content figcaption {
+    margin-top: 10px;
+    font-size: .85rem;
+    color: var(--content);
+    opacity: .6;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.post-content img,
+.detail-content img,
+.timeline-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+}
