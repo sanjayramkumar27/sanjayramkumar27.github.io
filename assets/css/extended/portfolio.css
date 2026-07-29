@@ -330,3 +330,62 @@ hr { margin: 0; border: none; border-top: 1px solid var(--border); }
     flex-direction: column;
     align-items: center;
 }
+
+/* --------------------------
+   Body Content Headings
+---------------------------*/
+
+.post-content h2,
+.detail-content h2 {
+    font-size: 1.5rem;
+    margin: 45px 0 18px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--content);
+}
+
+.post-content h2:first-child,
+.detail-content h2:first-child {
+    padding-top: 0;
+    border-top: none;
+    margin-top: 20px;
+}
+
+.post-content h3,
+.detail-content h3 {
+    font-size: 1.15rem;
+    margin: 30px 0 12px;
+    color: var(--accent);
+}
+
+.post-content p,
+.detail-content p {
+    line-height: 1.8;
+    opacity: .9;
+    margin-bottom: 16px;
+}
+
+.post-content ul,
+.detail-content ul {
+    margin: 0 0 20px 0;
+    padding-left: 20px;
+}
+
+.post-content li,
+.detail-content li {
+    line-height: 1.8;
+    opacity: .9;
+    margin-bottom: 8px;
+    padding-left: 6px;
+}
+
+.post-content li::marker,
+.detail-content li::marker {
+    color: var(--accent);
+}
+
+.post-content strong,
+.detail-content strong {
+    color: var(--content);
+    font-weight: 700;
+}
