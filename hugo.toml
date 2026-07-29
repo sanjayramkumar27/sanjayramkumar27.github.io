@@ -7,8 +7,22 @@ description = "Aerospace & Robotics Engineering Portfolio"
 ShowReadingTime = true
 ShowShareButtons = false
 
-# Don't show blog posts/projects on the homepage
-mainSections = ["none"]
+[params.homeInfoParams]
+Title = "Sanjay Ramkumar"
+
+Content = """
+Final-year Aerospace Engineering student at the Indian Institute of Space Science and Technology (IIST).
+
+### Areas of Interest
+
+- Robotics
+- Mechatronics
+- Autonomous Systems
+- Space Systems
+- Control & Optimization
+
+Use **Projects** above to explore my work.
+"""
 
 [[menu.main]]
 name = "Projects"
