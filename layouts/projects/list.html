@@ -12,11 +12,6 @@
     {{ range .Pages }}
     {{ $p := . }}
     <a class="project-card" href="{{ $p.RelPermalink }}">
-      {{ with $p.Params.cover }}
-        {{ with $p.Resources.GetMatch .image }}
-          <div class="thumb"><img src="{{ .RelPermalink }}" alt=""></div>
-        {{ end }}
-      {{ end }}
       <h3>{{ $p.Title }}</h3>
       <p>{{ $p.Params.summary | default $p.Summary }}</p>
     </a>
