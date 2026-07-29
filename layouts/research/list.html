@@ -13,7 +13,6 @@
 <a class="project-card" href="{{ .RelPermalink }}">
   {{ range .Pages }}
 {{ $p := . }}
-<p style="color:red">DEBUG: {{ $p.Params.cover }} | {{ len $p.Resources }} resources</p>
 <a class="project-card" href="{{ $p.RelPermalink }}">
   {{ with $p.Params.cover }}
     {{ with $p.Resources.GetMatch .image }}
