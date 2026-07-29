@@ -23,7 +23,7 @@ A robotic arm project spanning two distinct phases: a physical-build phase focus
 - Diagnosed structural resonance in Prototype 1 through testing; added servo dampers and foam damping, measurably reducing vibration.
 - Mapped the real-world reachable workspace using the validated IK model, accounting for actual servo travel limits (180°) rather than idealized ranges.
 
-{{< figure src="board.jpeg" alt=Power Distribution Board" caption="Power Distribution Board" >}}
+{{< figure src="board.jpg" alt=Power Distribution Board" caption="Power Distribution Board" >}}
 
 ## Phase 2 — Simulation & Real-Time Control
 - Rebuilt the arm as an MJCF model in MuJoCo to support rapid iteration on control strategy without physical rebuilds.
