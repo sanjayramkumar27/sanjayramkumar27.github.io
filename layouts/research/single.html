@@ -7,9 +7,6 @@
     {{ with .Params.role }}<span class="meta-pill">{{ . }}</span>{{ end }}
     {{ with .Params.outcome }}<span class="meta-pill meta-pill-accent">{{ . }}</span>{{ end }}
   </div>
-  {{ with .Resources.GetMatch (.Params.cover.image | default "") }}
-  <img class="detail-cover" src="{{ .RelPermalink }}" alt="">
-{{ end }}
   <div class="detail-content">{{ .Content }}</div>
 </article>
 {{ end }}
