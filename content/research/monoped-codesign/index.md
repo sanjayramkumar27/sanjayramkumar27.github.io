@@ -26,6 +26,8 @@ task-space controller, and a trajectory optimizer (CasADi + IPOPT)
 that plans the entire stance-phase motion in advance to minimize
 actuator work.
 
+{{< figure src="model.png" alt="Monoped Model" caption="Model built in MuJoCo" >}}
+
 ## The Framework
 
 A bi-level optimization — an outer Differential Evolution search
@@ -33,7 +35,7 @@ A bi-level optimization — an outer Differential Evolution search
 an inner loop simulates the jump in MuJoCo and reports back the
 Cost of Transport (COT), the metric DE tries to minimize.
 
-{{< figure src="model.png" alt="Monoped Model" caption="Model built in MuJoCo" >}}
+
 
 ## Key Findings
 
