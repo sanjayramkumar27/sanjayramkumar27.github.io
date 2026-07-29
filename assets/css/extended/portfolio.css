@@ -317,3 +317,16 @@ hr { margin: 0; border: none; border-top: 1px solid var(--border); }
     border-radius: 12px;
     display: block;
 }
+
+.detail-content figure img,
+.post-content figure img {
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.detail-content figure,
+.post-content figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
