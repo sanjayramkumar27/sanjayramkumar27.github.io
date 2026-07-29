@@ -1,0 +1,12 @@
+{{ define "main" }}
+<article class="portfolio competition-detail">
+  <span class="section-label">Competition</span>
+  <h1>{{ .Title }}</h1>
+  <div class="detail-meta">
+    {{ with .Params.year }}<span class="meta-pill">{{ . }}</span>{{ end }}
+    {{ with .Params.role }}<span class="meta-pill">{{ . }}</span>{{ end }}
+    {{ with .Params.outcome }}<span class="meta-pill meta-pill-accent">{{ . }}</span>{{ end }}
+  </div>
+  <div class="detail-content">{{ .Content }}</div>
+</article>
+{{ end }}
