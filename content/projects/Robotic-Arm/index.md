@@ -7,7 +7,6 @@ cover:
   image: "cover.png"
 ---
 
-# Custom 4-DOF Robotic Arm
 
 **Ongoing independent project · Mechanical design, servo control, kinematics, simulation**
 
@@ -36,7 +35,7 @@ A robotic arm project spanning two distinct phases: a physical-build phase focus
 ## Engineering Judgment Demonstrated
 - Recognized when off-the-shelf servo tuning didn't match actual load conditions and built corrective hardware rather than accepting degraded performance.
 - Chose analytical IK for embedded real-time constraints in Phase 1, then deliberately switched to numerical IK in Phase 2 once the development bottleneck shifted from runtime speed to iteration speed.
-- Treated vibration and tracking error as measurable, testable problems rather than assumed ones — instrumenting the system to quantify what's actually happening rather than relying on visual inspection.
+- Treated vibration and tracking error as measurable, testable problems rather than assumed ones, instrumenting the system to quantify what's actually happening rather than relying on visual inspection.
 
 ## Future Work
 - Complete three-trace tracking error analysis (commanded vs. simulated vs. real).
