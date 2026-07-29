@@ -1,13 +1,14 @@
 baseURL = "https://sanjayramkumar27.github.io/"
-title = "Sanjay Ramkumar"
 theme = "PaperMod"
+title = "Sanjay Ramkumar"
 
 [params]
 description = "Aerospace & Robotics Engineering Portfolio"
+ShowReadingTime = true
+ShowShareButtons = false
 
-[params.homeInfoParams]
-Title = "Sanjay Ramkumar"
-Content = "Final-year Aerospace Engineering student at IIST."
+# Don't show blog posts/projects on the homepage
+mainSections = ["none"]
 
 [[menu.main]]
 name = "Projects"
