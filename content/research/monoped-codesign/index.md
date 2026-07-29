@@ -55,5 +55,4 @@ targeting low-gravity locomotion.
 
 **Tools:** Python, MuJoCo, CasADi, IPOPT, PyGMO, OSQP
 
-{{< figure src="model.png" alt="Monoped Model" caption="Model built in MuJoCo" >}}
 
