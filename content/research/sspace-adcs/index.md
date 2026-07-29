@@ -1,7 +1,7 @@
 ---
 title: "ADCS Team in Small Spacecraft and Satellite Centre"
 date: 2026-06-01
-summary: "Part of the ADCS team for inspireSat-3. Responsible for SImulink Simulation of Satellite dynamics with reaction wheel and Magentorquer"
+summary: "Part of the ADCS team for inspireSat-3. Responsible for Simulink Simulation of Satellite dynamics with reaction wheel and Magnetorquers"
 tags: ["Control Systems", "ADCS", "Satellite Dynamics", "Simulink"]
 cover:
   image: "cover.png"

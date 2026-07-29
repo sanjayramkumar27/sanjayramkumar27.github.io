@@ -1,10 +1,10 @@
 ---
 title: "An Equiplane Balancing Rig"
 date: 2026-06-01
-summary: "CasADi/IPOPT trajectory optimization nested inside PyGMO differential evolution for morphology-controller co-design."
+summary: "A low-cost Testing rig that detect mass imbalance in a rotating disk and computes required correction"
 tags: ["robotics", "aerospace", "mechatronics"]
 cover:
-  image: "cover.png"
+  image: "cover.jpeg"
 ---
 
 # Rotational Imbalance Measurement & Correction System
@@ -13,7 +13,7 @@ cover:
 
 ## Overview
 
-A low-cost, sensor-driven rig that detects mass imbalance in a rotating disk and computes the correction mass and angular position needed to balance it — without any specialized balancing equipment.
+A low-cost, testing rig that detects mass imbalance in a rotating disk and computes the correction mass and angular position needed to balance it — without any specialized balancing equipment.
 
 ## Problem
 
