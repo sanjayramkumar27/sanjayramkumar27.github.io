@@ -1,13 +1,15 @@
-baseURL = "https://<yourusername>.github.io/"
-theme = "PaperMod"
+baseURL = "https://sanjayramkumar27.github.io/"
 title = "Sanjay Ramkumar"
+theme = "PaperMod"
 
 [params]
-  description = "Aerospace/robotics engineering portfolio"
-  ShowReadingTime = true
-  ShowShareButtons = false
+description = "Aerospace & Robotics Engineering Portfolio"
+
+[params.homeInfoParams]
+Title = "Sanjay Ramkumar"
+Content = "Final-year Aerospace Engineering student at IIST."
 
 [[menu.main]]
-  name = "Projects"
-  url = "/projects/"
-  weight = 10
+name = "Projects"
+url = "/projects/"
+weight = 10
