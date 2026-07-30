@@ -36,7 +36,7 @@ Re-flashing code every time a gain needed adjusting was slow, so a custom tuning
 
 
 
-{{< figure src="tuner.png" alt="Tuner" caption="Wireless Tuner" >}}
+{{< figure src="tuner.jpeg" alt="Tuner" caption="Wireless Tuner" >}}
 
 ## Outcome
 The robot recovered from disturbances of up to 10° in under 2 seconds, settling within 5 cm of its original position. The Simulink model tracked real hardware behavior closely enough that most tuning could happen in simulation first, cutting down iteration time on the physical unit. Overall, the project built practical experience across simulation, control design, and hardware-in-the-loop tuning.
