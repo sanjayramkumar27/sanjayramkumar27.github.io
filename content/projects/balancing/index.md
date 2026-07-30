@@ -7,8 +7,6 @@ cover:
   image: "cover.png"
 ---
 
-# Two-Wheel Self-Balancing Robot
-**Jun 2024 - Jul 2023**
 
 
 ## Overview
