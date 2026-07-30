@@ -4,7 +4,7 @@ date: 2026-06-01
 summary: "Custom designed two-wheeled balancing robot, simulated control algorithm in Simulink and physically validated it"
 tags: ["robotics", "Control Sysytems", "mechatronics"]
 cover:
-  image: "cover.png"
+  image: "model.png"
 ---
 
 
