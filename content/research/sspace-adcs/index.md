@@ -1,19 +1,17 @@
 ---
 title: "ADCS Team in Small Spacecraft Systems and Payload Centre"
 date: 2026-06-01
-summary: "Part of the ADCS team for inspireSat-3. Responsible for Simulink Simulation of Satellite dynamics with reaction wheel and Magnetorquers"
+summary: "Part of the ADCS team for InspireSat-3 (Student built satellite). Responsible for Simulink Simulation of Satellite dynamics with reaction wheel and Magnetorquers"
 tags: ["Control Systems", "ADCS", "Satellite Dynamics", "Simulink"]
 cover:
   image: "cover.png"
 ---
 
-# Attitude Determination and Control System (ADCS) — SSPACE
-
 **Role:** ADCS Team Member | Small Spacecraft Systems and Payload Centre, IIST
 **Tools:** MATLAB, Simulink, Simulink Satellite Viewer
 
 ## Overview
-Designed and simulated the attitude control system for a CubeSat in a 500 km Sun-Synchronous Orbit, covering detumbling with magnetorquers, precision pointing with reaction wheels, and ground-station tracking maneuvers. Work spanned control design, dynamics modeling, and trajectory generation.
+Designed and simulated the attitude control system for a student built CubeSat in a 500 km Sun-Synchronous Orbit, covering detumbling with magnetorquers, precision pointing with reaction wheels, and ground-station tracking maneuvers. Work spanned control design, dynamics modeling, and trajectory generation.
 
 ## 1. Detumbling — B-dot Algorithm
 - Generated the SSO orbit (500 km, 96° inclination) and modeled the local magnetic field using the IGRF model.
@@ -21,7 +19,7 @@ Designed and simulated the attitude control system for a CubeSat in a 500 km Sun
 - Tested detumbling from an initial 10°/sec tumble along both the lower and higher inertia axes:
   - **Lower inertia axis:** settled in ~58 minutes
   - **Higher inertia axis:** settled in ~400 minutes
-- Result highlighted how initial spin axis significantly affects detumbling time — a key consideration for ADCS mode-switching logic.
+- Result highlighted how initial spin axis significantly affects detumbling time.
 
 ## 2. Pointing & Tracking — Reaction Wheel Control
 - Built a full 6-DOF satellite dynamics + quaternion kinematics model in Simulink, driven by a PID controller commanding reaction wheel torque through a BLDC motor transfer function (closed-loop current control).

@@ -1,5 +1,5 @@
 ---
-title: "An Equiplane Balancing Rig"
+title: "Rotational Imbalance Measurement & Correction System"
 date: 2026-06-01
 summary: "A low-cost Testing rig that detect mass imbalance in a rotating disk and computes required correction"
 tags: ["robotics", "aerospace", "mechatronics"]
@@ -7,13 +7,12 @@ cover:
   image: "cover.jpeg"
 ---
 
-# Rotational Imbalance Measurement & Correction System
 
-**AE341 Aerospace Structures Lab — IIST | April 2026**
+**AE341 Aerospace Structures Lab - IIST | April 2026**
 
 ## Overview
 
-A low-cost, testing rig that detects mass imbalance in a rotating disk and computes the correction mass and angular position needed to balance it — without any specialized balancing equipment.
+A low-cost, testing rig that detects mass imbalance in a rotating disk and computes the correction mass and angular position needed to balance it, without any specialized balancing equipment.
 
 ## Problem
 
@@ -31,16 +30,16 @@ Rotating systems with an off-axis center of mass generate periodic vibration, no
 ## Results
 
 - Correctly localized a 1 g test imbalance at both 270° and 150°, matching within a few degrees.
-- Repeated trials for a 1 g imbalance at 60° gave: **average phase 58.14°** (3.1% error) and **average magnitude 0.872 g** (12.8% error) — phase estimation was consistently more accurate than magnitude estimation.
+- Repeated trials for a 1 g imbalance at 60° gave: **average phase 58.14°** (3.1% error) and **average magnitude 0.872 g** (12.8% error) - phase estimation was consistently more accurate than magnitude estimation.
 - Applying the computed correction mass measurably flattened the FFT peak, confirming the correction worked.
-- Vibration isolation of the rig base was critical — without it, the accelerometer signal was dominated by noise rather than the clean sinusoid needed for FFT phase extraction.
+- Vibration isolation of the rig base was critical and without it, the accelerometer signal was dominated by noise rather than the clean sinusoid needed for FFT phase extraction.
 
 
 {{< figure src="150_img.png" alt="result" caption="Results for 1g imbalance placed at 150°" >}}
 
 ## Key Takeaways
 
-- Magnitude accuracy is fundamentally limited by Arduino sampling rate and minimum achievable motor RPM — the FFT frequency resolution and amplitude fidelity both depend on this.
+- Magnitude accuracy is fundamentally limited by Arduino sampling rate and minimum achievable motor RPM, the FFT frequency resolution and amplitude fidelity both depend on this.
 - Mechanical isolation of the sensing platform mattered as much as the signal processing pipeline itself.
 - A single-plane balancing problem can be solved end-to-end with off-the-shelf components (IR sensor, IMU, Arduino) and a calibration-based FFT approach, without commercial balancing hardware.
 
