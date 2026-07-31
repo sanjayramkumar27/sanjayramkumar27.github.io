@@ -390,9 +390,10 @@ hr { margin: 0; border: none; border-top: 1px solid var(--border); }
     font-weight: 700;
 }
 
-.full-bleed-image {
+.detail-content img.full-bleed-image,
+.post-content img.full-bleed-image {
   width: 100vw;
+  max-width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  max-width: 100vw;
 }
