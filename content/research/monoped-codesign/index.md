@@ -35,7 +35,7 @@ A bi-level optimization - an outer Differential Evolution search
 an inner loop simulates the jump in MuJoCo and reports back the
 Cost of Transport (COT), the metric DE tries to minimize.
 
-<img src="flow.png" style="width:100%; max-width:none;" class="full-bleed-image">
+<img src="flow.png"  class="full-bleed-image">
 
 
 ## Key Findings
