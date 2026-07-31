@@ -6,11 +6,32 @@ outcome: "Only team to use Quadcopter as Secondary descent mechanism"
 summary: "A 1Kg small CANSAT equipped with two descent control methods (Parachute and deployable Quadcopter) capable of withstanding rocket launch requirements and impact loads while relaying live telemetry throughout"
 ---
 
-## What we built
 
-[the actual body content about the robot goes here]
+**Contribution:** Structures & Mechanisms · Structural Analysis · Control Systems
 
-<figure>
-  <img src="deployment-sequence.jpg" alt="Quadcopter deployment sequence">
-  <figcaption>Deployment sequence captured at T+12s</figcaption>
-</figure>
+## Project
+A ~960 g, 148×242 mm CanSat built for autonomous, precision recovery: after nosecone ejection and a passive-parachute descent to 500 m, four BLDC rotors deploy on spring hinges (nylon burn-wire release) and take over under closed-loop control, bringing the vehicle down at 1–3 m/s and steering it back toward the launch site using GPS — turning a single-use descent into a reusable, repeatable recovery system.
+
+## Structures & Mechanisms
+- Modular 5-piece ABS airframe (SLA-printed),  isogrid main body, avionics mid-section, top/bottom end caps, chosen for build/debug access; SLA selected over FDM after a direct print-quality and strength comparison.
+- Iterated isogrid geometry (22 mm triangle, 5 mm fillet, density 1.6) after the original 2 mm-thin arms failed drop testing.
+- Designed the foldable rotor-arm + spring-hinge deployment (nylon burn-wire release, hard stop at 90°) and the custom 2S2P 18650 battery holder.
+- Relocated the parachute mount from the isogrid top body to a dedicated top end-cap hook after simulation showed the isogrid arms as the dominant stress path — single-hook design confirmed adequate by static FEA.
+
+## Structural Simulation & Verification (ANSYS)
+| Analysis | Condition | Result |
+|---|---|---|
+| Shock, axial | 295 m/s², 1 ms impulse | 0.01 MPa max |
+| Shock, off-axis | axial + lateral | 3.8 MPa max (ABS UTS: 37.5 MPa) |
+| Drop test, explicit dynamics | 3 m/s impact | 23 MPa max, **FoS 1.63** |
+| Modal | — | 1st mode 205 Hz |
+| Rotor arm, static | 240 Pa dynamic pressure + 5 N motor load | **FoS 2.08** |
+| CFD, steady-state | 20 m/s flow | Cd = 0.55 (bare structure) |
+
+## Control Systems
+- Designed the cascaded-PID attitude/position control architecture for the quadrotor descent phase: thrust, roll, pitch, yaw loops feeding a motor-mixing algorithm, with diagonal rotor pairs counter-rotating to cancel reaction torque.
+- Closed the outer loop on inertial position (not attitude alone) — the CanSat holds a fixed (x, y) relative to the launch site rather than just "upright," avoiding the translate-with-the-wind failure mode of a pure attitude-hold controller.
+- Modeled the cascaded-PID quadrotor control loop in Simulink to tune gains and verify closed-loop step/disturbance response ahead of embedded implementation.
+
+## Outcome
+Final structure met all requirements (960 g vs. 1 kg limit, 148×242 mm vs. 150×400 mm limit) and passed a full-system drop test — structural integrity, sensor telemetry, and the parachute → burn-wire → rotor-deployment sequence all validated end-to-end.
