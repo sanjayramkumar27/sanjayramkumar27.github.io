@@ -391,7 +391,7 @@ hr { margin: 0; border: none; border-top: 1px solid var(--border); }
 }
 
 .detail-content img.full-bleed-image {
-  width: 100%;
+  width: 120%;
   max-width: 1400px;   /* pick whatever feels right — 1100-1500px range */
   margin-left: 50%;
   transform: translateX(-50%);
