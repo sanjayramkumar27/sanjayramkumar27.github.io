@@ -18,6 +18,8 @@ A ~960 g, 148×242 mm CanSat built for autonomous, precision recovery: after nos
 - Designed the foldable rotor-arm + spring-hinge deployment (nylon burn-wire release, hard stop at 90°) and the custom 2S2P 18650 battery holder.
 - Relocated the parachute mount from the isogrid top body to a dedicated top end-cap hook after simulation showed the isogrid arms as the dominant stress path — single-hook design confirmed adequate by static FEA.
 
+{{< figure src="cad.png" alt="CAD" caption="CAD Model of CANSAT" >}}
+
 ## Structural Simulation & Verification (ANSYS)
 | Analysis | Condition | Result |
 |---|---|---|
@@ -32,6 +34,8 @@ A ~960 g, 148×242 mm CanSat built for autonomous, precision recovery: after nos
 - Designed the cascaded-PID attitude/position control architecture for the quadrotor descent phase: thrust, roll, pitch, yaw loops feeding a motor-mixing algorithm, with diagonal rotor pairs counter-rotating to cancel reaction torque.
 - Closed the outer loop on inertial position (not attitude alone) — the CanSat holds a fixed (x, y) relative to the launch site rather than just "upright," avoiding the translate-with-the-wind failure mode of a pure attitude-hold controller.
 - Modeled the cascaded-PID quadrotor control loop in Simulink to tune gains and verify closed-loop step/disturbance response ahead of embedded implementation.
+
+{{< figure src="flow.png" alt="Control Flow Diagram" caption="Control FLow Diagram" >}}
 
 ## Outcome
 Final structure met all requirements (960 g vs. 1 kg limit, 148×242 mm vs. 150×400 mm limit) and passed a full-system drop test — structural integrity, sensor telemetry, and the parachute → burn-wire → rotor-deployment sequence all validated end-to-end.
