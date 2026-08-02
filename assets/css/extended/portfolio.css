@@ -2,10 +2,21 @@
    Root tokens
 ---------------------------*/
 :root{
-  --accent: #2f6fb3;
-  --accent-soft: rgba(47,111,179,.14);
+  --accent: #1f4d80;
+  --accent-light: #2f6fb3;
+  --accent-soft: rgba(31,77,128,.10);
+
+  --entry: rgb(250, 251, 253);   /* was identical to --theme */
+  --border: rgb(225, 230, 238);  /* was flat rgb(238,238,238) */
 }
 
+:root[data-theme="dark"]{
+  --accent: #2f6fb3;
+  --accent-light: #6fa8dc;
+  --accent-soft: rgba(47,111,179,.14);
+
+  --border: rgb(53, 57, 64);     /* was flat rgb(51,51,51), now matches the cool lean already in --theme/--entry */
+}
 /* --------------------------
    Hero Section
 ---------------------------*/
@@ -90,10 +101,10 @@ section h2 { line-height: 1.25; }
 }
 
 .button:hover, .button:focus-visible {
+    background: var(--accent-light);   /* was: no background change at all */
     transform: translateY(-2px);
     box-shadow: 0 8px 20px var(--accent-soft);
 }
-
 .button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 .button.ghost {
@@ -102,7 +113,13 @@ section h2 { line-height: 1.25; }
     border: 2px solid var(--border);
 }
 
-.button.ghost:hover { border-color: var(--accent); color: var(--accent); }
+.button.ghost:hover { border-color: var(--accent-light); color: var(--accent-light); }
+/* was: var(--accent) for both */
+
+.timeline-item:hover .timeline-body, .timeline-item:focus-visible .timeline-body {
+    border-color: var(--accent-light);   /* was: var(--accent) */
+    transform: translateX(4px);
+}
 
 /* --------------------------
    Profile Image
@@ -158,7 +175,7 @@ section p { line-height: 1.8; opacity: .9; }
 
 .skills > div:hover {
     transform: translateY(-4px);
-    border-color: var(--accent);
+    border-color: var(--accent-light);   /* was: var(--accent) */
 }
 
 .skills h3 { margin-bottom: 14px; font-size: 1rem; opacity: .8; }
@@ -217,7 +234,7 @@ hr { margin: 0; border: none; border-top: 1px solid var(--border); }
 .project-card:hover, .project-card:focus-visible {
     transform: translateY(-6px);
     box-shadow: 0 18px 35px rgba(0,0,0,.25);
-    border-color: var(--accent);
+    border-color: var(--accent-light);   /* was: var(--accent) */
 }
 
 .project-card .thumb {
@@ -267,7 +284,7 @@ hr { margin: 0; border: none; border-top: 1px solid var(--border); }
 }
 .category-card:hover, .category-card:focus-visible {
     transform: translateY(-6px);
-    border-color: var(--accent);
+    border-color: var(--accent-light);   /* was: var(--accent) */
     box-shadow: 0 14px 30px rgba(0,0,0,.2);
 }
 .category-card h3 { margin-bottom: 10px; font-size: 1.2rem; }
@@ -439,16 +456,3 @@ body {
     }
 }
 
-#menu a {
-  position: relative;
-  text-decoration: none;
-}
-#menu a::after {
-  content: "";
-  position: absolute;
-  left: 0; bottom: -2px;
-  width: 0; height: 2px;
-  background: var(--accent);
-  transition: width .25s ease;
-}
-#menu a:hover::after { width: 100%; }
