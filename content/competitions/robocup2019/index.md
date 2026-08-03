@@ -1,5 +1,5 @@
 ---
-title: "RoboCup Asia-Pacific 2019, Moscow, Russia"
+title: "RoboCup Asia-Pacific 2019 | Moscow, Russia"
 year: 2019
 role: "Line Follow and Ball sorting Algorithm"
 outcome: "Best Technical Interview Award"
