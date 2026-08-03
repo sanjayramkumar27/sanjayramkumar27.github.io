@@ -6,7 +6,6 @@ outcome: "Only team to use Quadcopter as Secondary descent mechanism"
 summary: "A 1Kg small CANSAT equipped with two descent control methods (Parachute and deployable Quadcopter) capable of withstanding rocket launch requirements and impact loads while relaying live telemetry throughout"
 ---
 
-
 **Contribution:** Structures & Mechanisms · Structural Analysis · Control Systems
 
 ## Project
@@ -37,5 +36,34 @@ A ~960 g, 148×242 mm CanSat built for autonomous, precision recovery: after nos
 
 {{< figure src="flow.png" alt="Control Flow Diagram" caption="Control FLow Diagram" >}}
 
+## Avionics
+
+The avionics are split across two hand-soldered perfboard PCBs — a power/ESC board and a sensing/compute board — kept physically and electrically separate so each could be debugged or re-wired independently during iteration.
+
+<div class="image-pair">
+  {{< figure src="top.jpeg" alt="Top PCB" caption="Top PCB" >}}
+  {{< figure src="bot.jpeg" alt="Bottom PCB" caption="Bottom PCB" >}}
+</div>
+
+### Flight Computer
+A **Teensy 4.1** runs the full control stack, including a custom-written PID controller for attitude stabilization. No off-the-shelf flight-controller firmware (Betaflight, ArduPilot, etc.) was used - sensor fusion, the control loop, and motor mixing are all our own code.
+
+### Sensing & Navigation
+- **ICM 20948 IMU** - attitude and angular rate feedback for the PID loop
+- **BMP390** barometric pressure sensor - altitude estimate
+- **Bharat PI NavIC receiver** - absolute position fix via India's own regional satellite navigation system, rather than a generic GNSS module
+
+All three feed into the Teensy 4.1 for state estimation.
+
+### Power & Motor Interface
+Motor control runs through a **4-in-1 ESC**, hand-soldered onto its own perfboard with screw-terminal breakouts for every motor phase and power lead. This made it possible to disconnect motor without resoldering, useful given how often ESC calibration and motor swaps came up during tuning. Main power distribution uses **12 AWG wire** to keep resistive losses down, since the motors draw large instantaneous current under load.
+
+### Physical Integration
+Both boards are mounted in the airframe's mid-section, chosen specifically for easy access during debugging which was a deliberate trade against a fully enclosed build, in favor of iteration speed. Propulsion is via 3-inch, 3-blade propellers on each motor.
+
+{{< figure src="test.jpeg" alt="Test" caption="Test setup for PID Tuning" >}}
+
 ## Outcome
 Final structure met all requirements (960 g vs. 1 kg limit, 148×242 mm vs. 150×400 mm limit) and passed a full-system drop test — structural integrity, sensor telemetry, and the parachute → burn-wire → rotor-deployment sequence all validated end-to-end.
+
+{{< figure src="final.jpeg" alt="Final Model" caption="Final flight ready model" >}}
