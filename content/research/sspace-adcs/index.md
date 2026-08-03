@@ -13,7 +13,7 @@ cover:
 ## Overview
 Designed and simulated the attitude control system for a student built CubeSat in a 500 km Sun-Synchronous Orbit, covering detumbling with magnetorquers, precision pointing with reaction wheels, and ground-station tracking maneuvers. Work spanned control design, dynamics modeling, and trajectory generation.
 
-{{< figure src="simu.png" alt="Simulink Model" caption="Simulink Model" >}}
+<img src="simu.png"  class="full-bleed-image">
 
 ## 1. Detumbling — B-dot Algorithm
 - Generated the SSO orbit (500 km, 97.5° inclination) and modeled the local magnetic field using the IGRF model.
