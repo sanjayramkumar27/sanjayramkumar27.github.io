@@ -306,6 +306,8 @@ hr { margin: 0; border: none; border-top: 1px solid var(--border); }
 .timeline-body { background: var(--entry); border: 1px solid var(--border); border-radius: 14px; padding: 20px 24px; transition: .25s ease; }
 .timeline-item:hover .timeline-body, .timeline-item:focus-visible .timeline-body { border-color: var(--accent); transform: translateX(4px); }
 .timeline-role { color: var(--content); opacity: .7; font-size: .9rem; margin-bottom: 8px; }
+.timeline-item--disabled { cursor: default; opacity: .8; }
+.timeline-item--disabled:hover .timeline-body, .timeline-item--disabled:focus-visible .timeline-body { border-color: var(--border); transform: none; }
 
 .detail-meta { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0 30px; }
 .meta-pill { padding: 6px 14px; border-radius: 30px; background: var(--entry); border: 1px solid var(--border); font-size: .85rem; font-weight: 600; }

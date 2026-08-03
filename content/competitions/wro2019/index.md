@@ -4,8 +4,5 @@ year: 2019
 role: "Software"
 outcome: "First Place in Regional Level"
 summary: "Fully autonomous robot that follows line and wall, segregate light bulbs (Made of LEGO) into respective colours zones"
+nolink: true
 ---
-
-## What we built
-
-[the actual body content about the robot goes here]

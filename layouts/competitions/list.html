@@ -11,6 +11,17 @@
   <div class="timeline">
     {{ range .Pages.ByParam "year" }}
 {{/* ascending, oldest first — reverse for newest first */}}
+    {{ if .Params.nolink }}
+    <div class="timeline-item timeline-item--disabled">
+      <div class="timeline-year">{{ .Params.year }}</div>
+      <div class="timeline-body">
+        <h3>{{ .Title }}</h3>
+        <p class="timeline-role">{{ .Params.role }}</p>
+        <p>{{ .Params.summary | default .Summary }}</p>
+        {{ with .Params.outcome }}<span class="badge">{{ . }}</span>{{ end }}
+      </div>
+    </div>
+    {{ else }}
     <a class="timeline-item" href="{{ .RelPermalink }}">
       <div class="timeline-year">{{ .Params.year }}</div>
       <div class="timeline-body">
@@ -20,6 +31,7 @@
         {{ with .Params.outcome }}<span class="badge">{{ . }}</span>{{ end }}
       </div>
     </a>
+    {{ end }}
     {{ end }}
   </div>
 </section>
