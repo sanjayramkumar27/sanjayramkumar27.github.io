@@ -42,15 +42,7 @@ section h2,
 }
 
 .hero-text { flex: 1; min-width: 320px; }
-.hero-text::before {
-    content: "";
-    display: block;
-    width: 48px;
-    height: 4px;
-    background: var(--accent);
-    border-radius: 2px;
-    margin-bottom: 20px;
-}
+
 .hero-text h1 {
     font-size: 3rem;
     margin-bottom: 10px;
