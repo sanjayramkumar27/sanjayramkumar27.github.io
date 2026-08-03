@@ -29,7 +29,7 @@ Designed and simulated the attitude control system for a student built CubeSat i
 - Visualized results using Simulink Satellite Viewer with a 30° FOV sensor cone over a 97.5°, 500 km SSO.
 - **Later iteration:** added reaction wheel desaturation logic and parameterized the reference-angle generation block for flexible mission timing.
 
-{{< figure src="cover.png" alt="Satellite viewer" caption=Satellite Viewer" >}}
+{{< figure src="cover.png" alt="Satellite viewer" caption="Satellite Viewer" >}}
 
 ## 3. Trajectory Smoothing
 - Identified that the original reference trajectory was continuous but not differentiable at maneuver transitions, causing discontinuous angular velocity commands and large torque spikes.
