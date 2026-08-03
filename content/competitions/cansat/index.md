@@ -1,5 +1,5 @@
 ---
-title: "In-Space CANSAT Competition"
+title: "In-Space CAN-SAT Competition"
 year: 2025
 role: "Structures lead, Control Systems"
 outcome: "Only team to use Quadcopter as Secondary descent mechanism"

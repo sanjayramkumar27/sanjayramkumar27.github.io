@@ -1,5 +1,5 @@
 ---
-title: "ML-Based Rescue Robot — RoboCup International Junior Rescue (France, Jan–Jul 2023)"
+title: "ML-Based Rescue Robot | RoboCup International 2023 Bordeaux, France"
 year: 2023
 role: "Software and Electronics"
 outcome: "Top 11 finish"
