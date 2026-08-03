@@ -8,7 +8,7 @@ summary: "A 1Kg small CANSAT equipped with two descent control methods (Parachut
 
 **Contribution:** Structures & Mechanisms · Structural Analysis · Control Systems
 
-## Project
+## Overview
 A ~960 g, 148×242 mm CanSat built for autonomous, precision recovery: after nosecone ejection and a passive-parachute descent to 500 m, four BLDC rotors deploy on spring hinges (nylon burn-wire release) and take over under closed-loop control, bringing the vehicle down at 1–3 m/s and steering it back toward the launch site using GPS — turning a single-use descent into a reusable, repeatable recovery system.
 
 ## Structures & Mechanisms
