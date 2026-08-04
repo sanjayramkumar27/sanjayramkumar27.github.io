@@ -41,7 +41,7 @@ Built an autonomous rescue robot to detect and help simulated disaster victims. 
 - **Tracking control:** error = 640 − (ball bounding-box midpoint x-pixel), computed from a 720×1280 camera frame center. Error × Kp sent to Teensy's steering block to keep the ball centered while approaching.
 - A three-servo gripper then picks up the ball and deposits it into the correct container.
 
-{{< figure src="camera.png" alt="Camera View" caption="Silver Ball Detection" >}}
+{{< figure src="camera.jpg" alt="Camera View" caption="Silver Ball Detection" >}}
 
 ## System Logic
 Flowcharts governed obstacle avoidance, green/ramp detection via IR and color sensors, PID-based line following, and intersection handling — all integrated iteratively, module by module, to isolate integration bugs.

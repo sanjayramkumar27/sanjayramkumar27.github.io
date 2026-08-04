@@ -4,7 +4,7 @@ date: 2026-06-01
 summary: "Part of the ADCS team for InspireSat-3 (Student built satellite). Responsible for Simulink Simulation of Satellite dynamics with reaction wheel and Magnetorquers"
 tags: ["Control Systems", "ADCS", "Satellite Dynamics", "Simulink"]
 cover:
-  image: "cover.png"
+  image: "cover.jpg"
 ---
 
 **Role:** ADCS Team Member | Small Spacecraft Systems and Payload Centre, IIST
