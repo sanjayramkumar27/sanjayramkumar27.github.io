@@ -29,6 +29,33 @@
 <hr>
 <hr>
 
+<hr>
+
+<section>
+  <span class="section-label">Featured</span>
+  <h2>Selected Work</h2>
+  <div class="project-grid">
+    {{ range (slice "research/monoped-codesign" "projects/Robotic-Arm" "competitions/robocup2023" "competitions/cansat") }}
+      {{ $p := $.Site.GetPage . }}
+      {{ with $p }}
+      <a class="project-card" href="{{ .RelPermalink }}">
+        {{ with .Params.cover }}
+          {{ with $p.Resources.GetMatch .image }}
+            {{ $thumb := . }}
+            {{ if in (slice "image/jpeg" "image/png") .MediaType.String }}
+              {{ $thumb = .Resize "700x q75" }}
+            {{ end }}
+            <div class="thumb"><img src="{{ $thumb.RelPermalink }}" alt="{{ $p.Title }}"></div>
+          {{ end }}
+        {{ end }}
+        <h3>{{ .Title }}</h3>
+        <p>{{ .Params.summary | default .Summary }}</p>
+      </a>
+      {{ end }}
+    {{ end }}
+  </div>
+</section>
+
 <section>
   <span class="section-label">Explore</span>
   <h2>What I Work On</h2>
