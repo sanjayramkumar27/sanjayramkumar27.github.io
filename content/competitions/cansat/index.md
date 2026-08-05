@@ -4,6 +4,8 @@ year: 2025
 role: "Structures lead, Control Systems"
 outcome: "Only team to use Quadcopter as Secondary descent mechanism"
 summary: "A 1Kg small CANSAT equipped with two descent control methods (Parachute and deployable Quadcopter) capable of withstanding rocket launch requirements and impact loads while relaying live telemetry throughout"
+cover:
+  image: "final.jpeg"
 ---
 
 **Contribution:** Structures & Mechanisms · Structural Analysis · Control Systems
