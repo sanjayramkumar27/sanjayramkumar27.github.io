@@ -18,7 +18,7 @@ This project explored control systems and mechatronics through the classic inver
 - Fabricate and assemble a physical prototype driven by live sensor feedback.
 - Build a wireless controller to retune PID gains on the fly, without reflashing firmware.
 
-{{< figure src="cad.png" alt="CAD Model of Robot" caption="CAD Model of Robot" >}}
+{{< figure src="cad.jpg" alt="CAD Model of Robot" caption="CAD Model of Robot" >}}
 
 ## Simulation and Control Design
 The dynamics, weight, center of gravity, motor torque characteristics were built out in Simulink first, so the controller could be designed and tested before any hardware existed. A cascaded PID controller was tuned around pitch angle, converting tilt into a torque command for the drive motors.
