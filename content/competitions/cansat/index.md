@@ -44,6 +44,7 @@ The avionics are split across two hand-soldered perfboard PCBs, a power/ESC boar
   {{< figure src="top.jpeg" alt="Top PCB" caption="Top PCB" >}}
   {{< figure src="bot.jpeg" alt="Bottom PCB" caption="Bottom PCB" >}}
 </div>
+
 ### Flight Computer
 A **Teensy 4.1** runs the full control stack, including a custom-written PID controller for attitude stabilization. No off-the-shelf flight-controller firmware (Betaflight, ArduPilot, etc.) was used. Sensor fusion, the control loop, and motor mixing are all our own code.
  
