@@ -7,10 +7,8 @@ cover:
   image: "model.jpg"
 ---
 
-
-
 ## Overview
-This project explored control systems and mechatronics through the classic inverted-pendulum problem: getting a two-wheeled robot to stand upright on its own. Rather than just getting it working, the aim was to trace the full pipeline - from mathematical modeling, to controller design, to a physical build that behaves the way the simulation predicted.
+This project used the classic inverted-pendulum problem, a two-wheeled robot balancing on its own, to work through control systems and mechatronics end to end. The goal wasn't just to get it standing upright, but to follow the whole pipeline: mathematical modeling, controller design, and a physical build that matched what the simulation predicted.
 
 ## Objectives
 - Build a Simulink model of the robot capturing its mass distribution, center of gravity, and motor behavior.
@@ -21,20 +19,19 @@ This project explored control systems and mechatronics through the classic inver
 {{< figure src="cad.jpg" alt="CAD Model of Robot" caption="CAD Model of Robot" >}}
 
 ## Simulation and Control Design
-The dynamics, weight, center of gravity, motor torque characteristics were built out in Simulink first, so the controller could be designed and tested before any hardware existed. A cascaded PID controller was tuned around pitch angle, converting tilt into a torque command for the drive motors.
+The dynamics, weight, center of gravity, and motor torque characteristics were modeled in Simulink first, so the controller could be designed and tested before any hardware existed. A cascaded PID loop, tuned around pitch angle, turns tilt into a torque command for the drive motors.
+
 {{< figure src="simu.jpg" alt="Simulink Model" caption="Simulink Model" >}}
 
 ## Hardware Build
-The mechanical structure was designed as a full CAD assembly, then 3D printed and assembled. A Teensy microcontroller handled the real-time loop: reading IMU data over I2C and driving the motors via PWM. Since raw accelerometer and gyroscope readings are individually unreliable (drift and noise, respectively), a complementary filter fused the two into a stable angle estimate.
+The mechanical structure was designed as a full CAD assembly, then 3D printed and assembled. A Teensy microcontroller ran the real-time loop, reading IMU data over I2C and driving the motors via PWM. Raw accelerometer readings drift and gyroscope readings are noisy on their own, so a complementary filter combined the two into a stable angle estimate.
 
 {{< figure src="model.jpg" alt="Final built robot" caption="Final built robot" >}}
 
 ## Wireless Tuning Tool
-Re-flashing code every time a gain needed adjusting was slow, so a custom tuning device was built using NRF24L01 radio modules and potentiometers, letting Kp, Ki, and Kd be dialed in live while the robot was running. This turned tuning from a flash-test-repeat cycle into a live feedback loop, and real-time serial plots of sensor and controller output were used alongside it to catch instability quickly.
-
-
+Reflashing code every time a gain needed adjusting was slow, so I built a tuning device out of NRF24L01 radio modules and potentiometers to dial in Kp, Ki, and Kd live while the robot was running. That replaced the flash-test-repeat cycle with real-time feedback, and serial plots of the sensor and controller output alongside it made it easy to catch instability quickly.
 
 {{< figure src="tuner.jpeg" alt="Tuner" caption="Wireless Tuner" >}}
 
 ## Outcome
-The robot recovered from disturbances of up to 10° in under 2 seconds, settling within 5 cm of its original position. The Simulink model tracked real hardware behavior closely enough that most tuning could happen in simulation first, cutting down iteration time on the physical unit. Overall, the project built practical experience across simulation, control design, and hardware-in-the-loop tuning.
+The robot recovered from disturbances of up to 10° in under 2 seconds, settling within 5 cm of its original position. The Simulink model tracked real hardware behavior closely enough that most tuning happened in simulation first, cutting down iteration time on the physical unit.
