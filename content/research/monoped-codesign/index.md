@@ -56,3 +56,5 @@ targeting low-gravity locomotion.
 
 **Tools:** Python, MuJoCo, CasADi, IPOPT, PyGMO, OSQP
 
+{{< youtube ubdsUEcsMzA >}}
+
