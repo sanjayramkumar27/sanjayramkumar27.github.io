@@ -66,4 +66,12 @@ The finished structure met both mass and size limits (960 g against a 1 kg cap, 
  
 {{< figure src="final.jpeg" alt="Final Model" caption="Final flight ready model" >}}
 
-{{< youtube yCvTaJbXSIU >}}
+<div style="position: relative; width: 100%; max-width: 360px; margin: 0 auto; aspect-ratio: 9 / 16;">
+  <iframe 
+    src="https://youtube.com/shorts/yCvTaJbXSIU?feature=share" 
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+</div>
