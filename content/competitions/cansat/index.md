@@ -65,3 +65,5 @@ Both boards sit in the airframe's mid-section for easy access during debugging, 
 The finished structure met both mass and size limits (960 g against a 1 kg cap, 148 × 242 mm against a 150 × 400 mm cap) and passed a full-system drop test, with structural integrity, sensor telemetry, and the parachute-to-burn-wire-to-rotor-deployment sequence all holding up end to end.
  
 {{< figure src="final.jpeg" alt="Final Model" caption="Final flight ready model" >}}
+
+{{< youtube yCvTaJbXSIU >}}
