@@ -43,3 +43,6 @@ Reflashing code every time a gain needed adjusting was slow, so a separate tunin
 ## Outcome
  
 The robot recovered from disturbances of up to 10° in under 2 seconds, settling within 5 cm of its original position. The Simulink model tracked real hardware behavior closely enough that most tuning happened in simulation first, cutting iteration time on the physical unit.
+
+
+{{< youtube Nl21jv8NVsU >}}

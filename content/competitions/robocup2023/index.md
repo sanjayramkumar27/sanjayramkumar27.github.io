@@ -47,3 +47,5 @@ The robot completed all tasks inside the eight-minute limit, hit over 85% victim
 {{< figure src="real.jpg" alt="Robot" caption="Final Robot" >}}
 
 **Tools:** Onshape, Teensy 4.0, Raspberry Pi, TensorFlow (SSD MobileNet v2), LabelImg
+
+{{< youtube We57wuRG5Ek >}}

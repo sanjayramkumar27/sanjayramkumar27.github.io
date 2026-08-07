@@ -33,6 +33,8 @@ A robotic arm project built in two phases. The first was a physical build with c
 ## Design Decisions
 The stock servo tuning didn't match the arm's actual load, so I built custom PID control instead of living with the degraded performance that came with it. Phase 1 used analytical IK because the Arduino Uno needed real-time speed; Phase 2 switched to numerical IK once the bottleneck moved from runtime speed to iteration speed as the model kept changing. Vibration and tracking error were treated as things to measure and test rather than judge by eye, so both got instrumented instead of eyeballed.
 
+{{< youtube enjijNBTH5s >}}
+
 ## Future Work
 - Complete three-trace tracking error analysis (commanded vs. simulated vs. real).
 - Finish the multi-servo PWM driver circuit for full 4-DOF control from a single Arduino Uno.
