@@ -16,14 +16,16 @@ Balancing a rotating machine commercially requires purpose-built shop equipment.
  
 A rotating system with its center of mass off the spin axis vibrates, wears bearings faster, and generates noise proportional to how far off-axis that mass sits. Fixing it means finding both where the imbalance is and how large it is, then adding a correction mass at the opposite phase.
 
-<div class="image-pair">
-  {{< figure src="cad_front.jpeg" alt="CAD Model" caption="Front View" >}}
-  {{< figure src="cad_iso.jpeg" alt="CAD Model" caption="Isometric View" >}}
-</div>
+
  
 ## Approach
  
 The rig: a 3D-printed test frame, a 775 DC motor spinning a disk, an IR sensor for RPM, an MPU6050 IMU for vibration, an Arduino Uno for acquisition, and an L298D driver.
+
+<div class="image-pair">
+  {{< figure src="cad_front.jpeg" alt="CAD Model" caption="Front View" >}}
+  {{< figure src="cad_iso.jpeg" alt="CAD Model" caption="Isometric View" >}}
+</div>
  
 At steady RPM, imbalance shows up as vibration at the rotation frequency. An FFT of the accelerometer signal isolates that component as a complex number A = |A|e^(jφ): magnitude gives the imbalance size, phase (relative to the IR pulse) gives its angular position.
  
