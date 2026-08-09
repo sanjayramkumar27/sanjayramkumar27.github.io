@@ -30,6 +30,8 @@ A robotic arm project built in two phases. The first was a physical build with c
 - Rebuilt the actuation stack for direct motor control: MG995 servos driven via a DRV8833 H-bridge with custom PID.
 - Building a three-trace tracking error analysis (commanded path vs. MuJoCo-ideal vs. real-arm forward-kinematics output) to quantify where simulation and hardware diverge, targeted as a shape-drawing demo within a two-week build window.
 
+{{< figure src="tracking_summary.png" alt="Tracking" caption="Tracking path and error in MuJoCo" >}}
+
 ## Design Decisions
 The stock servo tuning didn't match the arm's actual load, so I built custom PID control instead of living with the degraded performance that came with it. Phase 1 used analytical IK because the Arduino Uno needed real-time speed; Phase 2 switched to numerical IK once the bottleneck moved from runtime speed to iteration speed as the model kept changing. Vibration and tracking error were treated as things to measure and test rather than judge by eye, so both got instrumented instead of eyeballed.
 
