@@ -8,7 +8,8 @@ cover:
   image: "final.jpeg"
 ---
 
-**Contribution:** Structures & Mechanisms, Structural Analysis, Control Systems
+**Role:** Structures Lead and Control Systems
+[![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat&logo=github)](https://github.com/sanjayramkumar27/CanSat_Final_FSW)
  
 ## Overview
  

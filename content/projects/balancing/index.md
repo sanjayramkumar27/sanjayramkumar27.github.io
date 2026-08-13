@@ -7,6 +7,9 @@ cover:
   image: "model.jpg"
 ---
 
+[![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat&logo=github)](https://github.com/sanjayramkumar27/Balancing_robot)
+ 
+
 A two-wheeled robot balancing on its own is the classic inverted-pendulum problem, used here to work through control systems and mechatronics end to end. The goal was not just getting it to stand upright, but following the whole pipeline: mathematical modeling, controller design, and a physical build that matched what the simulation predicted.
 
 ## Objectives

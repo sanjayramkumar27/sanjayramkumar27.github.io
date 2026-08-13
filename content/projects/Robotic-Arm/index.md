@@ -8,6 +8,7 @@ cover:
 ---
 
 **Ongoing independent project · Mechanical design, servo control, kinematics, simulation**
+[![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat&logo=github)](https://github.com/sanjayramkumar27/4DoF_Robotic_Arm)
 
 A robotic arm project built in two phases. The first was a physical build with custom mechanical and electrical design and closed-form kinematics. The second moved to simulation, using numerical control methods to iterate faster and work toward a shape-drawing demo.
 

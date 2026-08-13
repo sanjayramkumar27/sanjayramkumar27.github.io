@@ -8,6 +8,7 @@ cover:
 ---
 
 **AE341 Aerospace Structures Lab, IIST, April 2026**
+[![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat&logo=github)](https://github.com/sanjayramkumar27/Structures_Test_Rig)
  
 Balancing a rotating machine commercially requires purpose-built shop equipment. This project asked whether the same job, locating and canceling a rotor's mass imbalance, could be done instead with an IMU, an IR tachometer, and a calibration procedure.
 

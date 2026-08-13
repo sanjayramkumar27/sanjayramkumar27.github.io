@@ -9,6 +9,7 @@ cover:
 ---
 
 **Role:** Electronics, Software and Control Systems
+[![GitHub](https://img.shields.io/badge/GitHub-View_Repository-181717?style=flat&logo=github)](https://github.com/sanjayramkumar27/RoboCup_Rescue_line_2023)
 
 An autonomous rescue robot built to find and evacuate simulated disaster victims inside a fixed eight-minute run: line-follow a course with ramps, speed bumps, obstacles and green patches, reach the evacuation zone without help, then locate and sort victims (silver and black balls) into the correct safe zones.
 
