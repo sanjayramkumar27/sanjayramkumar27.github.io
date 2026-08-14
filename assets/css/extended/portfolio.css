@@ -465,3 +465,15 @@ body {
     }
 }
 
+
+.gh-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--secondary);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.gh-link:hover {
+  color: var(--primary);
+}
