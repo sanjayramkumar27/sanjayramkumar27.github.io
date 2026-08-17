@@ -23,13 +23,12 @@ cover:
   GitHub Repository
 </a>
  
-Balancing a rotating machine commercially requires purpose-built shop equipment. This project asked whether the same job, locating and canceling a rotor's mass imbalance, could be done instead with an IMU, an IR tachometer, and a calibration procedure.
+Balancing a rotating machine commercially requires purpose-built shop equipment. This project did the same job, locating and canceling a rotor's mass imbalance,  with an IMU, an IR tachometer, and a calibration procedure at a smaller scale.
 
 
 ## The problem
  
 A rotating system with its center of mass off the spin axis vibrates, wears bearings faster, and generates noise proportional to how far off-axis that mass sits. Fixing it means finding both where the imbalance is and how large it is, then adding a correction mass at the opposite phase.
-
 
  
 ## Approach

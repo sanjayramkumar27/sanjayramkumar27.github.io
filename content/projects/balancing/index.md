@@ -36,7 +36,7 @@ A two-wheeled robot balancing on its own is the classic inverted-pendulum proble
 
 ## Simulation and control design
  
-The dynamics, weight, center of gravity, and motor torque characteristics were modeled in Simulink first, so the controller could be designed and tested before any hardware existed. A cascaded PID loop tuned around pitch angle converts tilt into a torque command for the drive motors.
+The dynamics, weight, center of gravity, and motor torque characteristics were modeled in Simulink first, so the controller could be designed and tested before any hardware existed. A cascaded PID loop where pitch angle converts tilt into a torque command for the drive motors.
 
 
 {{< figure src="simu.jpg" alt="Simulink Model" caption="Simulink Model" >}}
@@ -57,7 +57,7 @@ Reflashing code every time a gain needed adjusting was slow, so a separate tunin
 
 ## Outcome
  
-The robot recovered from disturbances of up to 10° in under 2 seconds, settling within 5 cm of its original position. The Simulink model tracked real hardware behavior closely enough that most tuning happened in simulation first, cutting iteration time on the physical unit.
+The robot recovered from disturbances of up to 10° in under 2 seconds, settling within 10 cm of its original position. The Simulink model tracked real hardware behavior closely enough that most tuning happened in simulation first, cutting iteration time on the physical unit.
 
 
 {{< youtube Nl21jv8NVsU >}}

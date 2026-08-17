@@ -26,13 +26,13 @@ cover:
  
 ## Overview
  
-A 960 g CanSat (148 × 242 mm) built for autonomous, precision recovery rather than a single passive descent. After nosecone ejection, the vehicle falls under parachute to 500 m, then four BLDC rotors deploy on spring hinges (nylon burn-wire release) and take over under closed-loop control, bringing it down at 1 to 3 m/s while steering back toward the launch site on GPS. What starts as a single-use descent ends as a repeatable, reusable recovery.
+A 1 Kg CanSat (148 × 242 mm) built for autonomous, precision recovery rather than a single passive descent. After nosecone ejection at 1 Km altitude, the CANSAT decelerates using the parachute to 500 m altitude, then four BLDC rotors deploy on spring hinges (nylon burn-wire release) and take over under closed-loop control, bringing it down at 1 to 3 m/s while steering back toward the launch site using GPS. 
  
 ## Structures and mechanisms
  
-The airframe is a modular five-piece ABS structure (SLA-printed): isogrid main body, avionics mid-section, and top and bottom end caps, split up for build and debug access. SLA was chosen over FDM after a direct comparison of print quality and strength. The isogrid geometry went through its own iteration: the original 2 mm-thin arms failed drop testing, so the design moved to a 22 mm triangle with a 5 mm fillet at density 1.6.
+The airframe is a modular five-piece ABS structure (SLA-printed): isogrid main body, avionics mid-section, and top and bottom end caps, split up for easy debugging and assembly. SLA was chosen over FDM after a direct comparison of print quality and strength. The isogrid geometry went through its own iteration: the original 2 mm-thin arms failed drop testing, so the design moved to a 22 mm triangle with a 5 mm fillet at density 1.6.
  
-The parachute mount moved from the isogrid top body to a dedicated top end-cap hook once simulation showed the isogrid arms were carrying most of the load; static FEA confirmed a single hook was enough on its own. The foldable rotor arms and spring-hinge deployment (nylon burn-wire release, hard stop at 90°) and the custom 2S2P 18650 battery holder were both designed in-house.
+The parachute mount moved from the isogrid top body to a dedicated top end-cap hook once simulation showed the isogrid arms were carrying most of the load. Static FEA confirmed a single hook was enough on its own. The foldable rotor arms and spring-hinge deployment (nylon burn-wire release, hard stop at 90°) and the custom 2S2P 18650 battery holder were both designed in-house.
 
 {{< figure src="cad.png" alt="CAD" caption="CAD Model of CANSAT" >}}
  
@@ -48,13 +48,13 @@ The parachute mount moved from the isogrid top body to a dedicated top end-cap h
  
 ## Control systems
  
-The quadrotor descent phase runs a cascaded-PID architecture, thrust, roll, pitch, and yaw loops feeding a motor-mixing algorithm, with diagonal rotor pairs counter-rotating to cancel reaction torque. The outer loop closes on inertial position rather than attitude alone, so the CanSat holds a fixed (x, y) relative to the launch site instead of just staying upright. That distinction matters: a pure attitude-hold controller drifts with the wind, and closing the loop on position avoids that failure mode. Gains were tuned and step and disturbance response checked in a Simulink model of the same cascaded-PID loop before touching the embedded implementation.
+The quadrotor descent phase runs a cascaded-PID architecture, thrust, roll, pitch, and yaw loops feeding into a motor-mixing algorithm, with diagonal rotor pairs counter-rotating to cancel reaction torque. The outer loop closes on inertial position rather than attitude alone, so the CanSat holds a fixed (x, y) relative to the launch site instead of just staying upright. The need for that is -  a pure attitude-hold controller drifts with the wind, and closing the loop on position avoids that failure mode. Gains were tuned and step and disturbance response checked in a Simulink model of the same cascaded-PID loop before the physical implementation.
 
 {{< figure src="flow.png" alt="Control Flow Diagram" caption="Control FLow Diagram" >}}
  
 ## Avionics
  
-The avionics split across two hand-soldered perfboard PCBs, a power/ESC board and a sensing/compute board, kept physically and electrically separate so either could be debugged or rewired independently during iteration.
+The avionics is split across two hand-soldered perfboard PCBs, a power/ESC board and a sensing/compute board, kept physically separate so either could be debugged or rewired independently during iteration.
 
  
 <div class="image-pair">
@@ -63,7 +63,7 @@ The avionics split across two hand-soldered perfboard PCBs, a power/ESC board an
 </div>
 
 ### Flight Computer
-A Teensy 4.1 runs the full control stack, including a custom-written PID controller for attitude stabilization. No off-the-shelf flight-controller firmware such as Betaflight or ArduPilot is used; sensor fusion, the control loop, and motor mixing are all original code.
+A Teensy 4.1 runs the full control stack, including a custom-written PID controller for attitude stabilization. No off-the-shelf flight-controller firmware such as Betaflight or ArduPilot is used, sensor fusion, the control loop, and motor mixing are all original code.
  
 ### Sensing & Navigation
 Three sensors feed the Teensy for state estimation: an ICM 20948 IMU for attitude and angular rate, a BMP390 for altitude, and a Bharat PI NavIC receiver for an absolute position fix through India's own regional satellite navigation system rather than a generic GNSS module.
@@ -76,7 +76,7 @@ Both boards sit in the airframe's mid-section for easy access during debugging, 
 {{< figure src="test.jpeg" alt="Test" caption="Test setup for PID Tuning" >}}
  
 ## Outcome
-The finished structure met both mass and size limits (960 g against a 1 kg cap, 148 × 242 mm against a 150 × 400 mm cap) and passed a full-system drop test, with structural integrity, sensor telemetry, and the parachute-to-burn-wire-to-rotor-deployment sequence all holding up end to end.
+The finished structure met both mass and size limits (1 Kg weight, 148 × 242 mm against a 150 × 400 mm cap) and passed a full-system drop test, with structural integrity, sensor telemetry, and the parachute-to-burn-wire-to-rotor-deployment sequence all holding up end to end.
  
 {{< figure src="final.jpeg" alt="Final Model" caption="Final flight ready model" >}}
 

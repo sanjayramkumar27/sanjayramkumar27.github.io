@@ -9,7 +9,7 @@ cover:
 
 **Role:** ADCS Team Member, Small Spacecraft Systems and Payload Centre, IIST
  
-A satellite's attitude control stack is usually treated as three separate problems: stop the initial tumble, point somewhere useful, then track a target while moving. This work built and tested all three stages for InspireSat-3, a student-built CubeSat in a 500 km Sun-Synchronous Orbit, using magnetorquers for detumbling and reaction wheels for pointing and ground-station tracking.
+A satellite's attitude control stack is usually treated as three separate problems: damp the initial tumble, point somewhere useful, then track a target while moving. This work built and tested all three stages for InspireSat-3, a student-built CubeSat in a 500 km Sun-Synchronous Orbit, using magnetorquers for detumbling and reaction wheels for pointing and ground-station tracking.
 
 <img src="simu.png"  class="full-bleed-image">
 
@@ -21,7 +21,7 @@ Settling time depended heavily on which axis the satellite was tumbling about. T
  
 ## Pointing and tracking: reaction wheel control
  
-A full 6-DOF satellite dynamics and quaternion kinematics model, driven by a PID controller commanding reaction wheel torque through a closed-loop BLDC motor transfer function, handled four ground-station pass maneuvers: limb pointing, limb-to-GS transition, GS tracking, and GS-to-limb transition, with reference angles generated from orbit time. Results were checked against Simulink Satellite Viewer using a 30° field-of-view sensor cone over the same 97.5°, 500 km SSO.
+A full 6-DOF satellite dynamics and quaternion kinematics model, driven by a PID controller commanding reaction wheel torque through a closed-loop motor transfer function, handled four ground-station pass maneuvers: limb pointing, limb-to-GS transition, GS tracking, and GS-to-limb transition, with reference angles generated from orbit time. Results were checked against Simulink Satellite Viewer using a 30° field-of-view sensor cone over the same 97.5°, 500 km SSO.
 
 
 {{< figure src="cover.jpg" alt="Satellite viewer" caption="Satellite Viewer" >}}
@@ -30,7 +30,7 @@ A later iteration added reaction wheel desaturation logic and made the reference
 
 ## Trajectory smoothing
  
-The original reference trajectory was continuous but not differentiable at the maneuver transitions. That non-smoothness showed up as discontinuous angular velocity commands and large torque spikes right at each transition, exactly where the controller needed to be smoothest. Redesigning the transition function for first-order smoothness between limb-pointing and GS-tracking segments removed the spikes, cut oscillations, and tightened tracking accuracy, confirmed by comparing angle and angular-velocity profiles before and after the change.
+The original reference trajectory was continuous but not differentiable at the maneuver transitions. That non-smoothness resulted in  discontinuous angular velocity commands and large torque spikes right at each transition, exactly where the controller needed to be smoothest. Redesigning the transition function for first-order smoothness between limb-pointing and GS-tracking segments removed the spikes, cut oscillations, reduced power consumption and tightened tracking accuracy, confirmed by comparing angle and angular-velocity profiles before and after the change.
  
 **Tools:** MATLAB, Simulink, Simulink Satellite Viewer
 

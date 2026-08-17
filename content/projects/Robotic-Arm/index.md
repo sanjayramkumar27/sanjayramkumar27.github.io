@@ -30,7 +30,7 @@ A robotic arm project built in two phases. The first was a physical build with c
 ## Phase 1 — Physical Prototype & Analytical Kinematics
 - Designed in SolidWorks across two iterations: Prototype 1 in laser-cut acrylic and 3D-printed links, Prototype 2 fully 3D-printed and redesigned smaller to reduce inertia and simplify assembly.
 - Removed the internal controller boards from MG995 servos, which were factory-tuned for low-inertia loads, and built a custom external controller tuned for the arm's actual load.
-- Built a power distribution board for a 2s2p Li-ion pack: dual buck converters for load sharing, bulk electrolytics for stability, decoupling caps at each load. Added a PCA9685 driver to work around the Arduino Uno's PWM limits.
+- Built a power distribution board for a 2s2p Li-ion pack: dual buck converters for load sharing, bulk electrolytics for stability, decoupling caps at each IC. 
 - Derived a closed-form IK solution for the 4-DOF configuration by extending 2R planar-arm equations, since no general solution existed online for this joint layout. Validated it in Desmos and against a Simulink numerical solver, and it matched while running fast enough for real-time Arduino Uno control.
 - Found structural resonance in Prototype 1 through testing and added servo dampers and foam damping, which measurably reduced vibration.
 - Mapped the real-world reachable workspace using the validated IK model, accounting for actual servo travel limits (180°) rather than idealized ranges.
@@ -40,7 +40,6 @@ A robotic arm project built in two phases. The first was a physical build with c
 ## Phase 2 — Simulation & Real-Time Control
 - Rebuilt the arm as an MJCF model in MuJoCo to allow rapid iteration on control strategy without physical rebuilds.
 - Switched to numerical IK using damped least-squares, chosen for robustness across joint configurations as the model evolved, since Phase 1's closed-form solution would have needed re-deriving for each change.
-- Generated a 2D reachability map and trapezoidal path timing profiles to drive shape-drawing trajectories.
 - Rebuilt the actuation stack for direct motor control: MG995 servos driven via a DRV8833 H-bridge with custom PID.
 - Building a three-trace tracking error analysis (commanded path vs. MuJoCo-ideal vs. real-arm forward-kinematics output) to quantify where simulation and hardware diverge, targeted as a shape-drawing demo within a two-week build window.
 

@@ -19,8 +19,7 @@ together rather than in the usual sequence.
 
 A two-link monoped (single-legged hopping robot) built to jump 0.2 m
 under lunar gravity (1.625 m/s²), with thigh and shank link lengths
-as the free design parameters. Two different controllers drove the
-jump: a real-time Quadratic Programming (QP) task-space controller,
+as the free design parameters. Two different controllers were studied : a real-time Quadratic Programming (QP) task-space controller,
 and a trajectory optimizer (CasADi + IPOPT) that plans the entire
 stance-phase motion in advance to minimize actuator work.
 
@@ -29,7 +28,7 @@ stance-phase motion in advance to minimize actuator work.
 ## The Framework
 
 A bi-level optimization: an outer Differential Evolution search
-(via PyGMO) proposes candidate link lengths, and for each candidate
+(via PyGMO) proposes candidate link lengths, and for each candidate a parametric XML file is generated and
 an inner loop simulates the jump in MuJoCo and reports back the
 Cost of Transport (COT), which DE tries to minimize.
 

@@ -28,7 +28,7 @@ An autonomous rescue robot built to find and evacuate simulated disaster victims
 
 ## Mechanical design
  
-Getting a reliable drivetrain took three attempts. The first prototype ran one motor per side through timing belts to four wheels; belt tension warped the 3D-printed parts, threw the wheels out of alignment, and the motor length made the chassis too wide. The second swapped to four servo motors, dropped once the gear reduction needed for enough torque brought RPM too low to support continuous-rotation encoders. The final drivetrain used N20 geared motors on brass couplers to bearings, two standard wheels up front and two omni wheels at the rear to cut turning friction. Six prototypes went through this cycle, each checked for ramp clearance, center-of-gravity stability, and overall performance, with parts designed in Onshape around DFA/DFM principles: embedded nut slots, snap-fit tolerances.
+Getting a reliable drivetrain took three attempts. The first prototype ran one motor per side through timing belts to four wheels but belt tension warped the 3D-printed parts, made the wheels go out of alignment, and the motor length made the chassis too wide. The second swapped to four servo motors, but that was also dropped once the gear reduction needed for enough torque brought RPM too low and did not support continuous-rotation encoders. The final drivetrain used N20 geared motors on brass couplers to bearings, two standard wheels up front and two omni wheels at the rear to cut turning friction. Six prototypes went through this cycle, each checked for ramp clearance, center-of-gravity stability, and overall performance, with parts designed in Onshape around DFA/DFM principles: embedded nut slots, snap-fit tolerances.
 
 
 <div class="image-pair">
@@ -38,7 +38,7 @@ Getting a reliable drivetrain took three attempts. The first prototype ran one m
 
 ## Electronics and control
  
-Encoder feedback needed two interrupt pins per motor, more than an Arduino Nano could offer, so the build moved to a Teensy 4.0. An MPU6050 IMU sensed ramp pitch and boosted motor speed on inclines to stop the robot stalling. Several sensors shared the same I2C address, which needed an I2C expander to let them run at the same time. Motor control started as PID with Ziegler-Nichols tuning, but static friction and motor nonlinearities made that unreliable, so tuning switched to trial and error against encoder feedback instead. A UART link split the workload between a Raspberry Pi running high-level ML decisions and the Teensy handling low-level motor and sensor logic.
+Encoder feedback needed two interrupt pins per motor, more than an Arduino could offer, so the build moved to a Teensy 4.0. An MPU6050 IMU sensed ramp pitch and boosted motor speed on inclines to stop the robot stalling. Several sensors shared the same I2C address, which needed an I2C expander to let them run at the same time. Motor control started as PID with Ziegler-Nichols tuning, but static friction and motor nonlinearities made that unreliable, so tuning switched to trial and error against encoder feedback instead. A UART link split the workload between a Raspberry Pi running high-level ML decisions and the Teensy handling low-level motor and sensor logic.
 
 
 ## ML-based victim detection
@@ -56,7 +56,7 @@ Flowcharts handled obstacle avoidance, green and ramp detection via IR and color
 {{< figure src="flow.png" alt="Flowchart" caption="Flowchart of System Architecture" >}}
 
 ## Results
-The robot completed all tasks inside the eight-minute limit, hit over 85% victim detection accuracy in the evacuation zone, and was one of only two teams at the competition to get every ball into its correct zone.
+The robot completed all tasks inside the eight-minute limit, acieved over 85% victim detection accuracy in the evacuation zone, and we were one of only two teams at the competition to get every ball into its correct zone.
 
 {{< figure src="real.jpg" alt="Robot" caption="Final Robot" >}}
 
