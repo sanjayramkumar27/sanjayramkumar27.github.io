@@ -11,7 +11,7 @@ cover:
  
 A satellite's attitude control stack is usually treated as three separate problems: damp the initial tumble, point somewhere useful, then track a target while moving. This work built and tested all three stages for InspireSat-3, a student-built CubeSat in a 500 km Sun-Synchronous Orbit, using magnetorquers for detumbling and reaction wheels for pointing and ground-station tracking.
 
-<img src="simu.png"  class="full-bleed-image">
+
 
 ## Detumbling: B-dot control
  
