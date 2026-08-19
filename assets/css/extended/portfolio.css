@@ -504,3 +504,17 @@ body {
     margin-top: 30px;
 }
 .research-card p { margin-bottom: 12px; }
+
+.menu a {
+  transition: color .15s ease;
+}
+
+.menu a:hover,
+.menu a:focus-visible {
+  color: var(--accent);
+}
+
+.menu .active {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
