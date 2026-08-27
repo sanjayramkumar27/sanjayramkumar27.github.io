@@ -2,7 +2,7 @@
 title: "In-Space CAN-SAT Competition"
 year: 2025
 role: "Structures lead, Control Systems"
-outcome: "Only team to use Quadcopter as Secondary descent mechanism"
+outcome: "Only team to use Quadcopter as Secondary descent control system"
 summary: "A 1Kg small CANSAT equipped with two descent control methods (Parachute and deployable Quadcopter) capable of withstanding rocket launch requirements and impact loads while relaying live telemetry throughout"
 cover:
   image: "final.jpeg"
@@ -24,59 +24,62 @@ cover:
   GitHub Repository
 </a>
  
-## Overview
+## Problem Statement
  
-A 1 Kg CanSat (148 × 242 mm) built for autonomous, precision recovery rather than a single passive descent. After nosecone ejection at 1 Km altitude, the CANSAT decelerates using the parachute to 500 m altitude, then four BLDC rotors deploy on spring hinges (nylon burn-wire release) and take over under closed-loop control, bringing it down at 1 to 3 m/s while steering back toward the launch site using GPS. 
+Build a Can-Sat that is equipped with two descent control systems, the first being a parachute which brings the CanSat to 20 m/s terminal velocity. At 500 m altitude, a secondary descent control system must activate/deploy and reduce the Can-Sat's velocity to 1-3m/s at touchdown. The Can-Sat will be launced to an altitude of 1Km by a rocket provided by the organisers. During the entire descent, the Can-Sat must relay live telemetry data like - velocity, altitude, temperature, orientation etc. The Can-Sat must be capable of withstanding launch loads and impact loads while protecting the avionics inside.
  
-## Structures and mechanisms
- 
-The airframe is a modular five-piece ABS structure (SLA-printed): isogrid main body, avionics mid-section, and top and bottom end caps, split up for easy debugging and assembly. SLA was chosen over FDM after a direct comparison of print quality and strength. The isogrid geometry went through its own iteration: the original 2 mm-thin arms failed drop testing, so the design moved to a 22 mm triangle with a 5 mm fillet at density 1.6.
- 
-The parachute mount moved from the isogrid top body to a dedicated top end-cap hook once simulation showed the isogrid arms were carrying most of the load. Static FEA confirmed a single hook was enough on its own. The foldable rotor arms and spring-hinge deployment (nylon burn-wire release, hard stop at 90°) and the custom 2S2P 18650 battery holder were both designed in-house.
+## System Overview
+
+- Structure
+  - Modular 5 piece ABS structure manufactured by SLA. 
+  - Isogrid Main Body
+  - Mid Avionics Bay
+  - Spring hinges for dployable rotors
+
+- Avionics
+  - Flight Computer - Teensy 4.1
+  - IMU, Pressure and temperature sensor, GPS, XBEE
+  - 4-in-1 ESC for BLDC motor control
+
+- Control Systems
+  - Custom cascaded PID structure for Roll, Pitch, Yaw, position and Thrust control
+
+- Ground Station
+  - Custom built GUI using PyQT
+
 
 {{< figure src="cad.png" alt="CAD" caption="CAD Model of CANSAT" >}}
  
-## Structural Simulation & Verification (ANSYS)
-| Analysis | Condition | Result |
-|---|---|---|
-| Shock, axial | 295 m/s², 1 ms impulse | 0.01 MPa max |
-| Shock, off-axis | axial + lateral | 3.8 MPa max (ABS UTS: 37.5 MPa) |
-| Drop test, explicit dynamics | 3 m/s impact | 23 MPa max, **FoS 1.63** |
-| Modal | - | 1st mode 205 Hz |
-| Rotor arm, static | 240 Pa dynamic pressure + 5 N motor load | **FoS 2.08** |
-| CFD, steady-state | 20 m/s flow | Cd = 0.55 (bare structure) |
- 
-## Control systems
- 
-The quadrotor descent phase runs a cascaded-PID architecture, thrust, roll, pitch, and yaw loops feeding into a motor-mixing algorithm, with diagonal rotor pairs counter-rotating to cancel reaction torque. The outer loop closes on inertial position rather than attitude alone, so the CanSat holds a fixed (x, y) relative to the launch site instead of just staying upright. The need for that is -  a pure attitude-hold controller drifts with the wind, and closing the loop on position avoids that failure mode. Gains were tuned and step and disturbance response checked in a Simulink model of the same cascaded-PID loop before the physical implementation.
+## My Contribution
 
-{{< figure src="flow.png" alt="Control Flow Diagram" caption="Control FLow Diagram" >}}
- 
-## Avionics
- 
-The avionics is split across two hand-soldered perfboard PCBs, a power/ESC board and a sensing/compute board, kept physically separate so either could be debugged or rewired independently during iteration.
+### Structural Design
+- The biggest hurdle faced was keeping the mass of the entire Can-Sat under 1 Kg while housing all the avionics and make deployable rotors and include a battery that is sufficient to sustain the secondary descent control system and at the same time making the Can-Sat easy for debugging and access and make sure it is designed for manufacturing. 
+- I chose a modular 5 piece design for easy access and debugging, with Isogrid main body to reduce weight. The avionics bay was made the middle of the Can-Sat. I used Spring hinges and Nylon burn wire mechanism for deploying the rotor arms. 
+- I kept the battery at the bottom of the Can-Sat to ensure the Cg is as low as possible for stability.
 
- 
-<div class="image-pair">
-  {{< figure src="top.jpeg" alt="Top PCB" caption="Top PCB" >}}
-  {{< figure src="bot.jpeg" alt="Bottom PCB" caption="Bottom PCB" >}}
-</div>
+### Control Systems
+- Built a simulink model to simulate the secondary descent control mechanism.
+- Imported the CAD model from SOLIDWORKS to Simulink and built a cascaded PID control.
+- Performed thrust characterization of physical motors using a test rig.
 
-### Flight Computer
-A Teensy 4.1 runs the full control stack, including a custom-written PID controller for attitude stabilization. No off-the-shelf flight-controller firmware such as Betaflight or ArduPilot is used, sensor fusion, the control loop, and motor mixing are all original code.
- 
-### Sensing & Navigation
-Three sensors feed the Teensy for state estimation: an ICM 20948 IMU for attitude and angular rate, a BMP390 for altitude, and a Bharat PI NavIC receiver for an absolute position fix through India's own regional satellite navigation system rather than a generic GNSS module.
- 
-### Power & Motor Interface
- Motor control runs through a 4-in-1 ESC on its own perfboard with screw-terminal breakouts for every motor phase and power lead, so a motor can be disconnected without resoldering, useful given how often ESC calibration and motor swaps came up during tuning. Main power distribution uses 12 AWG wire to keep resistive losses down under the large instantaneous current the motors draw.
- 
-Both boards sit in the airframe's mid-section for easy access during debugging, trading a fully enclosed build for faster iteration. Propulsion is three-inch, three-blade propellers on each motor.
- 
+### Testing
+- Designed a 3D-printed a thust measurement and motor thrust chracterization rig with load cell and amplifier.
+- Set up a test stand to test single axis and multi axis contorl test of CansSat.
+- Tested the Burn wire mechanism using a bench supply to confirm current requirements and timing.
+- Performed a drop test from 20m height to ensure impact handling and reliable telemetry relay.
+
 {{< figure src="test.jpeg" alt="Test" caption="Test setup for PID Tuning" >}}
  
 ## Outcome
-The finished structure met both mass and size limits (1 Kg weight, 148 × 242 mm against a 150 × 400 mm cap) and passed a full-system drop test, with structural integrity, sensor telemetry, and the parachute-to-burn-wire-to-rotor-deployment sequence all holding up end to end.
+The finished structure met both mass and size limits (1 Kg weight, 148 × 242 mm against a 150 × 400 mm cap) and passed a full-system drop test, with structural integrity, sensor telemetry, and the parachute-to-burn-wire-to-rotor-deployment sequence all holding up end to end. We were the only team to use a quadcopter as the secondary descent control mechanism.
+
+## Design Descisions
+- Decided against a monolithic structure and chose a 5 piece modular structure.
+- Used connectors rather than soldering the Motors to the Perf-board PCBs.
+- Used ready-made spring hinges for reilable rotor deployment.
+- Optimized the placement of electronic components on perf-board to reduce the PCB to PCB wires and reduce influence of magnetic radiation from motor wires.
+- Used foldable propellers to ensure the CanSat fits inside the rocket and does not interfere during deploymet from the rocket.
+- Isogrid main body and ABS material for entire CanSat ensured high strength to weight ratio and made sure the natural frequencies of CanSat are well above the launch vehicle's vibration frequencies.
  
 {{< figure src="final.jpeg" alt="Final Model" caption="Final flight ready model" >}}
 
