@@ -28,7 +28,7 @@ cover:
 Build an autonomous robot capable of following a line with green markers, avoiding obstacles, traversing over ramps, speedbumps and sew-saw. Inside the Evacuation zone, the robot's task is to pick up the silver balls and drop them in the green safe zone and pick up the black balls and drop them in a red safe zone.
 
 # System Overview
-# Mechanical Design
+## Mechanical Design
   - Went through 6 prototypes and finally landed on N20 motors for each wheel. Regular wheel in the front and omni-directional wheels in the back.
   - Fully designed in OnShape around DFA and DFM principles.
   - 3D printed parts with Arcylic chasis
@@ -40,19 +40,19 @@ Build an autonomous robot capable of following a line with green markers, avoidi
   {{< figure src="back.jpg" alt="CAD Model" caption="Back View" >}}
   </div>
 
-# Electronics
+## Electronics
   - Low level motor control and sensor data processing were handled by Teensy 4.0
   - High level ML based object detection for balls and safe zone detection handled by Raspberry Pi 4
   - The sensor suite included a IMU - MPU6050, Motor encoders (one for each wheel), i2C expander, colour sensors, Time of flight sensors and IR sensors
   - A total of 5 Servos were used for picking up the balls, separating and depositing them.
   - The i2C expader enabled i2C communication to multiple sensors having same i2C address.
 
-# Control Systems
+## Control Systems
   - PD control for each motor
   - Ball tracking during evacuation zone
   - Ramp detection followed by speed increase
 
-# ML based ball and safe zone detection
+## ML based ball and safe zone detection
   - TensoflowLite with SSD MobileNet v2 FPN-Lite 320
   - Dataset contained 250 images of victims and safe zones under various lighting and exposure conditions
   - Split the dataset to train, test and validation
