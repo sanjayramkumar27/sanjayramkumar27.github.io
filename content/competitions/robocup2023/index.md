@@ -24,11 +24,11 @@ cover:
   GitHub Repository
 </a>
 
-# Problem Statement
+## Problem Statement
 Build an autonomous robot capable of following a line with green markers, avoiding obstacles, traversing over ramps, speedbumps and sew-saw. Inside the Evacuation zone, the robot's task is to pick up the silver balls and drop them in the green safe zone and pick up the black balls and drop them in a red safe zone.
 
-# System Overview
-## Mechanical Design
+## System Overview
+### Mechanical Design
   - Went through 6 prototypes and finally landed on N20 motors for each wheel. Regular wheel in the front and omni-directional wheels in the back.
   - Fully designed in OnShape around DFA and DFM principles.
   - 3D printed parts with Arcylic chasis
@@ -40,19 +40,19 @@ Build an autonomous robot capable of following a line with green markers, avoidi
   {{< figure src="back.jpg" alt="CAD Model" caption="Back View" >}}
   </div>
 
-## Electronics
+### Electronics
   - Low level motor control and sensor data processing were handled by Teensy 4.0
   - High level ML based object detection for balls and safe zone detection handled by Raspberry Pi 4
   - The sensor suite included a IMU - MPU6050, Motor encoders (one for each wheel), i2C expander, colour sensors, Time of flight sensors and IR sensors
   - A total of 5 Servos were used for picking up the balls, separating and depositing them.
   - The i2C expader enabled i2C communication to multiple sensors having same i2C address.
 
-## Control Systems
+### Control Systems
   - PD control for each motor
   - Ball tracking during evacuation zone
   - Ramp detection followed by speed increase
 
-## ML based ball and safe zone detection
+### ML based ball and safe zone detection
   - TensoflowLite with SSD MobileNet v2 FPN-Lite 320
   - Dataset contained 250 images of victims and safe zones under various lighting and exposure conditions
   - Split the dataset to train, test and validation
@@ -62,8 +62,8 @@ Build an autonomous robot capable of following a line with green markers, avoidi
   {{< figure src="camera.jpg" alt="Camera View" caption="Silver Ball Detection" >}}
 
 
-# My Contributions
-## Electronics
+## My Contributions
+### Electronics
 - Started with an Arduino Uno for the low level control, but since each motor required two interrupt pins, I switched to Teensy 4.0 since it has more hardware interrupt pins
 - Used Raspberry Pi 4 for the ML based object detection to distribute the workload between the two processors.
 - The robot required multiple colour and time of flight sensors with same i2C address, so i used an i2C expander to communicate with each sensor independently
@@ -72,11 +72,11 @@ Build an autonomous robot capable of following a line with green markers, avoidi
 - Used Buck converters to provide the different voltage rails required by the system.
 - Used limit switches to detect obstacles.
 
-## Control Systems
+### Control Systems
 - Implemented a PD controller for each motor to maintain a constant RPM under varied conditions
 - Developed a proportional ball tracking controller using the bounding box coordinates provided by the object detector. The centre of the camera frame was used as reference, aloowing the robot to align itself with the ball before initiating the pickup sequence.
 
-## Software
+### Software
 - The Teensy was programmed in C++ using the Arduino IDE. The software was organized into separate functions rather than placing all functionality in a single file, improving readability and simplifying debugging.
 - The Raspberry Pi4 used Python+OpenCV+Tensorflow.
 - A serial communication was setup between the Teensy and the RPi4, to initiate the ML algorithm, transmit bounding box coordinates and coordinate the ball pick up and drop sequence.
@@ -84,7 +84,7 @@ Build an autonomous robot capable of following a line with green markers, avoidi
 
 {{< figure src="flow.png" alt="Flowchart" caption="Flowchart of System Architecture" >}}
 
-# Results
+## Results
 The robot completed all tasks inside the eight-minute limit, achieved over 85% victim detection accuracy in the evacuation zone, and we were one of only two teams at the competition to get every ball into its correct zone.
 
 {{< figure src="real.jpg" alt="Robot" caption="Final Robot" >}}

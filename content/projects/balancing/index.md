@@ -22,7 +22,7 @@ cover:
   GitHub Repository
 </a>
 
-# Objective
+## Objective
 
 A two-wheeled robot balancing on its own is the classic inverted-pendulum problem, used here to work through control systems and mechatronics end to end. The goal was not just getting it to stand upright, but following the whole pipeline: mathematical modeling, controller design, and a physical build.
 
@@ -34,36 +34,36 @@ A two-wheeled robot balancing on its own is the classic inverted-pendulum proble
 
 {{< figure src="cad.jpg" alt="CAD Model of Robot" caption="CAD Model of Robot" >}}
 
-# System Overview
+## System Overview
 
-## Simulation and control design
+### Simulation and control design
  
 The dynamics, weight, center of gravity, and motor torque characteristics were modeled in Simulink first, so the controller could be designed and tested before any hardware existed. A cascaded PID loop where pitch angle converts tilt into a torque command for the drive motors.
 
 
 {{< figure src="simu.jpg" alt="Simulink Model" caption="Simulink Model" >}}
 
-## Hardware build
+### Hardware build
  
 The mechanical structure was designed as a full CAD assembly, then 3D-printed and assembled. A Teensy microcontroller ran the real-time loop, reading IMU data over I2C and driving the motors via PWM. Raw accelerometer readings drift and gyroscope readings are noisy on their own, so a complementary filter combined the two into a stable angle estimate.
 
 
 {{< figure src="model.jpg" alt="Final built robot" caption="Final built robot" >}}
 
-## Wireless tuning tool
+### Wireless tuning tool
  
 Reflashing code every time a gain needed adjusting was slow, so a separate tuning device, built from NRF24L01 radio modules and potentiometers, dialed in Kp, Ki, and Kd live while the robot was running. That replaced the flash-test-repeat cycle with real-time feedback, and serial plots of the sensor and controller output next to it made instability easy to catch quickly.
 
 
 {{< figure src="tuner.jpeg" alt="Tuner" caption="Wireless Tuner" >}}
 
-# Design Descisions
+## Design Descisions
 - Used a simple complementary filter to keep computation fast and still get reilable data.
 - Added a tungsten weight at the top to increase the moment of inertia of the robot which increases the time of fall.
 - Built a wireless tuner to tune the PID gains on the go, which is much faster than modifying in the coe and reuploading the code again.
 - Compact design that houses the batteries, microcontroller and other electronics.
 
-# Outcome
+## Outcome
  
 The robot recovered from disturbances of up to 10° in under 2 seconds, settling within 10 cm of its original position. The Simulink model tracked real hardware behavior closely enough that most tuning happened in simulation first, cutting iteration time on the physical unit.
 

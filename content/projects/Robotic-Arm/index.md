@@ -22,15 +22,15 @@ cover:
   GitHub Repository
 </a>
 
-# Objective
+## Objective
 
 A robotic arm project built to work through the full mechatronics stack including mechanical design, closed-form kinematics and low-level motor control. Then extend into simulation based control in MuJoCo due to physical build's constraints (motor backlash, deadband and saturation) started limiting fow fast i could iterate.
 
 {{< figure src="cover.png" alt="CAD Model of Arm" caption="CAD Model of Arm" >}}
 
-# System Overview
+## System Overview
 
-## Phase 1 — Physical Prototype & Analytical Kinematics
+### Phase 1 — Physical Prototype & Analytical Kinematics
 - Designed in SolidWorks across two iterations: Prototype 1 in laser-cut acrylic and 3D-printed links, Prototype 2 fully 3D-printed and redesigned smaller to reduce inertia and simplify assembly.
 - Removed the internal controller boards from MG995 servos, which were factory-tuned for low-inertia loads, and built a custom external controller tuned for the arm's actual load.
 - Built a power distribution board for a 2s2p Li-ion pack: dual buck converters for load sharing, bulk electrolytics for stability, decoupling caps at each IC. 
@@ -40,7 +40,7 @@ A robotic arm project built to work through the full mechatronics stack includin
 
 {{< figure src="board.jpg" alt="Power Distribution Board" caption="Power Distribution Board" >}}
 
-## Phase 2 — Simulation & Real-Time Control
+### Phase 2 — Simulation & Real-Time Control
 - Rebuilt the arm as an MJCF model in MuJoCo to allow rapid iteration on control strategy without physical rebuilds.
 - Switched to numerical IK using damped least-squares, chosen for robustness across joint configurations as the model evolved, since Phase 1's closed-form solution would have needed re-deriving for each change.
 - Rebuilt the actuation stack for direct motor control: MG995 servos driven via a DRV8833 H-bridge with custom PID.
@@ -48,7 +48,7 @@ A robotic arm project built to work through the full mechatronics stack includin
 
 {{< figure src="tracking_summary.png" alt="Tracking" caption="Tracking path and error in MuJoCo" >}}
 
-# Design Decisions
+## Design Decisions
 - The stock servo tuning didn't match the arm's actual load, so I built custom PID control by removing the internal controller and taking feedback from the internal potentiometer.
 - Derived the inverse kinematics from scratch and verified it in Desmos and simulink before implementing it in the physical arm.
 - After extensive testing, realised first prototype had huge arm with high inertia so switched to lighter and smaller arms.
@@ -60,7 +60,7 @@ A robotic arm project built to work through the full mechatronics stack includin
 
 {{< youtube w32eCuOhc1g >}}
 
-# Future Work
+## Future Work
 - Complete tracking error analysis (commanded vs. simulated vs. real).
 - Finish the multi-servo PWM driver circuit for full 4-DOF control from a single Arduino Uno.
 - Extend trajectory generation beyond shape-drawing to general path planning.
