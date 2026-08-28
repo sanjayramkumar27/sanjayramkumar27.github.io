@@ -1,5 +1,5 @@
 ---
-title: "Two wheel Balancing Robot"
+title: "Two-wheel Balancing Robot"
 date: 2026-06-01
 summary: "Custom designed two-wheeled balancing robot, simulated control algorithm in Simulink and physically validated it"
 cover:
@@ -57,10 +57,10 @@ Reflashing code every time a gain needed adjusting was slow, so a separate tunin
 
 {{< figure src="tuner.jpeg" alt="Tuner" caption="Wireless Tuner" >}}
 
-## Design Descisions
-- Used a simple complementary filter to keep computation fast and still get reilable data.
+## Design decisions
+- Used a simple complementary filter to keep computation fast and still get reliable data.
 - Added a tungsten weight at the top to increase the moment of inertia of the robot which increases the time of fall.
-- Built a wireless tuner to tune the PID gains on the go, which is much faster than modifying in the coe and reuploading the code again.
+- Built a wireless tuner to tune the PID gains on the go, which is much faster than modifying and reuploading the code.
 - Compact design that houses the batteries, microcontroller and other electronics.
 
 ## Outcome

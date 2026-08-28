@@ -24,7 +24,7 @@ cover:
 
 ## Objective
 
-A robotic arm project built to work through the full mechatronics stack including mechanical design, closed-form kinematics and low-level motor control. Then extend into simulation based control in MuJoCo due to physical build's constraints (motor backlash, deadband and saturation) started limiting fow fast i could iterate.
+A robotic arm project built to work through the full mechatronics stack including mechanical design, closed-form kinematics and low-level motor control. Then extended into simulation based control in MuJoCo once the physical build's constraints (motor backlash, dead-band and saturation) started limiting fow fast i could iterate.
 
 {{< figure src="cover.png" alt="CAD Model of Arm" caption="CAD Model of Arm" >}}
 
@@ -33,7 +33,7 @@ A robotic arm project built to work through the full mechatronics stack includin
 ### Phase 1 — Physical Prototype & Analytical Kinematics
 - Designed in SolidWorks across two iterations: Prototype 1 in laser-cut acrylic and 3D-printed links, Prototype 2 fully 3D-printed and redesigned smaller to reduce inertia and simplify assembly.
 - Removed the internal controller boards from MG995 servos, which were factory-tuned for low-inertia loads, and built a custom external controller tuned for the arm's actual load.
-- Built a power distribution board for a 2s2p Li-ion pack: dual buck converters for load sharing, bulk electrolytics for stability, decoupling caps at each IC. 
+- Built a power distribution board for a 2s2p Li-ion pack: dual buck converters for load sharing, bulk electrolytic capacitors for stability, decoupling caps at each IC. 
 - Derived a closed-form IK solution for the 4-DOF configuration by extending 2R planar-arm equations, since no general solution existed online for this joint layout. Validated it in Desmos and against a Simulink numerical solver, and it matched while running fast enough for real-time Arduino Uno control.
 - Found structural resonance in Prototype 1 through testing and added servo dampers and foam damping, which measurably reduced vibration.
 - Mapped the real-world reachable workspace using the validated IK model, accounting for actual servo travel limits (180°) rather than idealized ranges.
@@ -50,11 +50,11 @@ A robotic arm project built to work through the full mechatronics stack includin
 
 ## Design Decisions
 - The stock servo tuning didn't match the arm's actual load, so I built custom PID control by removing the internal controller and taking feedback from the internal potentiometer.
-- Derived the inverse kinematics from scratch and verified it in Desmos and simulink before implementing it in the physical arm.
-- After extensive testing, realised first prototype had huge arm with high inertia so switched to lighter and smaller arms.
+- Derived the inverse kinematics from scratch and verified it in Desmos and Simulink before implementing it in the physical arm.
+- After extensive testing, realized the first prototype had high inertia so switched to lighter and smaller arms.
 - Added dual buck converters in parallel to share the current load.
 - Added bulk capacitors after noticing voltage dips during quick motions.
-- Phase 1 used analytical IK because the Arduino Uno needed real-time speed
+- Phase 1 used analytical IK because the Arduino Uno needed real-time speed.
 - Phase 2 switched to numerical IK once the bottleneck moved from runtime speed to iteration speed.
 - Noticed vibrations in the first prototype and added Servo dampers and foam damping which reduced the vibrations and improved tracking error.
 

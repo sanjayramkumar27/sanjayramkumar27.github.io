@@ -1,5 +1,5 @@
 ---
-title: "In-Space CAN-SAT Competition"
+title: "In-Space CANSAT Competition"
 year: 2025
 role: "Structures lead, Control Systems"
 outcome: "Only team to use Quadcopter as Secondary descent control system"
@@ -26,7 +26,7 @@ cover:
  
 ## Problem Statement
  
-Build a Can-Sat that is equipped with two descent control systems, the first being a parachute which brings the CanSat to 20 m/s terminal velocity. At 500 m altitude, a secondary descent control system must activate/deploy and reduce the Can-Sat's velocity to 1-3m/s at touchdown. The Can-Sat will be launched to an altitude of 1Km by a rocket provided by the organisers. During the entire descent, the Can-Sat must relay live telemetry data like - velocity, altitude, temperature, orientation etc. The Can-Sat must be capable of withstanding launch loads and impact loads while protecting the avionics inside.
+Build a Can-Sat that is equipped with two descent control systems, the first being a parachute which brings the CanSat to 20 m/s terminal velocity. At 500 m altitude, a secondary descent control system must activate/deploy and reduce the Can-Sat's velocity to 1-3m/s at touchdown. The Can-Sat will be launched to an altitude of 1Km by a rocket provided by the organizers. During the entire descent, the Can-Sat must relay live telemetry data like - velocity, altitude, temperature, orientation etc. The Can-Sat must be capable of withstanding launch loads and impact loads while protecting the avionics inside.
  
 ## System Overview
 
@@ -63,8 +63,8 @@ Build a Can-Sat that is equipped with two descent control systems, the first bei
 - Performed thrust characterization of physical motors using a test rig.
 
 ### Testing
-- Designed a 3D-printed a thrust measurement and motor thrust characterization rig with load cell and amplifier.
-- Set up a test stand to test single axis and multi axis contorl test of CansSat.
+- Designed and 3D-printed a thrust measurement and motor thrust characterization rig with load cell and amplifier.
+- Set up a test stand for single and multi axis control test of CanSat.
 - Assisted in soldering the main and backup avionics boards.
 - Tested the Burn wire mechanism using a bench supply to confirm current requirements and timing.
 - Performed a drop test from 20m height to ensure impact handling and reliable telemetry relay.
@@ -74,12 +74,12 @@ Build a Can-Sat that is equipped with two descent control systems, the first bei
 ## Outcome
 The finished structure met both mass and size limits (1 Kg weight, 148 × 242 mm against a 150 × 400 mm cap) and passed a full-system drop test, with structural integrity, sensor telemetry, and the parachute to burn-wire to rotor-deployment sequence all holding up end to end. We were the only team to use a quadcopter as the secondary descent control mechanism.
 
-## Design Descisions
+## Design Decisions
 - Decided against a monolithic structure and chose a 5 piece modular structure.
 - Used connectors rather than soldering the Motors to the Perf-board PCBs.
-- Used ready-made spring hinges for reilable rotor deployment.
-- Optimized the placement of electronic components on perf-board to reduce the PCB to PCB wires and reduce influence of magnetic radiation from motor wires.
-- Used foldable propellers to ensure the CanSat fits inside the rocket and does not interfere during deploymet from the rocket.
+- Used ready-made spring hinges for reliable rotor deployment.
+- Optimized the placement of electronic components on perf-board to reduce the PCB to PCB wires and reduce influence of magnetic interference from motor wires.
+- Used foldable propellers to ensure the CanSat fits inside the rocket and does not interfere during deployment from the rocket.
 - Isogrid main body and ABS material for entire CanSat ensured high strength to weight ratio and made sure the natural frequencies of CanSat are well above the launch vehicle's vibration frequencies.
  
 {{< figure src="final.jpeg" alt="Final Model" caption="Final flight ready model" >}}

@@ -1,7 +1,7 @@
 ---
 title: "Rotational Imbalance Measurement & Correction System"
 date: 2026-06-01
-summary: "A low-cost Testing rig that detect mass imbalance in a rotating disk and computes required correction"
+summary: "A low-cost testing rig that detects mass imbalance in a rotating disk and computes required correction"
 cover:
   image: "cover.jpeg"
 ---
@@ -23,12 +23,12 @@ cover:
 </a>
  
 ## Problem Statement
-Balancing a rotating machine commercially requires purpose-built shop equipment. This project did the same job, locating and canceling a rotor's mass imbalance,  with an IMU, an IR tachometer, and a calibration procedure at a smaller scale.
+Balancing a rotating machine commercially requires purpose-built shop equipment. This project did the same job, locating and canceling a rotor's mass imbalance, with an IMU, an IR tachometer, and a calibration procedure at a smaller scale.
 A rotating system with its center of mass off the spin axis vibrates, wears bearings faster, and generates noise proportional to how far off-axis that mass sits. Fixing it means finding both where the imbalance is and how large it is, then adding a correction mass at the opposite phase.
 
 ## System Overview
  
-The rig: a 3D-printed test frame, a 775 DC motor spinning a disk, an IR sensor for RPM  and phase reference measurement, an MPU6050 IMU for vibration, an Arduino Uno for acquisition, and an L298D driver.
+The rig: a 3D-printed test frame, a 775 DC motor spinning a disk, an IR sensor for RPM and phase reference measurement, an MPU6050 IMU for vibration, an Arduino Uno for acquisition, and an L298N driver.
 
 <div class="image-pair">
   {{< figure src="cad_front.jpeg" alt="CAD Model" caption="Front View" >}}
