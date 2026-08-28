@@ -2,7 +2,7 @@
 title: "ML-Based Rescue Robot | RoboCup International 2023 Bordeaux, France"
 year: 2023
 role: "Software and Electronics"
-outcome: "Top 11 finish"
+outcome: "Represented India, Top 11 finish"
 summary: "Line Follow with ramps, obstacles and a final evacuation zone which involved picking up, sorting and deposition of balls"
 cover:
   image: "real.jpg"
@@ -24,42 +24,71 @@ cover:
   GitHub Repository
 </a>
 
-An autonomous rescue robot built to find and evacuate simulated disaster victims inside a fixed eight-minute run: line-follow a course with ramps, speed bumps, obstacles and green patches, reach the evacuation zone without help, then locate and sort victims (silver and black balls) into the correct safe zones.
+# Problem Statement
+Build an autonomous robot that follows a line with green markers, avoid obstacles on the way, go over ramps, speedbumps, sew-saw. Inside the Evacuation zone, the robot's task is to pick up the silver balls and drop them in the green safe zone and pick up the black balls and drop them in a red safe zone.
 
-## Mechanical design
- 
-Getting a reliable drivetrain took three attempts. The first prototype ran one motor per side through timing belts to four wheels but belt tension warped the 3D-printed parts, made the wheels go out of alignment, and the motor length made the chassis too wide. The second swapped to four servo motors, but that was also dropped once the gear reduction needed for enough torque brought RPM too low and did not support continuous-rotation encoders. The final drivetrain used N20 geared motors on brass couplers to bearings, two standard wheels up front and two omni wheels at the rear to cut turning friction. Six prototypes went through this cycle, each checked for ramp clearance, center-of-gravity stability, and overall performance, with parts designed in Onshape around DFA/DFM principles: embedded nut slots, snap-fit tolerances.
+# System Overview
+- Mechanical Design
+  - Went through 6 prototypes and finally landed on N20 motors for each wheel. Regular wheel in the front and omni-directional wheels in the back.
+  - Fully designed in OnShape around DFA and DFM principles.
+  - 3D printed parts with Arcylic chasis
+  - 3 servo gripper for picking up balls
+  - 2 containers to separate silver and black balls
 
-
-<div class="image-pair">
+  <div class="image-pair">
   {{< figure src="Front.jpg" alt="CAD Model" caption="Front View" >}}
   {{< figure src="back.jpg" alt="CAD Model" caption="Back View" >}}
 </div>
 
-## Electronics and control
- 
-Encoder feedback needed two interrupt pins per motor, more than an Arduino could offer, so the build moved to a Teensy 4.0. An MPU6050 IMU sensed ramp pitch and boosted motor speed on inclines to stop the robot stalling. Several sensors shared the same I2C address, which needed an I2C expander to let them run at the same time. Motor control started as PID with Ziegler-Nichols tuning, but static friction and motor nonlinearities made that unreliable, so tuning switched to trial and error against encoder feedback instead. A UART link split the workload between a Raspberry Pi running high-level ML decisions and the Teensy handling low-level motor and sensor logic.
+- Electronics
+  - Low level motor control and sensor data processing handled by Teensy 4.0
+  - High level ML based object detection for balls and safe zone detection handled by Raspberry Pi 4
+  - IMU - MPU6050, Motor encoders(one for each wheel), i2C expander, Colour sensors, Time of flight sensors, IR sensors
+  - A total of 5 Servos for picking up the balls, separating and depositing them.
+  - i2C expader enabled i2C communication to multiple sensors having same i2C address.
+
+- Control Systems
+  - PD control for each motor
+  - Ball tracking during evacuation zone
+  - Ramp detection followed by speed increase
+
+- ML based victim and safe zone detection
+  - TensoflowLite with SSD MobileNet v2 FPN-Lite 320
+  - dataset contained 250 images of victims and safe zones under various lighting and exposure conditions
+  - Split the dataset to train, test and validation
+  - Images were labelled using labelImg software
+  - Achieved over 85% accuracy in detection
+
+  {{< figure src="camera.jpg" alt="Camera View" caption="Silver Ball Detection" >}}
 
 
-## ML-based victim detection
- 
-About 250 images of victims and safe zones, shot under varied lighting and labeled with LabelImg, trained an SSD MobileNet v2 FPN-Lite 320 in TensorFlow after a train/validation/test split. Tracking control computed an error term from a 720×1280 camera frame, 640 minus the ball's bounding-box midpoint x-pixel, and fed error times Kp into the Teensy's steering block to keep the ball centered on approach. A three-servo gripper handled the pick-up and drop into the correct container.
+## My Contributions
+### Electronics
+- Started with an Arduino Uno for the low level control, but since each motor required two interrupt pins, switched to Teensy 4.0 since it has more hardware interrupt pins
+- Used Raspberry Pi 4 for the ML based object detection to distribute the workload across two computers.
+- The robot required multiple colour and time of flight sensors and they had the same i2C address, so i used an i2C expander to communicate with each sensor independently
+- Used MPU6050 for ramp detection and increase speed to avoid stalling. The IMU was also used to make accurate turnsin the evacuation zone in the presence of debris
+- Used the Pi camera for Object detection
+- Used Buck converters to achieve different levels of required voltage busses.
+- Used limit switches to detect obstacles.
+
+### Control Systems
+- Implemented a PD controller for each motor to maintain a constant RPM under varied conditions
+- Once a ball is detected, the robot must go to it and make sure the ball is at the centre while picking it up, to ensure that this happens I used the bounding box coordinates of the detected ball and used the middle of the camera frame as reference for a proportional ball tracking.
 
 
-{{< figure src="camera.jpg" alt="Camera View" caption="Silver Ball Detection" >}}
-
-## System logic
- 
-Flowcharts handled obstacle avoidance, green and ramp detection via IR and color sensors, PID line-following, and intersection handling. Building and testing each module on its own before integration made bugs much easier to isolate once everything came together.
+### Software
+- The Teensy was programmed in C++ using the Arduino IDE. Instead of having all the code ina single file, chose to segregate it into functions and call them in the main loop which made the code more legible and debugging error much easier.
+- The Raspberry Pi4 used Python+OpenCV+Tensorflow.
+- A serial communication was setup between the Teensy and the RPi4, to initiate the ML algorithm, sending bounding box coordinates and initating ball picking up and dropping sequence.
 
 
 {{< figure src="flow.png" alt="Flowchart" caption="Flowchart of System Architecture" >}}
 
 ## Results
-The robot completed all tasks inside the eight-minute limit, acieved over 85% victim detection accuracy in the evacuation zone, and we were one of only two teams at the competition to get every ball into its correct zone.
+The robot completed all tasks inside the eight-minute limit, achieved over 85% victim detection accuracy in the evacuation zone, and we were one of only two teams at the competition to get every ball into its correct zone.
 
 {{< figure src="real.jpg" alt="Robot" caption="Final Robot" >}}
 
-**Tools:** Onshape, Teensy 4.0, Raspberry Pi, TensorFlow (SSD MobileNet v2), LabelImg
 
 {{< youtube We57wuRG5Ek >}}

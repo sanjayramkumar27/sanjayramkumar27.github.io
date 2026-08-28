@@ -26,7 +26,7 @@ cover:
  
 ## Problem Statement
  
-Build a Can-Sat that is equipped with two descent control systems, the first being a parachute which brings the CanSat to 20 m/s terminal velocity. At 500 m altitude, a secondary descent control system must activate/deploy and reduce the Can-Sat's velocity to 1-3m/s at touchdown. The Can-Sat will be launced to an altitude of 1Km by a rocket provided by the organisers. During the entire descent, the Can-Sat must relay live telemetry data like - velocity, altitude, temperature, orientation etc. The Can-Sat must be capable of withstanding launch loads and impact loads while protecting the avionics inside.
+Build a Can-Sat that is equipped with two descent control systems, the first being a parachute which brings the CanSat to 20 m/s terminal velocity. At 500 m altitude, a secondary descent control system must activate/deploy and reduce the Can-Sat's velocity to 1-3m/s at touchdown. The Can-Sat will be launched to an altitude of 1Km by a rocket provided by the organisers. During the entire descent, the Can-Sat must relay live telemetry data like - velocity, altitude, temperature, orientation etc. The Can-Sat must be capable of withstanding launch loads and impact loads while protecting the avionics inside.
  
 ## System Overview
 
@@ -34,7 +34,7 @@ Build a Can-Sat that is equipped with two descent control systems, the first bei
   - Modular 5 piece ABS structure manufactured by SLA. 
   - Isogrid Main Body
   - Mid Avionics Bay
-  - Spring hinges for dployable rotors
+  - Spring hinges for deployable rotors
 
 - Avionics
   - Flight Computer - Teensy 4.1
@@ -53,7 +53,7 @@ Build a Can-Sat that is equipped with two descent control systems, the first bei
 ## My Contribution
 
 ### Structural Design
-- The biggest hurdle faced was keeping the mass of the entire Can-Sat under 1 Kg while housing all the avionics and make deployable rotors and include a battery that is sufficient to sustain the secondary descent control system and at the same time making the Can-Sat easy for debugging and access and make sure it is designed for manufacturing. 
+- The biggest hurdle faced was keeping the mass of the entire Can-Sat under 1 Kg while housing all the avionics, making deployable rotors and including a battery that is sufficient to sustain the secondary descent control system and at the same time making the Can-Sat easy for debugging and access and making sure it is designed for manufacturing. 
 - I chose a modular 5 piece design for easy access and debugging, with Isogrid main body to reduce weight. The avionics bay was made the middle of the Can-Sat. I used Spring hinges and Nylon burn wire mechanism for deploying the rotor arms. 
 - I kept the battery at the bottom of the Can-Sat to ensure the Cg is as low as possible for stability.
 
@@ -63,7 +63,7 @@ Build a Can-Sat that is equipped with two descent control systems, the first bei
 - Performed thrust characterization of physical motors using a test rig.
 
 ### Testing
-- Designed a 3D-printed a thust measurement and motor thrust chracterization rig with load cell and amplifier.
+- Designed a 3D-printed a thrust measurement and motor thrust characterization rig with load cell and amplifier.
 - Set up a test stand to test single axis and multi axis contorl test of CansSat.
 - Tested the Burn wire mechanism using a bench supply to confirm current requirements and timing.
 - Performed a drop test from 20m height to ensure impact handling and reliable telemetry relay.
@@ -71,7 +71,7 @@ Build a Can-Sat that is equipped with two descent control systems, the first bei
 {{< figure src="test.jpeg" alt="Test" caption="Test setup for PID Tuning" >}}
  
 ## Outcome
-The finished structure met both mass and size limits (1 Kg weight, 148 × 242 mm against a 150 × 400 mm cap) and passed a full-system drop test, with structural integrity, sensor telemetry, and the parachute-to-burn-wire-to-rotor-deployment sequence all holding up end to end. We were the only team to use a quadcopter as the secondary descent control mechanism.
+The finished structure met both mass and size limits (1 Kg weight, 148 × 242 mm against a 150 × 400 mm cap) and passed a full-system drop test, with structural integrity, sensor telemetry, and the parachute to burn-wire to rotor-deployment sequence all holding up end to end. We were the only team to use a quadcopter as the secondary descent control mechanism.
 
 ## Design Descisions
 - Decided against a monolithic structure and chose a 5 piece modular structure.
