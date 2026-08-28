@@ -6,6 +6,7 @@ cover:
   image: "model.jpg"
 ---
 
+**Solo project · Mechanical design, Control systems, Mechatronics, Simulation**
 
  <a href="https://github.com/sanjayramkumar27/Balancing_robot" class="gh-link">
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
@@ -21,10 +22,10 @@ cover:
   GitHub Repository
 </a>
 
-A two-wheeled robot balancing on its own is the classic inverted-pendulum problem, used here to work through control systems and mechatronics end to end. The goal was not just getting it to stand upright, but following the whole pipeline: mathematical modeling, controller design, and a physical build that matched what the simulation predicted.
+# Objective
 
-## Objectives
- 
+A two-wheeled robot balancing on its own is the classic inverted-pendulum problem, used here to work through control systems and mechatronics end to end. The goal was not just getting it to stand upright, but following the whole pipeline: mathematical modeling, controller design, and a physical build.
+
 - Build a Simulink model capturing the robot's mass distribution, center of gravity, and motor behavior.
 - Design a PID loop converting pitch angle into corrective motor torque to keep the robot vertical.
 - Fabricate and assemble a physical prototype driven by live sensor feedback.
@@ -32,6 +33,8 @@ A two-wheeled robot balancing on its own is the classic inverted-pendulum proble
 
 
 {{< figure src="cad.jpg" alt="CAD Model of Robot" caption="CAD Model of Robot" >}}
+
+# System Overview
 
 ## Simulation and control design
  
@@ -54,7 +57,13 @@ Reflashing code every time a gain needed adjusting was slow, so a separate tunin
 
 {{< figure src="tuner.jpeg" alt="Tuner" caption="Wireless Tuner" >}}
 
-## Outcome
+# Design Descisions
+- Used a simple complementary filter to keep computation fast and still get reilable data.
+- Added a tungsten weight at the top to increase the moment of inertia of the robot which increases the time of fall.
+- Built a wireless tuner to tune the PID gains on the go, which is much faster than modifying in the coe and reuploading the code again.
+- Compact design that houses the batteries, microcontroller and other electronics.
+
+# Outcome
  
 The robot recovered from disturbances of up to 10° in under 2 seconds, settling within 10 cm of its original position. The Simulink model tracked real hardware behavior closely enough that most tuning happened in simulation first, cutting iteration time on the physical unit.
 

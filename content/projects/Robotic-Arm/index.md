@@ -1,8 +1,7 @@
 ---
 title: "A 4DoF Robotic Arm"
 date: 2026-06-01
-summary: "Custom designed 4 DoF Robotic arm with manually derived Inverse Kinematics and simulated in MuJoCo"
-tags: ["robotics", "Control Sysytems", "mechatronics"]
+summary: "Custom designed 4 DoF Robotic arm for shape drawing with manually derived Inverse Kinematics and simulated in MuJoCo"
 cover:
   image: "cover.png"
 ---
@@ -23,9 +22,13 @@ cover:
   GitHub Repository
 </a>
 
-A robotic arm project built in two phases. The first was a physical build with custom mechanical and electrical design and closed-form kinematics. The second moved to simulation, using numerical control methods to iterate faster and work toward a shape-drawing demo.
+# Objective
+
+A robotic arm project built to work through the full mechatronics stack including mechanical design, closed-form kinematics and low-level motor control. Then extend into simulation based control in MuJoCo due to physical build's constraints (motor backlash, deadband and saturation) started limiting fow fast i could iterate.
 
 {{< figure src="cover.png" alt="CAD Model of Arm" caption="CAD Model of Arm" >}}
+
+# System Overview
 
 ## Phase 1 — Physical Prototype & Analytical Kinematics
 - Designed in SolidWorks across two iterations: Prototype 1 in laser-cut acrylic and 3D-printed links, Prototype 2 fully 3D-printed and redesigned smaller to reduce inertia and simplify assembly.
@@ -41,17 +44,24 @@ A robotic arm project built in two phases. The first was a physical build with c
 - Rebuilt the arm as an MJCF model in MuJoCo to allow rapid iteration on control strategy without physical rebuilds.
 - Switched to numerical IK using damped least-squares, chosen for robustness across joint configurations as the model evolved, since Phase 1's closed-form solution would have needed re-deriving for each change.
 - Rebuilt the actuation stack for direct motor control: MG995 servos driven via a DRV8833 H-bridge with custom PID.
-- Building a three-trace tracking error analysis (commanded path vs. MuJoCo-ideal vs. real-arm forward-kinematics output) to quantify where simulation and hardware diverge, targeted as a shape-drawing demo within a two-week build window.
+- Building a tracking error analysis (commanded path vs. MuJoCo-ideal vs. real-arm forward-kinematics output) to quantify where simulation and hardware diverge.
 
 {{< figure src="tracking_summary.png" alt="Tracking" caption="Tracking path and error in MuJoCo" >}}
 
-## Design Decisions
-The stock servo tuning didn't match the arm's actual load, so I built custom PID control instead of living with the degraded performance that came with it. Phase 1 used analytical IK because the Arduino Uno needed real-time speed; Phase 2 switched to numerical IK once the bottleneck moved from runtime speed to iteration speed as the model kept changing. Vibration and tracking error were treated as things to measure and test rather than judge by eye, so both got instrumented instead of eyeballed.
+# Design Decisions
+- The stock servo tuning didn't match the arm's actual load, so I built custom PID control by removing the internal controller and taking feedback from the internal potentiometer.
+- Derived the inverse kinematics from scratch and verified it in Desmos and simulink before implementing it in the physical arm.
+- After extensive testing, realised first prototype had huge arm with high inertia so switched to lighter and smaller arms.
+- Added dual buck converters in parallel to share the current load.
+- Added bulk capacitors after noticing voltage dips during quick motions.
+- Phase 1 used analytical IK because the Arduino Uno needed real-time speed
+- Phase 2 switched to numerical IK once the bottleneck moved from runtime speed to iteration speed.
+- Noticed vibrations in the first prototype and added Servo dampers and foam damping which reduced the vibrations and improved tracking error.
 
 {{< youtube w32eCuOhc1g >}}
 
-## Future Work
-- Complete three-trace tracking error analysis (commanded vs. simulated vs. real).
+# Future Work
+- Complete tracking error analysis (commanded vs. simulated vs. real).
 - Finish the multi-servo PWM driver circuit for full 4-DOF control from a single Arduino Uno.
 - Extend trajectory generation beyond shape-drawing to general path planning.
 

@@ -65,6 +65,7 @@ Build a Can-Sat that is equipped with two descent control systems, the first bei
 ### Testing
 - Designed a 3D-printed a thrust measurement and motor thrust characterization rig with load cell and amplifier.
 - Set up a test stand to test single axis and multi axis contorl test of CansSat.
+- Assisted in soldering the main and backup avionics boards.
 - Tested the Burn wire mechanism using a bench supply to confirm current requirements and timing.
 - Performed a drop test from 20m height to ensure impact handling and reliable telemetry relay.
 
