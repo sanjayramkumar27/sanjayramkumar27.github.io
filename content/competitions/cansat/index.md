@@ -23,6 +23,10 @@ cover:
   </svg>
   GitHub Repository
 </a>
+
+<a href="report.pdf" class="gh-link" target="_blank">
+  View Detailed Report (PDF)
+</a>
  
 ## Problem Statement
  
