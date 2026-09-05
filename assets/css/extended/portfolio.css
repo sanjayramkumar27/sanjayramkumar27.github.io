@@ -364,6 +364,7 @@ hr { margin: 0; border: none; border-top: 1px solid var(--border); }
 
 .detail-content figure img,
 .post-content figure img {
+    width: 100%;
     max-width: 480px;
     margin: 0 auto;
 }
