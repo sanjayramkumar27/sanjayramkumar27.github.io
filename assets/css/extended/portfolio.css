@@ -519,3 +519,31 @@ body {
   color: var(--accent);
   text-decoration-color: var(--accent);
 }
+
+.link-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    margin: 16px 0 24px;
+}
+
+.pdf-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border: 1px solid var(--accent);
+    border-radius: 30px;
+    transition: .2s ease;
+}
+
+.pdf-link:hover {
+    background: var(--accent-soft);
+    color: var(--accent-light);
+    border-color: var(--accent-light);
+}

@@ -10,23 +10,29 @@ cover:
 
 **Role:** Structures Lead and Control Systems
 
-<a href="https://github.com/sanjayramkumar27/CanSat_Final_FSW" class="gh-link">
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
-    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
-    0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
-    -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
-    .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
-    -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
-    1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82
-    1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
-    1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-  </svg>
-  GitHub Repository
-</a>
+<div class="link-row">
+  <a href="https://github.com/sanjayramkumar27/Balancing_robot" class="gh-link">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+      0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+      -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+      .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+      -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+      1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82
+      1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
+      1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    GitHub Repository
+  </a>
 
-<a href="report.pdf" class="gh-link" target="_blank">
-  View Detailed Report (PDF)
-</a>
+  <a href="report.pdf" class="pdf-link" target="_blank">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+      <polyline points="14 2 14 8 20 8"/>
+    </svg>
+    View Detailed Report
+  </a>
+</div>
  
 ## Problem Statement
  
@@ -77,6 +83,10 @@ Build a Can-Sat that is equipped with two descent control systems, the first bei
  
 ## Outcome
 The finished structure met both mass and size limits (1 Kg weight, 148 × 242 mm against a 150 × 400 mm cap) and passed a full-system drop test, with structural integrity, sensor telemetry, and the parachute to burn-wire to rotor-deployment sequence all holding up end to end. We were the only team to use a quadcopter as the secondary descent control mechanism.
+
+The CanSat was launched successfully after clearing the jury and launch team review. The rocket was visible during the ascent, but due to bad weather and the CanSat being very small in size, it could not be visually tracked after separation from the rocket. Telemetry was also lost during that time. After clearance a 2hr search across the recovery fields also turned out unsuccessful as the CanSat could not be located. The rocket was found and CanSat separation was confirmed. 
+
+Onboard SD card logging was included by design specifically as a backup for scenarios where the live telemetry failed, and this redundancy worked as intended. However since the CanSat itself was never physically recovered, this backup provided no practical benefit, the logged data remains inaccessible without the hardware. The actual single point of failure was physical location and recovery of the unit. Future work should prioritize recovery aids like independent RF beacon, audible buzzer or standalone GPS tracker.
 
 ## Design Decisions
 - Decided against a monolithic structure and chose a 5 piece modular structure.
