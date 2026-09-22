@@ -6,6 +6,7 @@ theme = "PaperMod"
 description = "Aerospace & Robotics Engineering Portfolio"
 ShowReadingTime = true
 ShowShareButtons = false
+math = true
 
 [markup.goldmark.renderer]
   unsafe = true

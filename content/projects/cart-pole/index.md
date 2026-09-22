@@ -57,7 +57,7 @@ $$
 
 ## State space model
 
-For controller design, the nonlinear dynamics were linearized around the upright equilibrium position:
+For controller design, the nonlinear dynamics were linearized around the upright equilibrium:
 
 $$
 \theta = 0,\qquad
@@ -80,15 +80,15 @@ $$
 \dot{\mathbf{x}} = A\mathbf{x}+B u
 $$
 
-where, with $D = M + \dfrac{m}{4}$,
+where
 
 $$
 A =
 \begin{bmatrix}
 0 & 1 & 0 & 0 \\
-0 & 0 & -\dfrac{3mg}{4D} & 0 \\
+0 & 0 & -0.7178 & 0 \\
 0 & 0 & 0 & 1 \\
-0 & 0 & \dfrac{3g(M+m)}{2LD} & 0
+0 & 0 & 15.792 & 0
 \end{bmatrix}
 $$
 
@@ -98,9 +98,9 @@ $$
 B =
 \begin{bmatrix}
 0 \\
-\dfrac{1}{D} \\
+0.9756 \\
 0 \\
--\dfrac{3}{2LD}
+-1.4634
 \end{bmatrix}.
 $$
 
