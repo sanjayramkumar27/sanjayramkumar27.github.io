@@ -4,6 +4,7 @@ date: 2026-06-01
 summary: "Modelled and simulated a cart-pole system with 4 different controllers"
 cover:
   image: "model.jpg"
+math: true
 ---
 
 **Solo project · Dynamics Modelling, Control systems, MuJoCo, Simulation**
