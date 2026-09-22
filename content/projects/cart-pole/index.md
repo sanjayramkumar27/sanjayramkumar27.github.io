@@ -45,14 +45,8 @@ thus the equations of motion are -
 
 $$
 \begin{aligned}
-(M+m)\ddot{x}
-+ ml\cos\theta\,\ddot{\theta}
-- ml\sin\theta\,\dot{\theta}^2
-&= u, \\[4pt]
-ml\cos\theta\,\ddot{x}
-+ ml^2\ddot{\theta}
-- mgl\sin\theta
-&= 0.
+(M+m)\ddot{x} + ml\cos\theta\ddot{\theta} - ml\sin\theta\dot{\theta}^2 &= u, \\
+ml\cos\theta\ddot{x} + ml^2\ddot{\theta} - mgl\sin\theta &= 0.
 \end{aligned}
 $$
 
