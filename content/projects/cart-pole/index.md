@@ -31,6 +31,79 @@ Model and simulate a basic cart pole system in MuJoCo using 4 different controll
 - Pole modelled as a cylinder of size 0.03 x 1 m with mass 0.1 Kg.
 - Equations of motions were derived by hand using lagrangian approach.
 
+The generalized coordinates are - 
+$$
+q =
+\begin{bmatrix}
+x \\
+\theta
+\end{bmatrix}
+$$
+
+thus the equations of motion are - 
+
+$$
+\begin{aligned}
+(M+m)\ddot{x}
++ ml\cos\theta\,\ddot{\theta}
+- ml\sin\theta\,\dot{\theta}^2
+&= u, \\[4pt]
+ml\cos\theta\,\ddot{x}
++ ml^2\ddot{\theta}
+- mgl\sin\theta
+&= 0.
+\end{aligned}
+$$
+
+## State space model
+
+For controller design, the nonlinear dynamics were linearized around the upright equilibrium position:
+
+$$
+\theta = 0,\qquad
+\dot{x}=0,\qquad
+\dot{\theta}=0
+$$
+
+with the state vector
+
+$$
+\mathbf{x} =
+\begin{bmatrix}
+x & \dot{x} & \theta & \dot{\theta}
+\end{bmatrix}^{T}.
+$$
+
+The resulting linear state-space representation is
+
+$$
+\dot{\mathbf{x}} = A\mathbf{x}+B u
+$$
+
+where, with $D = M + \dfrac{m}{4}$,
+
+$$
+A =
+\begin{bmatrix}
+0 & 1 & 0 & 0 \\
+0 & 0 & -\dfrac{3mg}{4D} & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & \dfrac{3g(M+m)}{2LD} & 0
+\end{bmatrix}
+$$
+
+and
+
+$$
+B =
+\begin{bmatrix}
+0 \\
+\dfrac{1}{D} \\
+0 \\
+-\dfrac{3}{2LD}
+\end{bmatrix}.
+$$
+
 {{< figure src="model.jpg" alt="Model of Robot" caption="Model in MuJoCo" >}}
 
 
@@ -39,10 +112,18 @@ Model and simulate a basic cart pole system in MuJoCo using 4 different controll
 ### Proportional-Integral-Derivative
 A simple cascaded PID controller was built to stabilize the pole in the upright position and at the same time keep the cart position fixed. Although this cascaded PID works well in stabilizing the pole, the cart position keeps oscillating and never settles. 
 
-### Pole PLacement
+{{< figure src="pid.png" alt="PID block diagram" caption="PID block diagram" >}}
+
+### Pole Placement
 The dynamics equations were linearized about the upright position and converted to state space form. Now assuming the control input to be u = -kx, where x is the state vector, it is possible to find the vector K given the desired location of closed loop poles. This was implemented using the scipy's place_poles function. It is observed that both the pole position and cart position is stabilized as per the chosen closed loop poles.
 
 ### Linear-Quadratic-Regulator
 The same linearized state space model was used to find the optimal values for the K vector which minimizes a quadratic cost on the state and control effort.The Q matrix is used to decide the penalty on the states and R matrix for the control effort. scipy's solve_continuous_are function is used to solve the continuous time riccati equation to obtain the optimum k vector. It is observed that the both cart and pole position is stabilized.
 
+## Comparison
+
+### Region of Attraction (max angle recovered)
+### Peak force (Impulse disturbance)
+### Control effort
+### Settling time
 
