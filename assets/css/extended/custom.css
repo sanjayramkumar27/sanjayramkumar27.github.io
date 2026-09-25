@@ -2,25 +2,19 @@ table {
   border-collapse: collapse;
   width: 100%;
   margin: 1.5em 0;
-  border: 1px solid var(--accent);
 }
 
 th, td {
-  border: 1px solid var(--accent);
+  border: 1px solid var(--border);
   padding: 0.5em 1em;
   text-align: left;
 }
 
-td:not(:first-child) {
-  text-align: right;
-}
-
 th {
-  background-color: rgba(59, 130, 246, 0.15);
-  color: var(--accent);
+  background-color: var(--code-bg);
   font-weight: 600;
 }
 
 tr:nth-child(even) {
-  background-color: rgba(59, 130, 246, 0.05);
+  background-color: var(--entry);
 }
