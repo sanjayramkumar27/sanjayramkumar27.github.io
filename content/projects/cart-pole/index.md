@@ -117,8 +117,33 @@ The same linearized state space model was used to find the optimal values for th
 
 ## Comparison
 
+The following performance metrics were compared between the controllers - 
+
 ### Region of Attraction (max angle recovered)
+The initial velocities were set to 0 and the initial angle (calculated from the upright position with respect to vertical) was changed until the controller could not stabilize.
+
 ### Peak force (Impulse disturbance)
+A force impulse of magnitude 15 N for 0.1 s duration was applied to the pole and the peak control force was measured.
+
 ### Control effort
+Under the same impulse disturbance, the total control effort was calculated by summing the square of the control input multiplied with timestep. The total control effort is defined as
+
+\[
+J = \sum_{k=0}^{N} u_k^2 \, \Delta t
+\]
+
+where \(u_k\) is the control input (force) at timestep \(k\) and \(\Delta t\) is the simulation timestep.
+
 ### Settling time
+Under the same impulse disturbance, the settling time for both the cart position and pole angle was calculated. The tolerance band for the position was chosen as 0.025 m and for the pole angle it was chosen as 0.1 rad.
+
+| Metric | PID | Pole Placement | LQR |
+|---|---|---|---|
+| ROA | 30° | 23° | 33° |
+| x settling (s) | ∞ | 3.59 | 4.70 |
+| θ settling (s) | 2.96 | 2.24 | 2.33 |
+| Peak force (N) | 4.74 | 2.83 | 1.66 |
+| total Control Effort | 32.56 | 22.83 | 19.7 |
+
+
 
