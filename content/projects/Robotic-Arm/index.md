@@ -24,44 +24,47 @@ cover:
 
 ## Objective
 
-A robotic arm project built to work through the full mechatronics stack including mechanical design, closed-form kinematics and low-level motor control. Then extended into simulation based control in MuJoCo once the physical build's constraints (motor backlash, dead-band and saturation) started limiting fow fast i could iterate.
+A robotic arm project built to work through the full mechatronics stack including mechanical design, closed-form kinematics and low-level motor control, paired with a MuJoCo model. The two run parallel. The simulations where the control strategies get iterated on and the hardware is where the model's assumptions get tested against backlash, dead-band and saturation.
 
 {{< figure src="cover.png" alt="CAD Model of Arm" caption="CAD Model of Arm" >}}
 
 ## System Overview
 
-### Phase 1 — Physical Prototype & Analytical Kinematics
-- Designed in SolidWorks across two iterations: Prototype 1 in laser-cut acrylic and 3D-printed links, Prototype 2 fully 3D-printed and redesigned smaller to reduce inertia and simplify assembly.
-- Removed the internal controller boards from MG995 servos, which were factory-tuned for low-inertia loads, and built a custom external controller tuned for the arm's actual load.
-- Built a power distribution board for a 2s2p Li-ion pack: dual buck converters for load sharing, bulk electrolytic capacitors for stability, decoupling caps at each IC. 
-- Derived a closed-form IK solution for the 4-DOF configuration by extending 2R planar-arm equations, since no general solution existed online for this joint layout. Validated it in Desmos and against a Simulink numerical solver, and it matched while running fast enough for real-time Arduino Uno control.
-- Found structural resonance in Prototype 1 through testing and added servo dampers and foam damping, which measurably reduced vibration.
-- Mapped the real-world reachable workspace using the validated IK model, accounting for actual servo travel limits (180°) rather than idealized ranges.
+### Hardware
+
+- I went through two SolidWorks iterations. Prototype 1 used laser-cut acrylic and 3D-printed links. Prototype 2 is fully 3D-printed and smaller, which reduced inertia and simplified assembly. Prototype 1 showed structural resonance in testing, and servo dampers and foam damping measurably reduced the vibration.
+
+- The power board is a custom distribution board for a 2s2p Li-ion pack. It uses dual buck converters for load sharing and has decoupling at each IC. I added bulk capacitors after seeing voltage dips during fast motions.
+
+- For actuation, I removed the internal controller boards from the MG995 servos because they were tuned for low-inertia loads. The motors now run through a DRV8833 H-bridge with a custom PID loop that uses the servo’s internal potentiometer for feedback.
+
+- I derived a closed-form IK solution for the 4-DOF layout by extending the 2R planar-arm equations, since no general solution existed online. I validated it in Desmos and against a Simulink numerical solver. It runs fast enough for real-time control on an Arduino Uno.
+
 
 {{< figure src="board.jpg" alt="Power Distribution Board" caption="Power Distribution Board" >}}
 
-### Phase 2 — Simulation & Real-Time Control
-- Rebuilt the arm as an MJCF model in MuJoCo to allow rapid iteration on control strategy without physical rebuilds.
-- Switched to numerical IK using damped least-squares, chosen for robustness across joint configurations as the model evolved, since Phase 1's closed-form solution would have needed re-deriving for each change.
-- Rebuilt the actuation stack for direct motor control: MG995 servos driven via a DRV8833 H-bridge with custom PID.
-- Building a tracking error analysis (commanded path vs. MuJoCo-ideal vs. real-arm forward-kinematics output) to quantify where simulation and hardware diverge.
+### Simulation
+
+- I built a digital twin of the arm in MuJoCo to simulate different control strategies. 
+
+- As a first test, I used a simple damped least-squares Jacobian IK and analytical IK to make the simulated arm draw a circle.
+
+- The main reason I moved to simulation is hardware. The motors need two PWM pins each, so three of them use six pins, and an Uno has only six PWM pins in total. A servo can be driven from any digital pin, but the Servo library uses the same timer that generates PWM, which interferes with the motor outputs.
 
 {{< figure src="tracking_summary.png" alt="Tracking" caption="Tracking path and error in MuJoCo" >}}
 
-## Design Decisions
-- The stock servo tuning didn't match the arm's actual load, so I built custom PID control by removing the internal controller and taking feedback from the internal potentiometer.
-- Derived the inverse kinematics from scratch and verified it in Desmos and Simulink before implementing it in the physical arm.
-- After extensive testing, realized the first prototype had high inertia so switched to lighter and smaller arms.
-- Added dual buck converters in parallel to share the current load.
-- Added bulk capacitors after noticing voltage dips during quick motions.
-- Phase 1 used analytical IK because the Arduino Uno needed real-time speed.
-- Phase 2 switched to numerical IK once the bottleneck moved from runtime speed to iteration speed.
-- Noticed vibrations in the first prototype and added Servo dampers and foam damping which reduced the vibrations and improved tracking error.
+
+## Design decisions
+
+- Hardware: the stock servo tuning didn’t match the load, so I removed the internal controller and built an external PID.
+- Hardware: the first prototype’s inertia and vibration led to a lighter redesign plus damping.
+- Hardware: I used analytical IK because the Uno needed the runtime speed.
+- Hardware: parallel buck converters and bulk capacitors give load sharing and voltage stability.
+- Simulation: I moved to numerical IK once iteration speed became the bottleneck.
 
 {{< youtube w32eCuOhc1g >}}
 
-## Future Work
-- Complete tracking error analysis (commanded vs. simulated vs. real).
-- Finish the multi-servo PWM driver circuit for full 4-DOF control from a single Arduino Uno.
-- Extend trajectory generation beyond shape-drawing to general path planning.
-
+## Future work
+- Bring up all four joints, including the multi-servo driver circuit so a single Arduino Uno can control them.
+- Finish the tracking error analysis (commanded vs. simulated vs. real).
+- Extend trajectory generation beyond shape drawing to general path planning.
