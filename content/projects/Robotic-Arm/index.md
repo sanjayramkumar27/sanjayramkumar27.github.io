@@ -26,7 +26,13 @@ cover:
 
 A robotic arm project built to work through the full mechatronics stack including mechanical design, closed-form kinematics and low-level motor control, paired with a MuJoCo model. The two run parallel. The simulations where the control strategies get iterated on and the hardware is where the model's assumptions get tested against backlash, dead-band and saturation.
 
-{{< figure src="cover.png" alt="CAD Model of Arm" caption="CAD Model of Arm" >}}
+
+<div class="image-pair">
+  {{< figure src="cover.png" alt="CAD Model of Arm" caption="CAD Model of Arm" >}}
+  {{< figure src="arm.jpg" alt="Robotic Arm" caption="Robotic Arm" >}}
+</div>
+
+
 
 ## System Overview
 
@@ -40,11 +46,8 @@ A robotic arm project built to work through the full mechatronics stack includin
 
 - I derived a closed-form IK solution for the 4-DOF layout by extending the 2R planar-arm equations, since no general solution existed online. I validated it in Desmos and against a Simulink numerical solver. It runs fast enough for real-time control on an Arduino Uno.
 
-  <div class="image-pair">
-  {{< figure src="board.jpg" alt="Power Distribution Board" caption="Power Distribution Board" >}}
-  {{< figure src="arm.jpg" alt="Robotic Arm" caption="Robotic Arm" >}}
-  </div>
 
+{{< figure src="board.jpg" alt="Power Distribution Board" caption="Power Distribution Board" >}}
 
 
 ### Simulation
