@@ -40,8 +40,12 @@ A robotic arm project built to work through the full mechatronics stack includin
 
 - I derived a closed-form IK solution for the 4-DOF layout by extending the 2R planar-arm equations, since no general solution existed online. I validated it in Desmos and against a Simulink numerical solver. It runs fast enough for real-time control on an Arduino Uno.
 
+  <div class="image-pair">
+  {{< figure src="board.jpg" alt="Power Distribution Board" caption="Power Distribution Board" >}}
+  {{< figure src="arm.jpg" alt="Robotic Arm" caption="Robotic Arm" >}}
+  </div>
 
-{{< figure src="board.jpg" alt="Power Distribution Board" caption="Power Distribution Board" >}}
+
 
 ### Simulation
 
