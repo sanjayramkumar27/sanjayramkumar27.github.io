@@ -47,8 +47,8 @@
 
 /* ---- blue ---- */
 :root[data-palette="blue"]{
-  --theme:#F8F8F9; --entry:#FFFFFF; --primary:#1B2230; --secondary:#566071;
-  --tertiary:#E2E4E8; --content:#252D3B; --border:#E2E4E8; --code-bg:#EEEFF2;
+  --theme:#F6F3EC; --entry:#FFFFFF; --primary:#1B2230; --secondary:#566071;
+  --tertiary:#E5E1D7; --content:#252D3B; --border:#E5E1D7; --code-bg:#EDE9DF;
   --accent:#2563EB; --accent-light:#3F7AF2; --accent-text:#2563EB;
   --accent-soft:rgba(37,99,235,.10); --on-accent:#FFFFFF;
   --band-bg:#1B2230; --band-fg:#EEF1F6; --band-muted:#B9C2D1; --band-line:#313B4D;
@@ -711,8 +711,8 @@ section h2 { font-weight: var(--h2-weight); letter-spacing: var(--h-track); font
 .hero-image { flex: 0 0 auto; }
 .hero-image img {
   display: block;
-  width: 220px;
-  height: 220px;
+  width: 300px;
+  height: 300px;
   object-fit: cover;
   object-position: center 20%;
   border-radius: 50%;
@@ -842,7 +842,7 @@ body, .card-body, .project-card, .category-card, .research-card, .chip, .button 
 
 /* Mobile */
 @media (max-width: 900px) {
-  .hero-image img { width: 160px; height: 160px; }
+  .hero-image img { width: 200px; height: 200px; }
   .chips { justify-content: center; }
   .band { padding: 40px 24px; border-radius: 22px; }
 }
