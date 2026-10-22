@@ -8,6 +8,12 @@ ShowReadingTime = true
 ShowShareButtons = false
 math = true
 
+# Look and feel (see the notes at the top of portfolio.css)
+# palette:  "lime" | "blue" | "green" | "teal"
+# fontPair: "archivo" | "inter" | "manrope" | "grotesk" | "plex" | "editorial"
+palette = "lime"
+fontPair = "inter"
+
 [markup.goldmark.renderer]
   unsafe = true
 [markup.goldmark.extensions.passthrough]

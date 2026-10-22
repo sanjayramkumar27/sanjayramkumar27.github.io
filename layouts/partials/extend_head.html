@@ -1,6 +1,45 @@
+{{/* Fonts + palette. Choose in hugo.toml under [params]:
+       palette  = "lime" | "blue" | "green" | "teal"
+       fontPair = "archivo" | "inter" | "manrope" | "grotesk" | "plex" | "editorial"
+     Preview without editing anything:  /?palette=blue&font=inter  */}}
+{{ $fonts := dict
+  "archivo"   "family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500"
+  "inter"     "family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500"
+  "manrope"   "family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500"
+  "grotesk"   "family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500"
+  "plex"      "family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500"
+  "editorial" "family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500"
+}}
+{{ $font := site.Params.fontPair | default "archivo" }}
+{{ $palette := site.Params.palette | default "lime" }}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?{{ index $fonts $font | safeURL }}&display=swap">
+<script id="font-palette-config" data-fonts="{{ $fonts | jsonify }}" data-font="{{ $font }}" data-palette="{{ $palette }}">
+(function () {
+  var d = document.documentElement;
+  var config = document.currentScript;
+  var fonts = JSON.parse(config.getAttribute('data-fonts'));
+  var font = config.getAttribute('data-font'), palette = config.getAttribute('data-palette'), configured = font;
+  try {
+    var q = new URLSearchParams(location.search);
+    ['font', 'palette'].forEach(function (k) {
+      if (q.get(k)) sessionStorage.setItem('pf-' + k, q.get(k));
+    });
+    font = sessionStorage.getItem('pf-font') || font;
+    palette = sessionStorage.getItem('pf-palette') || palette;
+  } catch (e) {}
+  if (!fonts[font]) font = configured;
+  d.setAttribute('data-font', font);
+  d.setAttribute('data-palette', palette);
+  if (font !== configured) {
+    var l = document.createElement('link');
+    l.rel = 'stylesheet';
+    l.href = 'https://fonts.googleapis.com/css2?' + fonts[font] + '&display=swap';
+    document.head.appendChild(l);
+  }
+});
+</script>
 {{ if or .Params.math .Site.Params.math }}
 {{ partial "math.html" . }}
 {{ end }}

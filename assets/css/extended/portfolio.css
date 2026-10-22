@@ -1,91 +1,150 @@
 /* --------------------------
-   Design tokens (light + dark)
-   Palette: deep navy, slate, sage green, pale lime.
-   PaperMod flips :root[data-theme="dark"] when the header toggle is used,
-   so every colour below has a light and a dark value.
+   Design tokens
+   Shared by every palette: radii, widths.
 ---------------------------*/
 :root{
   --main-width: 1080px;
   --nav-width: 1080px;
 
-  /* Corner radii */
   --r-sm: 10px;
   --r-md: 16px;
   --r-lg: 22px;
   --r-pill: 999px;
-
-  /* PaperMod's own variables, re-skinned (light) */
-  --theme:   #F3F9EA;   /* page background: tint of the pale lime */
-  --entry:   #FBFDF7;   /* cards, chips */
-  --primary: #212836;   /* headings, logo: the navy */
-  --secondary:#4A5468;  /* muted text */
-  --tertiary:#D3E3BE;
-  --content: #2A3140;   /* body text */
-  --border:  #D3E3BE;
-  --code-bg: #E4F2D3;
-
-  /* Portfolio accent (deep green so text passes contrast on light) */
-  --accent:       #3F6B1F;
-  --accent-light: #55882B;
-  --accent-soft:  rgba(63,107,31,.12);
-  --on-accent:    #FFFFFF;
-
-  /* The one dark band on the page ("Approach") */
-  --band-bg:     #212836;
-  --band-fg:     #E0F6CA;
-  --band-muted:  #C3CCDA;
-  --band-line:   #384259;
-  --band-card:   rgba(255,255,255,.06);
-  --band-accent: #B8D896;
-
-  --font-sans: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 }
 
-:root[data-theme="dark"]{
-  --theme:   #1B212C;
-  --entry:   #262E3F;
-  --primary: #E0F6CA;
-  --secondary:#AEB8C9;
-  --tertiary:#384259;
-  --content: #D9E2D0;
-  --border:  #384259;
-  --code-bg: #2F384C;
+/* ==========================================================
+   PALETTES
+   Pick one in hugo.toml:  [params]  palette = "lime"
+   Preview any of them live:  /?palette=blue  (also ?font=...)
+   Each palette is graphite neutrals with ONE accent colour.
+     --accent       fills: buttons, photo ring, dark-band highlights
+     --accent-text  the same hue, darkened where needed so text and
+                    links stay readable on the light background
+     --on-accent    text colour placed on an accent fill
+   lime   (default)   graphite + lime
+   blue               graphite + blue
+   green              graphite + emerald
+   teal               graphite + teal
+   ========================================================== */
 
-  --accent:       #B8D896;
-  --accent-light: #CFE8B4;
-  --accent-soft:  rgba(184,216,150,.14);
-  --on-accent:    #212836;
-
-  --band-bg:     #2C354A;
-  --band-fg:     #E0F6CA;
-  --band-muted:  #C3CCDA;
-  --band-line:   #44506A;
-  --band-card:   rgba(255,255,255,.05);
-  --band-accent: #B8D896;
+/* ---- lime ---- */
+:root, :root[data-palette="lime"]{
+  --theme:#F4F6F3; --entry:#FFFFFF; --primary:#202823; --secondary:#55605A;
+  --tertiary:#DDE2DC; --content:#2A332E; --border:#DDE2DC; --code-bg:#E9EDE7;
+  --accent:#A3D977; --accent-light:#B6E48E; --accent-text:#437018;
+  --accent-soft:rgba(163,217,119,.28); --on-accent:#202823;
+  --band-bg:#202823; --band-fg:#F1F4EF; --band-muted:#BAC4BD; --band-line:#36413A;
+  --band-card:rgba(255,255,255,.05); --band-accent:#A3D977;
+}
+:root[data-theme="dark"], :root[data-palette="lime"][data-theme="dark"]{
+  --theme:#151A18; --entry:#1D2421; --primary:#EEF2EC; --secondary:#A7B1AA;
+  --tertiary:#2B342F; --content:#D5DCD3; --border:#2B342F; --code-bg:#232B27;
+  --accent:#A3D977; --accent-light:#B6E48E; --accent-text:#A3D977;
+  --accent-soft:rgba(163,217,119,.14); --on-accent:#151A18;
+  --band-bg:#222B27; --band-fg:#EEF2EC; --band-muted:#B5BFB8; --band-line:#36413A;
+  --band-card:rgba(255,255,255,.04); --band-accent:#A3D977;
 }
 
-/* --------------------------
-   Fonts
-   (loaded with <link> in layouts/partials/extend_head.html;
-   an @import in the middle of this file is ignored by browsers)
----------------------------*/
+/* ---- blue ---- */
+:root[data-palette="blue"]{
+  --theme:#F5F6F8; --entry:#FFFFFF; --primary:#1B2230; --secondary:#566071;
+  --tertiary:#DEE2E9; --content:#252D3B; --border:#DEE2E9; --code-bg:#E9ECF2;
+  --accent:#2563EB; --accent-light:#3F7AF2; --accent-text:#2563EB;
+  --accent-soft:rgba(37,99,235,.10); --on-accent:#FFFFFF;
+  --band-bg:#1B2230; --band-fg:#EEF1F6; --band-muted:#B9C2D1; --band-line:#313B4D;
+  --band-card:rgba(255,255,255,.05); --band-accent:#7FA8FF;
+}
+:root[data-palette="blue"][data-theme="dark"]{
+  --theme:#12161D; --entry:#1A2029; --primary:#ECF0F6; --secondary:#A5AFBF;
+  --tertiary:#29313D; --content:#D2D9E4; --border:#29313D; --code-bg:#212833;
+  --accent:#7FA8FF; --accent-light:#9FBEFF; --accent-text:#7FA8FF;
+  --accent-soft:rgba(127,168,255,.14); --on-accent:#0F1521;
+  --band-bg:#1F2631; --band-fg:#ECF0F6; --band-muted:#B2BCCB; --band-line:#313B4D;
+  --band-card:rgba(255,255,255,.04); --band-accent:#7FA8FF;
+}
+
+/* ---- green ---- */
+:root[data-palette="green"]{
+  --theme:#F4F6F4; --entry:#FFFFFF; --primary:#1E2722; --secondary:#55605A;
+  --tertiary:#DCE2DD; --content:#28322C; --border:#DCE2DD; --code-bg:#E8ECE9;
+  --accent:#1F7A4D; --accent-light:#2A9462; --accent-text:#1F7A4D;
+  --accent-soft:rgba(31,122,77,.10); --on-accent:#FFFFFF;
+  --band-bg:#1E2722; --band-fg:#EFF3F0; --band-muted:#B8C3BC; --band-line:#34403A;
+  --band-card:rgba(255,255,255,.05); --band-accent:#5FD39B;
+}
+:root[data-palette="green"][data-theme="dark"]{
+  --theme:#131917; --entry:#1B2320; --primary:#ECF2EE; --secondary:#A6B1AA;
+  --tertiary:#2A342F; --content:#D3DBD5; --border:#2A342F; --code-bg:#222B27;
+  --accent:#5FD39B; --accent-light:#82E0B3; --accent-text:#5FD39B;
+  --accent-soft:rgba(95,211,155,.14); --on-accent:#0E1A14;
+  --band-bg:#202A26; --band-fg:#ECF2EE; --band-muted:#B2BDB6; --band-line:#34403A;
+  --band-card:rgba(255,255,255,.04); --band-accent:#5FD39B;
+}
+
+/* ---- teal ---- */
+:root[data-palette="teal"]{
+  --theme:#F3F6F6; --entry:#FFFFFF; --primary:#1A2628; --secondary:#52625F;
+  --tertiary:#DBE3E3; --content:#243234; --border:#DBE3E3; --code-bg:#E7EDED;
+  --accent:#0F766E; --accent-light:#149087; --accent-text:#0F766E;
+  --accent-soft:rgba(15,118,110,.10); --on-accent:#FFFFFF;
+  --band-bg:#1A2628; --band-fg:#EDF4F4; --band-muted:#B6C5C4; --band-line:#2F4244;
+  --band-card:rgba(255,255,255,.05); --band-accent:#5EC8BE;
+}
+:root[data-palette="teal"][data-theme="dark"]{
+  --theme:#111718; --entry:#192123; --primary:#E9F2F2; --secondary:#A3B3B2;
+  --tertiary:#283638; --content:#D0DCDC; --border:#283638; --code-bg:#202A2C;
+  --accent:#5EC8BE; --accent-light:#82DAD1; --accent-text:#5EC8BE;
+  --accent-soft:rgba(94,200,190,.14); --on-accent:#0B1A1B;
+  --band-bg:#1E2A2C; --band-fg:#E9F2F2; --band-muted:#AFC0BF; --band-line:#2F4244;
+  --band-card:rgba(255,255,255,.04); --band-accent:#5EC8BE;
+}
+
+/* ==========================================================
+   FONTS
+   Pick one in hugo.toml:  [params]  fontPair = "archivo"
+   Preview live:  /?font=inter
+   (The matching Google Fonts <link> is added in extend_head.html.)
+   archivo   Archivo + IBM Plex Mono               (default)
+   inter     Inter Tight / Inter + JetBrains Mono  clean, neutral
+   manrope   Manrope + JetBrains Mono              friendly, rounded
+   grotesk   Space Grotesk / DM Sans + JetBrains   techy, geometric
+   plex      IBM Plex Sans + IBM Plex Mono         engineering
+   editorial Fraunces / Inter + JetBrains Mono     serif headings
+   ========================================================== */
+:root, :root[data-font="archivo"]{
+  --font-head:'Archivo', system-ui, sans-serif; --font-sans:'Archivo', system-ui, sans-serif;
+  --font-mono:'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  --h-weight:800; --h2-weight:700; --h-track:-.03em;
+}
+:root[data-font="inter"]{
+  --font-head:'Inter Tight', 'Inter', system-ui, sans-serif; --font-sans:'Inter', system-ui, sans-serif;
+  --font-mono:'JetBrains Mono', ui-monospace, Menlo, monospace;
+  --h-weight:700; --h2-weight:600; --h-track:-.03em;
+}
+:root[data-font="manrope"]{
+  --font-head:'Manrope', system-ui, sans-serif; --font-sans:'Manrope', system-ui, sans-serif;
+  --font-mono:'JetBrains Mono', ui-monospace, Menlo, monospace;
+  --h-weight:800; --h2-weight:700; --h-track:-.025em;
+}
+:root[data-font="grotesk"]{
+  --font-head:'Space Grotesk', system-ui, sans-serif; --font-sans:'DM Sans', system-ui, sans-serif;
+  --font-mono:'JetBrains Mono', ui-monospace, Menlo, monospace;
+  --h-weight:700; --h2-weight:600; --h-track:-.03em;
+}
+:root[data-font="plex"]{
+  --font-head:'IBM Plex Sans', system-ui, sans-serif; --font-sans:'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono:'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  --h-weight:700; --h2-weight:600; --h-track:-.02em;
+}
+:root[data-font="editorial"]{
+  --font-head:'Fraunces', Georgia, serif; --font-sans:'Inter', system-ui, sans-serif;
+  --font-mono:'JetBrains Mono', ui-monospace, Menlo, monospace;
+  --h-weight:600; --h2-weight:600; --h-track:-.015em;
+}
+
 body { font-family: var(--font-sans); overflow-x: clip; }
-
-.hero-text h1,
-section h2,
-.project-card h3,
-.category-card h3,
-.skills h3,
-.timeline-year,
-.post-content h2, .post-content h3,
-.detail-content h2, .detail-content h3 {
-  font-family: var(--font-sans);
-}
-
-code, pre, .post-content code, .post-content pre {
-  font-family: var(--font-mono);
-}
+h1, h2, h3, .logo a { font-family: var(--font-head); }
+code, pre, .post-content code, .post-content pre { font-family: var(--font-mono); }
 
 /* --------------------------
    Hero Section
@@ -119,7 +178,7 @@ section h2 { line-height: 1.25; }
 
 .tagline {
     font-size: 1rem;
-    color: var(--accent);
+    color: var(--accent-text);
     font-weight: 600;
     letter-spacing: .04em;
     text-transform: uppercase;
@@ -161,7 +220,7 @@ section h2 { line-height: 1.25; }
     transform: translateY(-2px);
     box-shadow: 0 8px 20px var(--accent-soft);
 }
-.button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.button:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 3px; }
 
 .button.ghost {
     background: transparent;
@@ -169,11 +228,11 @@ section h2 { line-height: 1.25; }
     border: 2px solid var(--border);
 }
 
-.button.ghost:hover { border-color: var(--accent-light); color: var(--accent-light); }
+.button.ghost:hover { border-color: var(--accent-text); color: var(--accent-text); }
 /* was: var(--accent) for both */
 
 .timeline-item:hover .timeline-body, .timeline-item:focus-visible .timeline-body {
-    border-color: var(--accent-light);   /* was: var(--accent) */
+    border-color: var(--accent-text);   /* was: var(--accent) */
     transform: translateX(4px);
 }
 
@@ -200,7 +259,7 @@ section { margin: 80px 0; }
     font-weight: 700;
     letter-spacing: .12em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--accent-text);
     margin-bottom: 8px;
 }
 
@@ -231,7 +290,7 @@ section p { line-height: 1.8; opacity: .9; }
 
 .skills > div:hover {
     transform: translateY(-4px);
-    border-color: var(--accent-light);   /* was: var(--accent) */
+    border-color: var(--accent-text);   /* was: var(--accent) */
 }
 
 .skills h3 { margin-bottom: 14px; font-size: 1rem; opacity: .8; }
@@ -241,7 +300,7 @@ section p { line-height: 1.8; opacity: .9; }
     padding: 6px 14px;
     margin: 4px 6px 4px 0;
     background: var(--accent-soft);
-    color: var(--accent);
+    color: var(--accent-text);
     border: 1px solid transparent;
     border-radius: 30px;
     font-size: .85rem;
@@ -290,7 +349,7 @@ hr { margin: 0; border: none; border-top: 1px solid var(--border); }
 .project-card:hover, .project-card:focus-visible {
     transform: translateY(-6px);
     box-shadow: 0 18px 35px rgba(0,0,0,.25);
-    border-color: var(--accent-light);   /* was: var(--accent) */
+    border-color: var(--accent-text);   /* was: var(--accent) */
 }
 
 .project-card .thumb {
@@ -340,12 +399,12 @@ hr { margin: 0; border: none; border-top: 1px solid var(--border); }
 }
 .category-card:hover, .category-card:focus-visible {
     transform: translateY(-6px);
-    border-color: var(--accent-light);   /* was: var(--accent) */
+    border-color: var(--accent-text);   /* was: var(--accent) */
     box-shadow: 0 14px 30px rgba(0,0,0,.2);
 }
 .category-card h3 { margin-bottom: 10px; font-size: 1.2rem; }
 .category-card p { opacity: .75; font-size: .95rem; line-height: 1.6; margin-bottom: 14px; }
-.category-card .category-link { color: var(--accent); font-weight: 600; font-size: .9rem; }
+.category-card .category-link { color: var(--accent-text); font-weight: 600; font-size: .9rem; }
 
 .timeline {
     position: relative;
@@ -360,16 +419,16 @@ hr { margin: 0; border: none; border-top: 1px solid var(--border); }
     width: 12px; height: 12px; border-radius: 50%;
     background: var(--accent); border: 3px solid var(--theme);
 }
-.timeline-year { font-size: .85rem; font-weight: 700; color: var(--accent); letter-spacing: .06em; margin-bottom: 4px; }
+.timeline-year { font-size: .85rem; font-weight: 700; color: var(--accent-text); letter-spacing: .06em; margin-bottom: 4px; }
 .timeline-body { background: var(--entry); border: 1px solid var(--border); border-radius: var(--r-md); padding: 20px 24px; transition: .25s ease; }
-.timeline-item:hover .timeline-body, .timeline-item:focus-visible .timeline-body { border-color: var(--accent); transform: translateX(4px); }
+.timeline-item:hover .timeline-body, .timeline-item:focus-visible .timeline-body { border-color: var(--accent-text); transform: translateX(4px); }
 .timeline-role { color: var(--content); opacity: .7; font-size: .9rem; margin-bottom: 8px; }
 .timeline-item--disabled { cursor: default; opacity: .8; }
 .timeline-item--disabled:hover .timeline-body, .timeline-item--disabled:focus-visible .timeline-body { border-color: var(--border); transform: none; }
 
 .detail-meta { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0 30px; }
 .meta-pill { padding: 6px 14px; border-radius: 30px; background: var(--entry); border: 1px solid var(--border); font-size: .85rem; font-weight: 600; }
-.meta-pill-accent { background: var(--accent-soft); color: var(--accent); border-color: transparent; }
+.meta-pill-accent { background: var(--accent-soft); color: var(--accent-text); border-color: transparent; }
 .detail-content { line-height: 1.8; max-width: 70ch; }
 
 /* --------------------------
@@ -460,7 +519,7 @@ hr { margin: 0; border: none; border-top: 1px solid var(--border); }
 .detail-content h3 {
     font-size: 1.15rem;
     margin: 30px 0 12px;
-    color: var(--accent);
+    color: var(--accent-text);
 }
 
 .post-content p,
@@ -486,7 +545,7 @@ hr { margin: 0; border: none; border-top: 1px solid var(--border); }
 
 .post-content li::marker,
 .detail-content li::marker {
-    color: var(--accent);
+    color: var(--accent-text);
 }
 
 .post-content strong,
@@ -546,7 +605,7 @@ hr { margin: 0; border: none; border-top: 1px solid var(--border); }
 
 .badge-outcome {
     background: transparent;
-    color: var(--accent);
+    color: var(--accent-text);
     border: 1px solid var(--accent);
 }
 .project-card .badge-outcome {
@@ -567,12 +626,12 @@ hr { margin: 0; border: none; border-top: 1px solid var(--border); }
 
 .menu a:hover,
 .menu a:focus-visible {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .menu .active {
-  color: var(--accent);
-  text-decoration-color: var(--accent);
+  color: var(--accent-text);
+  text-decoration-color: var(--accent-text);
 }
 
 .link-row {
@@ -587,7 +646,7 @@ hr { margin: 0; border: none; border-top: 1px solid var(--border); }
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    color: var(--accent);
+    color: var(--accent-text);
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: 600;
@@ -599,8 +658,8 @@ hr { margin: 0; border: none; border-top: 1px solid var(--border); }
 
 .pdf-link:hover {
     background: var(--accent-soft);
-    color: var(--accent-light);
-    border-color: var(--accent-light);
+    color: var(--accent-text);
+    border-color: var(--accent-text);
 }
 
 /* ==========================================================
@@ -629,11 +688,11 @@ hr { margin: 0; border: none; border-top: 1px solid var(--border); }
 /* Headings */
 .hero-text h1 {
   font-size: clamp(2.6rem, 7vw, 5rem);
-  font-weight: 800;
-  line-height: .98;
-  letter-spacing: -.03em;
+  font-weight: var(--h-weight);
+  line-height: 1;
+  letter-spacing: var(--h-track);
 }
-section h2 { font-weight: 700; letter-spacing: -.025em; font-size: clamp(1.8rem, 3.5vw, 2.6rem); }
+section h2 { font-weight: var(--h2-weight); letter-spacing: var(--h-track); font-size: clamp(1.8rem, 3.5vw, 2.6rem); }
 
 /* Hero */
 .hero { margin: 56px 0 72px; gap: 56px; }
@@ -684,7 +743,7 @@ section h2 { font-weight: 700; letter-spacing: -.025em; font-size: clamp(1.8rem,
 .category-card:hover, .category-card:focus-visible {
   transform: none;
   box-shadow: none;
-  border-color: var(--accent);
+  border-color: var(--accent-text);
 }
 .project-card:hover img { transform: none; }
 .project-card { display: flex; flex-direction: column; }
@@ -693,7 +752,7 @@ section h2 { font-weight: 700; letter-spacing: -.025em; font-size: clamp(1.8rem,
 .card-body { display: flex; flex-direction: column; gap: 10px; padding: 24px; flex: 1; }
 .card-body h3 { padding: 0; margin: 0; font-size: 1.2rem; line-height: 1.25; letter-spacing: -.015em; }
 .card-body p  { padding: 0; margin: 0; opacity: 1; color: var(--secondary); font-size: .95rem; line-height: 1.6; }
-.card-tag   { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+.card-tag   { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-text); }
 .card-tools { margin-top: auto; padding-top: 6px; font-size: .78rem; color: var(--secondary); }
 
 /* First "Selected work" card becomes the lead project (wide, image left) */
@@ -773,7 +832,7 @@ section h2 { font-weight: 700; letter-spacing: -.025em; font-size: clamp(1.8rem,
 .menu a { font-weight: 500; }
 
 /* Focus ring that works on both themes */
-a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 3px; }
 
 /* Smoother theme switch */
 body, .card-body, .project-card, .category-card, .research-card, .chip, .button {
@@ -796,3 +855,39 @@ body, .card-body, .project-card, .category-card, .research-card, .chip, .button 
 /* PaperMod's profile-mode CSS centres .buttons and caps it at 400px */
 .hero-text .buttons { justify-content: flex-start; max-width: none; width: auto; }
 @media (max-width: 900px) { .hero-text .buttons { justify-content: center; } }
+
+/* ==========================================================
+   Colour roles: one accent per palette
+   ========================================================== */
+.section-label, .tagline, .card-tag { color: var(--accent-text); }
+.category-card .category-link { color: var(--accent-text); }
+.button:hover, .button:focus-visible { background: var(--accent-light); border-color: var(--accent-light); color: var(--on-accent); }
+
+/* ==========================================================
+   Centred detail pages (research / competitions / projects)
+   The page column is centred and readable; wide images still
+   break out of it (see .full-bleed-image above).
+   ========================================================== */
+article.portfolio { max-width: 800px; margin-inline: auto; }
+article.portfolio h1 {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  line-height: 1.1;
+  letter-spacing: var(--h-track);
+  font-weight: var(--h-weight);
+}
+.detail-content { max-width: none; }
+.detail-content figure img { max-width: 100%; }
+@media (min-width: 1100px) {
+  /* keep wide images centred on the page column */
+  .detail-content img.full-bleed-image { width: 135%; max-width: 1080px; }
+}
+
+/* List pages (Research / Projects / Competitions): centred header, grid below */
+.page-hero { text-align: center; max-width: 720px; margin: 56px auto 24px; }
+.page-hero .section-label { text-align: center; }
+.page-hero h1 { font-weight: var(--h-weight); letter-spacing: var(--h-track); }
+.timeline { max-width: 800px; margin-inline: auto; }
+
+/* PaperMod paints list pages (incl. the home page) with --code-bg in light
+   mode, which made the page look more tinted than the palette intends. */
+.list, [data-theme="dark"] .list { background: var(--theme); }
