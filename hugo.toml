@@ -11,7 +11,7 @@ math = true
 # Look and feel (see the notes at the top of portfolio.css)
 # palette:  "lime" | "blue" | "green" | "teal"
 # fontPair: "archivo" | "inter" | "manrope" | "grotesk" | "plex" | "editorial"
-palette = "teal"
+palette = "blue"
 fontPair = "inter"
 
 [markup.goldmark.renderer]
