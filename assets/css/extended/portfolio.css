@@ -1,25 +1,76 @@
 /* --------------------------
-   Root tokens
+   Design tokens (light + dark)
+   Palette: deep navy, slate, sage green, pale lime.
+   PaperMod flips :root[data-theme="dark"] when the header toggle is used,
+   so every colour below has a light and a dark value.
 ---------------------------*/
 :root{
-  --accent: #1f4d80;
-  --accent-light: #2f6fb3;
-  --accent-soft: rgba(31,77,128,.10);
+  --main-width: 1080px;
+  --nav-width: 1080px;
 
-  --entry: rgb(250, 251, 253);   /* was identical to --theme */
-  --border: rgb(225, 230, 238);  /* was flat rgb(238,238,238) */
+  /* Corner radii */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-pill: 999px;
+
+  /* PaperMod's own variables, re-skinned (light) */
+  --theme:   #F3F9EA;   /* page background: tint of the pale lime */
+  --entry:   #FBFDF7;   /* cards, chips */
+  --primary: #212836;   /* headings, logo: the navy */
+  --secondary:#4A5468;  /* muted text */
+  --tertiary:#D3E3BE;
+  --content: #2A3140;   /* body text */
+  --border:  #D3E3BE;
+  --code-bg: #E4F2D3;
+
+  /* Portfolio accent (deep green so text passes contrast on light) */
+  --accent:       #3F6B1F;
+  --accent-light: #55882B;
+  --accent-soft:  rgba(63,107,31,.12);
+  --on-accent:    #FFFFFF;
+
+  /* The one dark band on the page ("Approach") */
+  --band-bg:     #212836;
+  --band-fg:     #E0F6CA;
+  --band-muted:  #C3CCDA;
+  --band-line:   #384259;
+  --band-card:   rgba(255,255,255,.06);
+  --band-accent: #B8D896;
+
+  --font-sans: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 }
 
 :root[data-theme="dark"]{
-  --accent: #2f80ed;
-  --accent-light: #5b9dff;
-  --accent-soft: rgba(47,128,237,.16);
-}
-/* --------------------------
-   Hero Section
----------------------------*/
+  --theme:   #1B212C;
+  --entry:   #262E3F;
+  --primary: #E0F6CA;
+  --secondary:#AEB8C9;
+  --tertiary:#384259;
+  --content: #D9E2D0;
+  --border:  #384259;
+  --code-bg: #2F384C;
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap');
+  --accent:       #B8D896;
+  --accent-light: #CFE8B4;
+  --accent-soft:  rgba(184,216,150,.14);
+  --on-accent:    #212836;
+
+  --band-bg:     #2C354A;
+  --band-fg:     #E0F6CA;
+  --band-muted:  #C3CCDA;
+  --band-line:   #44506A;
+  --band-card:   rgba(255,255,255,.05);
+  --band-accent: #B8D896;
+}
+
+/* --------------------------
+   Fonts
+   (loaded with <link> in layouts/partials/extend_head.html;
+   an @import in the middle of this file is ignored by browsers)
+---------------------------*/
+body { font-family: var(--font-sans); overflow-x: clip; }
 
 .hero-text h1,
 section h2,
@@ -29,19 +80,16 @@ section h2,
 .timeline-year,
 .post-content h2, .post-content h3,
 .detail-content h2, .detail-content h3 {
-  font-family: 'Space Grotesk', sans-serif;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&display=swap');
-
-body {
-  font-family: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-sans);
 }
 
 code, pre, .post-content code, .post-content pre {
-  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-family: var(--font-mono);
 }
 
+/* --------------------------
+   Hero Section
+---------------------------*/
 .hero {
     display: flex;
     justify-content: space-between;
@@ -103,7 +151,7 @@ section h2 { line-height: 1.25; }
     text-decoration: none;
     background: var(--accent);
     border: 2px solid var(--accent);
-    color: #fff;
+    color: var(--on-accent);
     font-weight: 600;
     transition: .2s ease;
 }
@@ -313,7 +361,7 @@ hr { margin: 0; border: none; border-top: 1px solid var(--border); }
     background: var(--accent); border: 3px solid var(--theme);
 }
 .timeline-year { font-size: .85rem; font-weight: 700; color: var(--accent); letter-spacing: .06em; margin-bottom: 4px; }
-.timeline-body { background: var(--entry); border: 1px solid var(--border); border-radius: 14px; padding: 20px 24px; transition: .25s ease; }
+.timeline-body { background: var(--entry); border: 1px solid var(--border); border-radius: var(--r-md); padding: 20px 24px; transition: .25s ease; }
 .timeline-item:hover .timeline-body, .timeline-item:focus-visible .timeline-body { border-color: var(--accent); transform: translateX(4px); }
 .timeline-role { color: var(--content); opacity: .7; font-size: .9rem; margin-bottom: 8px; }
 .timeline-item--disabled { cursor: default; opacity: .8; }
@@ -554,3 +602,197 @@ hr { margin: 0; border: none; border-top: 1px solid var(--border); }
     color: var(--accent-light);
     border-color: var(--accent-light);
 }
+
+/* ==========================================================
+   Design refresh: "engineering notebook"
+   Soft rounded corners, hairline borders, mono labels.
+   Everything uses the tokens at the top, so light and dark
+   both work from the header's theme toggle.
+   ========================================================== */
+
+/* Labels and data use the mono face */
+.section-label,
+.tagline,
+.chip,
+.card-tag,
+.card-tools,
+.ach-event,
+.badge,
+.meta-pill,
+.timeline-year {
+  font-family: var(--font-mono);
+}
+
+.section-label { font-weight: 500; letter-spacing: .12em; }
+.tagline       { font-weight: 500; font-size: .85rem; letter-spacing: .12em; }
+
+/* Headings */
+.hero-text h1 {
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  font-weight: 800;
+  line-height: .98;
+  letter-spacing: -.03em;
+}
+section h2 { font-weight: 700; letter-spacing: -.025em; font-size: clamp(1.8rem, 3.5vw, 2.6rem); }
+
+/* Hero */
+.hero { margin: 56px 0 72px; gap: 56px; }
+.hero-text p { opacity: 1; color: var(--secondary); font-size: 1.2rem; line-height: 1.6; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 0; }
+.chip {
+  font-size: .8rem;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  background: var(--entry);
+  color: var(--content);
+}
+
+.hero-image { flex: 0 0 auto; }
+.hero-image img {
+  display: block;
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  object-position: center 20%;
+  border-radius: 50%;
+  border: 4px solid var(--accent);
+  box-shadow: none;
+}
+
+/* Buttons */
+.button { border-radius: var(--r-pill); padding: 13px 28px; min-height: 44px; }
+.button:hover, .button:focus-visible { transform: none; box-shadow: none; }
+.button.ghost { background: transparent; color: var(--primary); border: 1px solid var(--primary); }
+.button.ghost:hover { background: var(--primary); color: var(--theme); border-color: var(--primary); }
+
+/* Achievements strip */
+.achievements { margin: 0; padding: 40px 0; border-block: 1px solid var(--border); }
+.achievement-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px 40px; margin-top: 18px; }
+.achievement strong { display: block; font-size: 1.6rem; line-height: 1.15; letter-spacing: -.02em; color: var(--primary); }
+.ach-event { display: block; margin-top: 8px; font-size: .85rem; color: var(--content); }
+.ach-place { display: block; font-size: .9rem; color: var(--secondary); }
+
+/* Cards: flat, square-ish, hairline border */
+.project-card, .category-card, .research-card, .skills > div, .timeline-body {
+  border-radius: var(--r-lg);
+  box-shadow: none;
+  background: var(--entry);
+}
+.project-card:hover, .project-card:focus-visible,
+.category-card:hover, .category-card:focus-visible {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--accent);
+}
+.project-card:hover img { transform: none; }
+.project-card { display: flex; flex-direction: column; }
+.project-card .thumb { background: var(--code-bg); }
+.detail-content img, .post-content img { border-radius: var(--r-md); }
+.card-body { display: flex; flex-direction: column; gap: 10px; padding: 24px; flex: 1; }
+.card-body h3 { padding: 0; margin: 0; font-size: 1.2rem; line-height: 1.25; letter-spacing: -.015em; }
+.card-body p  { padding: 0; margin: 0; opacity: 1; color: var(--secondary); font-size: .95rem; line-height: 1.6; }
+.card-tag   { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+.card-tools { margin-top: auto; padding-top: 6px; font-size: .78rem; color: var(--secondary); }
+
+/* First "Selected work" card becomes the lead project (wide, image left) */
+.project-grid--featured .project-card:first-child {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+}
+.project-grid--featured .project-card:first-child .thumb,
+.project-grid--featured .project-card:first-child img { height: 100%; min-height: 320px; }
+.project-grid--featured .project-card:first-child .card-body { padding: 40px; justify-content: center; gap: 16px; }
+.project-grid--featured .project-card:first-child h3 { font-size: 1.8rem; }
+.project-grid--featured .project-card:first-child p  { font-size: 1.05rem; }
+@media (max-width: 800px) {
+  .project-grid--featured .project-card:first-child { grid-template-columns: 1fr; }
+  .project-grid--featured .project-card:first-child .thumb,
+  .project-grid--featured .project-card:first-child img { min-height: 200px; height: 200px; }
+}
+
+/* "What I Work On" cards: quieter, text-only */
+.category-card { padding: 28px; }
+.category-card p { opacity: 1; color: var(--secondary); }
+
+/* Badges: small mono tags, not pills */
+.badge, .meta-pill, .pdf-link { border-radius: var(--r-pill); }
+.badge { font-weight: 500; font-size: .8rem; }
+.skills > div { background: transparent; }
+
+/* The dark band: Approach + Toolbox */
+.band {
+  background: var(--band-bg);
+  color: var(--band-fg);
+  margin: 88px 0;
+  padding: 64px 56px;
+  border-radius: 28px;
+}
+.band .section-label { color: var(--band-accent); }
+.band h2, .band h3 { color: var(--band-fg); }
+.band p { color: var(--band-muted); opacity: 1; max-width: 64ch; }
+.band strong { color: var(--band-fg); }
+.band .education-grid { gap: 40px 48px; }
+.band .research-card {
+  background: var(--band-card);
+  border: 1px solid var(--band-line);
+  border-radius: var(--r-lg);
+  padding: 26px;
+  margin-top: 0;
+}
+.band .research-card h3 { font-size: 1.25rem; }
+.band .research-card p { margin-bottom: 0; }
+.band .skills { margin-top: 48px; padding-top: 40px; border-top: 1px solid var(--band-line); gap: 32px 48px; }
+.band .skills > div { border: 0; padding: 0; background: transparent; transform: none; }
+.band .skills h3 { font-size: .95rem; opacity: 1; margin-bottom: 10px; }
+.band .badge {
+  display: block;
+  padding: 2px 0;
+  margin: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  color: var(--band-muted);
+  font-weight: 400;
+  font-size: .9rem;
+  line-height: 1.8;
+}
+
+/* About + Education side by side */
+.about-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px 72px; align-items: start; }
+.about-grid .research-card { margin-top: 0; margin-bottom: 16px; padding: 22px 24px; background: var(--entry); border: 1px solid var(--border); border-radius: var(--r-lg); }
+.about-grid .research-card h3 { font-size: 1.05rem; margin-bottom: 4px; }
+.about-grid .research-card p { margin-bottom: 8px; color: var(--secondary); font-size: .95rem; }
+@media (max-width: 800px) { .about-grid { grid-template-columns: 1fr; } }
+
+/* Header and footer */
+.nav { padding-block: 8px; }
+.logo a { font-weight: 700; letter-spacing: -.01em; }
+.menu a { font-weight: 500; }
+
+/* Focus ring that works on both themes */
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* Smoother theme switch */
+body, .card-body, .project-card, .category-card, .research-card, .chip, .button {
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* Mobile */
+@media (max-width: 900px) {
+  .hero-image img { width: 160px; height: 160px; }
+  .chips { justify-content: center; }
+  .band { padding: 40px 24px; border-radius: 22px; }
+}
+
+/* Fixes found while testing */
+.buttons { margin-top: 28px; align-items: center; }
+.buttons .button { margin: 0; white-space: nowrap; }
+.hero-text { flex: 1 1 480px; }
+.band p { margin: 0 0 16px; }
+/* PaperMod's profile-mode CSS centres .buttons and caps it at 400px */
+.hero-text .buttons { justify-content: flex-start; max-width: none; width: auto; }
+@media (max-width: 900px) { .hero-text .buttons { justify-content: center; } }

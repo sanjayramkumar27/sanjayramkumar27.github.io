@@ -1,0 +1,21 @@
+{{/* One project card. Call with: {{ partial "project-card.html" $page }}
+     Optional front matter: tools: ["CasADi", "IPOPT", "PyGMO"] */}}
+{{ $p := . }}
+{{ $labels := dict "research" "Research" "competitions" "Competition" "projects" "Personal project" }}
+<a class="project-card" href="{{ $p.RelPermalink }}">
+  {{ with $p.Params.cover }}
+    {{ with $p.Resources.GetMatch .image }}
+      {{ $thumb := . }}
+      {{ if in (slice "image/jpeg" "image/png") .MediaType.String }}
+        {{ $thumb = .Resize "800x q75" }}
+      {{ end }}
+      <div class="thumb"><img src="{{ $thumb.RelPermalink }}" alt="" loading="lazy"></div>
+    {{ end }}
+  {{ end }}
+  <div class="card-body">
+    <span class="card-tag">{{ index $labels $p.Section }}</span>
+    <h3>{{ $p.Title }}</h3>
+    <p>{{ $p.Params.summary | default $p.Summary }}</p>
+    {{ with $p.Params.tools }}<span class="card-tools">{{ delimit . " · " }}</span>{{ end }}
+  </div>
+</a>
