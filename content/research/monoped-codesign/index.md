@@ -13,7 +13,6 @@ Co-authored with Suraj Kumar (URSC).
 
 <a class="pdf-link" href="https://arxiv.org/abs/2610.37199">arXiv preprint</a>
 
-{{< figure src="model.png" alt="Robot Model" caption="Robot built in MuJoCo" >}}
 
 ## Key Findings
 
@@ -25,6 +24,8 @@ Co-authored with Suraj Kumar (URSC).
 ## Problem
 
 In lunar gravity, flight phases are long relative to stance, so attitude can't be fixed through ground reaction forces alone. Leg morphology and controller become interdependent, and the central question is whether the best body depends on the controller used to evaluate it.
+
+{{< figure src="model.png" alt="Robot Model" caption="Robot built in MuJoCo" >}}
 
 ## My Contribution
 
@@ -45,7 +46,6 @@ I used COT rather than raw energy because raw energy rewards small, light legs r
 
 ## Result 1: 1D Co-Design
 
-<img src="cot-landscapes.png" class="full-bleed-image">
 
 | Design optimized with | Evaluated with Traj-opt | Evaluated with QP-TSC |
 |---|---|---|
@@ -56,7 +56,10 @@ The QP-TSC optimum is not physically realistic: its legs would weigh 2.2 kg of a
 
 ## Result 2: 2D Jump and Landing
 
-{{< figure src="jump-trajectories.png" alt="2D jump trajectories" caption="In-place and forward jump trajectories" >}}
+<div class="image-pair">
+  {{< figure src="2d_inplace.png" alt="Jump Trajectory" caption="In-place Jump Trajectory" >}}
+  {{< figure src="2d_forward.png" alt="Jump Trajectory" caption="Forward Jump Trajectory" >}}
+</div>
 
 | | In-place | Forward |
 |---|---|---|
