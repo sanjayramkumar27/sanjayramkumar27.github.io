@@ -1,59 +1,81 @@
 ---
-title: "Bi-Level Optimization based Co-Design of a Lunar Monoped Jumper"
+title: "Bi-Level Co-Design of a Lunar Monoped with 2D Jump and Landing Control"
 date: 2026-06-01
-summary: "CasADi/IPOPT trajectory optimization nested inside PyGMO differential evolution for morphology-controller co-design."
+summary: "Does the optimal leg morphology of a lunar hopper depend on the controller used to evaluate it? Differential evolution over link lengths, with trajectory optimization or a QP controller as the inner loop."
 tags: ["robotics", "trajectory-optimization", "co-design"]
 cover:
   image: "cover.png"
 ---
 
-**Summer Internship, U R Rao Satellite Centre (ISRO) - Summer 2026**
+**Summer Internship, U R Rao Satellite Centre (ISRO), Summer 2026**
+Co-authored with Suraj Kumar (URSC).
 
-Most legged robots get designed the same way: fix the mechanical
-design first, then build a controller to work with it. This project
-flips that order, treating a robot's physical proportions, motion
-trajectory, and control policy as coupled variables optimized
-together rather than in the usual sequence.
 
-## The Setup
+<a class="pdf-link" href="https://arxiv.org/abs/2610.37199">arXiv preprint</a>
 
-A two-link monoped (single-legged hopping robot) built to jump 0.2 m
-under lunar gravity (1.625 m/s²), with thigh and shank link lengths
-as the free design parameters. Two different controllers were studied : a real-time Quadratic Programming (QP) task-space controller,
-and a trajectory optimizer (CasADi + IPOPT) that plans the entire
-stance-phase motion in advance to minimize actuator work.
-
-{{< figure src="model.png" alt="Monoped Model" caption="Model built in MuJoCo" >}}
-
-## The Framework
-
-A bi-level optimization: an outer Differential Evolution search
-(via PyGMO) proposes candidate link lengths, and for each candidate a parametric XML file is generated and
-an inner loop simulates the jump in MuJoCo and reports back the
-Cost of Transport (COT), which DE tries to minimize.
-
-<img src="flow.png"  class="full-bleed-image">
-
+{{< figure src="model.png" alt="Robot Model" caption="Robot built in MuJoCo" >}}
 
 ## Key Findings
 
-- Both controllers converged to nearly identical optimal
-  morphologies independently. That suggests the task itself, not the
-  controller, dominates which body proportions are efficient.
-- The trajectory optimizer consistently beat the QP controller in
-  energy efficiency (COT 1.35 vs 1.61), since it can plan effort
-  distribution across the whole stance phase instead of reacting
-  greedily.
-- Each morphology performed best when paired with the controller it
-  was co-designed with. Link geometry, trajectory, and control
-  aren't separable design choices.
+- **Similar ratio, different design.** Both controllers converge to similar thigh-to-shank ratios (1.71 for trajectory optimization, 1.59 for QP), but at different absolute lengths: 0.36/0.21 m vs 0.54/0.34 m. The controller changes the optimal body.
+- **Trajectory optimization is the stronger controller.** COT 1.28 vs 1.55 at their respective optima (17% lower), and it wins across most of the design space. Part of this gap may come from the QP gains not being re-tuned per morphology.
+- **The asymmetry.** The QP-optimized design loses 14% under trajectory optimization's evaluation; the trajectory-optimized design loses only 3.5% under QP.
+- **2D extension.** Angular momentum regulation during stance plus an LQR landing controller produces stable in-place and forward jumps in simulation.
 
-A separate 5-DOF extension (adding base pitch and horizontal
-translation) was also built to generate stable, self-righting 2D
-jumps, laying groundwork for a future quadruped co-design study
-targeting low-gravity locomotion.
+## Problem
 
-**Tools:** Python, MuJoCo, CasADi, IPOPT, PyGMO, OSQP
+In lunar gravity, flight phases are long relative to stance, so attitude can't be fixed through ground reaction forces alone. Leg morphology and controller become interdependent, and the central question is whether the best body depends on the controller used to evaluate it.
+
+## My Contribution
+
+I built the full pipeline: the parametric MuJoCo model, the bi-level framework, both inner controllers, the angular momentum regulated 2D trajectory optimization, and the LQR landing controller with its region-of-attraction sweep.
+
+## Approach
+
+A planar monoped (3 kg base, thigh and shank at constant density, 25 Nm torque limits) must jump 0.2 m. An outer differential evolution loop (PyGMO) proposes thigh and shank lengths. For each candidate, an inner controller attempts the jump in MuJoCo and returns the Cost of Transport.
+
+<img src="flow.png" class="full-bleed-image">
+
+The two inner controllers:
+
+- **QP task-space controller (QP-TSC):** tracks a liftoff-velocity reference every timestep; it never minimizes energy.
+- **Trajectory optimization (CasADi + IPOPT):** direct collocation over the whole stance phase, minimizing positive actuator work.
+
+I used COT rather than raw energy because raw energy rewards small, light legs regardless of efficiency. The energy landscapes in the paper show this bias directly.
+
+## Result 1: 1D Co-Design
+
+<img src="cot-landscapes.png" class="full-bleed-image">
+
+| Design optimized with | Evaluated with Traj-opt | Evaluated with QP-TSC |
+|---|---|---|
+| Trajectory optimization | 1.280 | 1.605 |
+| QP-TSC | 1.461 | 1.550 |
+
+The QP-TSC optimum is not physically realistic: its legs would weigh 2.2 kg of a 5.2 kg robot. A real pipeline needs leg-mass-fraction constraints.
+
+## Result 2: 2D Jump and Landing
+
+{{< figure src="jump-trajectories.png" alt="2D jump trajectories" caption="In-place and forward jump trajectories" >}}
+
+| | In-place | Forward |
+|---|---|---|
+| Apex CoM height (m) | 0.557 | 0.559 |
+| Flight time (s) | 0.70 | 0.76 |
+| Horizontal displacement (m) | ≈ 0 | 0.20 |
+| Peak pitch after touchdown (°) | 17 | 79 |
+
+Landing success depends mostly on where the foot touches down relative to the CoM. The LQR stabilizes a good touchdown pose but cannot recover from a poor one. The forward jump lands with limited margin (79° peak pitch).
+
+## Limitations and Next Steps
+
+Everything is simulation-only, with ideal actuators, one task (0.2 m jump), one gravity, and link lengths as the only design variables. The 2D jump was demonstrated on the baseline morphology (both links 0.3 m), not the co-designed one. Next steps:
+
+- Verify the co-designed morphology in 2D.
+- Add actuator models and torque-speed curves.
+- Try TV-LQR or MPC landing controllers.
+- Extend to lunar terrain.
+
+**Tools:** Python, MuJoCo, CasADi, IPOPT, PyGMO, OSQP, MATLAB
 
 {{< youtube ubdsUEcsMzA >}}
-
