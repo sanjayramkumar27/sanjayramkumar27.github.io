@@ -81,4 +81,4 @@ Everything is simulation-only, with ideal actuators, one task (0.2 m jump), one 
 
 **Tools:** Python, MuJoCo, CasADi, IPOPT, PyGMO, OSQP, MATLAB
 
-{{< youtube ubdsUEcsMzA >}}
+{{< youtube GoVaxdS0_lU >}}
