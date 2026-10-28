@@ -61,7 +61,7 @@ The QP-TSC optimum is not physically realistic: its legs would weigh 2.2 kg of a
   {{< figure src="2d_forward.png" alt="Jump Trajectory" caption="Forward Jump Trajectory" >}}
 </div>
 
-| | In-place | Forward |
+| Metric | In-place | Forward |
 |---|---|---|
 | Apex CoM height (m) | 0.557 | 0.559 |
 | Flight time (s) | 0.70 | 0.76 |
