@@ -143,6 +143,8 @@ where \(u_k\) is the control input (force) at timestep \(k\) and \(\Delta t\) is
 ### Settling time
 Under the same impulse disturbance, the settling time for both the cart position and pole angle was calculated. The tolerance band for the position was chosen as 0.025 m and for the pole angle it was chosen as 0.1 rad.
 
+{{< themed-img light="comparison_light.png" dark="comparison_dark.png" alt="Cart-pole Controller comparison" >}}
+
 
 
 

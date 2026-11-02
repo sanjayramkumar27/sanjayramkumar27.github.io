@@ -18,3 +18,11 @@ th {
 tr:nth-child(even) {
   background-color: var(--entry);
 }
+
+.img-dark { display: none; }
+
+[data-theme="dark"] .img-light,
+body.dark .img-light { display: none; }
+
+[data-theme="dark"] .img-dark,
+body.dark .img-dark { display: block; }
