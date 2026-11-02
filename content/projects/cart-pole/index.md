@@ -117,6 +117,9 @@ The same linearized state space model was used to find the optimal values for th
 
 ## Comparison
 
+{{< figure src="comparison_dark.png" alt="Controller Comparison" caption="Controller Comparison" >}}
+
+
 | Metric | PID | Pole Placement | LQR |
 |---|---|---|---|
 | ROA | 30° | 23° | 33° |
@@ -124,6 +127,7 @@ The same linearized state space model was used to find the optimal values for th
 | θ settling time (s) | 2.96 | 2.24 | 2.33 |
 | Peak force (N) | 4.74 | 2.83 | 1.66 |
 | Total Control Effort | 32.56 | 22.83 | 19.7 |
+
 
 ### Region of Attraction (max angle recovered)
 The initial velocities were set to 0 and the initial angle (calculated from the upright position with respect to vertical) was changed until the controller could not stabilize.
@@ -143,9 +147,7 @@ where \(u_k\) is the control input (force) at timestep \(k\) and \(\Delta t\) is
 ### Settling time
 Under the same impulse disturbance, the settling time for both the cart position and pole angle was calculated. The tolerance band for the position was chosen as 0.025 m and for the pole angle it was chosen as 0.1 rad.
 
-{{< figure src="comparison_dark.png" alt="Controller Comparison" caption="Controller Comparison" >}}
 
-
-
+{{< youtube u35Xvd5BQSU >}}
 
 
